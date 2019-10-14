@@ -11,6 +11,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+
                         <div class="form-group row">
                             <label for="login" class="col-md-4 col-form-label text-md-right">{{ __('Matric No./UKMPer/E-Mail') }}</label>
 
@@ -50,6 +51,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request')}}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </form>
