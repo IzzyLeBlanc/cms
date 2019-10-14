@@ -11,7 +11,7 @@
         </div>
         <br>
         <div class="row justify-content-xl-center">
-            <button class="btn btn-outline-primary">PENDAFTARAN REKOD SEWAAN BILIK</button>
+            <a href="{{route('room')}}"><button class="btn btn-outline-primary">PENDAFTARAN REKOD SEWAAN BILIK</button></a>
         </div>
         <br>
         <div class="row justify-content-xl-center">
