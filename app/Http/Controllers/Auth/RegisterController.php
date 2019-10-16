@@ -123,4 +123,48 @@ class RegisterController extends Controller
 
         return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
+
+    public function updatePassword(Request $request){
+        if(Auth::check()){
+            $this->validate($request, [
+                'oldpw' => 'required',
+                'newpw' => 'required',
+                'password-confirm' => 'required'
+            ]);
+
+            $oldpw = $request->input('oldpw');
+            $newpw = $request->input('newpw');
+            $passwordConfirm = $request->input('password-confirm');
+
+            $id = Auth::id();
+
+            $user = User::find(Auth::id());
+
+            if(Hash::check($oldpw, $user->password)){
+                if($newpw === $passwordConfirm){
+                    $user->password = Hash::make($newpw);
+                    $user->update();
+                    return redirect()->route('home');
+                }
+                else{
+                    return view('/admin_homepage');
+                }
+            }
+            else{
+                return view('/staff_homepage');
+            }
+        }
+        else{
+            return redirect()->route('change-password');
+        }
+    }
+
+    public function changePassword(){
+        if(Auth::check()){
+            return view('/change_pw');
+        }
+        else{
+            return route('home');
+        }
+    }
 }

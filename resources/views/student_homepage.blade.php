@@ -12,6 +12,10 @@
             <div class="row justify-content-xl-center">
                 <a href="{{route('parking')}}"><button class="btn btn-outline-primary">PERMOHONAN TEMPAT LETAK KERETA</button></a>
             </div>
+            <br>
+            <div class="row justify-content-xl-center">
+                    <a href="{{route('change-password')}}"><button class="btn btn-outline-primary">TUKAR KATA LALUAN</button></a>
+            </div>
         </div>
     </div>
 @endsection

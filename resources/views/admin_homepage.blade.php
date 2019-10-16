@@ -38,4 +38,12 @@
             <button class="btn btn-outline-primary">PERMOHONAN TEMPAT KEMUDAHAN</button>
         </div>
     </div>
+    <div class="card-header text-center">
+        LAIN-LAIN
+    </div>
+    <div class="card-body">
+        <div class="row justify-content-xl-center">
+            <a href="{{route('change-password')}}"><button class="btn btn-outline-primary">TUKAR KATA LALUAN</button></a>
+        </div>
+    </div>
 @endsection
