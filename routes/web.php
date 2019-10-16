@@ -23,9 +23,6 @@ Route::get('/register', 'Auth\RegisterController@index')->name('register');
 
 Route::get('/room', 'RoomController@index')->name('room');
 
-<<<<<<< HEAD
 Route::get('/facility', 'FacilityController@index')->name('facility');
 
-=======
 Route::get('/parking', 'ParkingController@index')->name('parking');
->>>>>>> adc29cbb9ec7378a943f36d14c03c9903ba61460
