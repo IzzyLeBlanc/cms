@@ -10,7 +10,7 @@
             </div>
             <br>
             <div class="row justify-content-xl-center">
-                <button class="btn btn-outline-primary">PERMOHONAN TEMPAT LETAK KENDERAAN</button>
+                <a href="{{route('parking')}}"><button class="btn btn-outline-primary">PERMOHONAN TEMPAT LETAK KERETA</button></a>
             </div>
         </div>
     </div>
