@@ -6,7 +6,7 @@
         </div>
         <div class="card-body ">
             <div class="row justify-content-xl-center">
-                <button class="btn btn-outline-primary">TEMPAHAN KEMUDAHAN</button>
+                <a href="{{route('facility')}}"><button class="btn btn-outline-primary">PERMOHONAN KEMUDAHAN</button></a>
             </div>
             <br>
             <div class="row justify-content-xl-center">

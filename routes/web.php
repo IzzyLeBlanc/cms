@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register', 'Auth\RegisterController@index')->name('register');
 
 Route::get('/room', 'RoomController@index')->name('room');
+
+Route::get('/facility', 'FacilityController@index')->name('facility');
+
