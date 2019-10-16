@@ -15,7 +15,10 @@ class CreateFacilityRecordTable extends Migration
     {
         Schema::create('facility_record', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamp('checkout');
+            $table->string('programName')->nullable();
+            $table->string('status');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->string('receiptNo');
             $table->timestamps();
         });

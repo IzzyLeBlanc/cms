@@ -16,6 +16,11 @@ class CreateParkingRecordTable extends Migration
         Schema::create('parking_record', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('receiptNo');
+            $table->string('plateNo');
+            $table->string('carModel');
+            $table->string('carColor');
+            $table->string('status');
+            $table->date('end');
             $table->timestamps();
         });
     }
