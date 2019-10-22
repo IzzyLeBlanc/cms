@@ -73,7 +73,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Kemudahan</th>
-                                <th>Tarikh</th>
+                                <th>Keterangan</th>
+                                <th>Tarikh Mula</th>
+                                <th>Tarikh Akhir</th>
                             </tr>
                         </thead>
                     </table>
