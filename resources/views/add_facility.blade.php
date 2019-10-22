@@ -33,18 +33,18 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="date-start" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh Mula:') }}</label>
+                            <label for="date-start" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh dan Masa Mula:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="datetime" name="date-start" id="date-start" class="form-control">
+                                <input type="datetime-local" name="date-start" id="date-start" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="date-end" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh Akhir:') }}</label>
+                            <label for="date-end" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh dan Masa Akhir:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="datetime" name="date-end" id="date-end" class="form-control">
+                                <input type="datetime-local" name="date-end" id="date-end" class="form-control">
                             </div>
                         </div>
 

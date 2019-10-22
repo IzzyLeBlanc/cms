@@ -19,7 +19,7 @@ class FacilityController extends Controller
             if (Auth::user()->role === 'admin') {
                 return view('/admin_homepage');
             } else if(Auth::user()->role === 'student'){
-                return view('/add.facility.blade.php');
+                return view('/add_facility');
             } elseif (Auth::user()->role === 'staff') {
                 return view('/staff_homepage');
             }
