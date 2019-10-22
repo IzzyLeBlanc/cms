@@ -23,7 +23,7 @@
         </div>
         <br>
         <div class="row justify-content-xl-center">
-            <button class="btn btn-outline-primary">PENAMBAHAN TEMPAT LETAK KERETA</button>
+                <a href="{{route('facility')}}"><button class="btn btn-outline-primary">PENAMBAHAN RUANG KEMUDAHAN</button></a>
         </div>
     </div>
     <div class="card-header text-center">
