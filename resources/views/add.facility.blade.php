@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program(Jika Ada):') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program (jika ada):') }}</label>
 
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="name" id="name" required>
