@@ -15,6 +15,8 @@ class CreateFacilityRecordTable extends Migration
     {
         Schema::create('facility_record', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('studentid');
+            $table->string('facilityid');
             $table->string('programName')->nullable();
             $table->string('status');
             $table->dateTime('start');
