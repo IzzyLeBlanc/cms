@@ -8,14 +8,14 @@
                 <div class="card-header">{{ __('PENDAFTARAN REKOD PENYEWAAN BILIK') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST"  action="">
+                    <form method="POST" action="{{route('create-room-rental')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
                             <label for="matrix" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="matrix" id="matrix" required autofocus class="form-control">
+                                <input type="text" name="matrix" id="matrix" required autofocus class="form-control" >
                             </div>
                         </div>
 
@@ -67,15 +67,7 @@
                             <label for="date-start" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh Mula:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="date" name="date-start" id="date-start" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="date-end" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh Akhir:') }}</label>
-
-                            <div class="col-md-6">
-                                <input type="date" name="date-end" id="date-end" class="form-control">
+                                <input type="date" name="date_start" id="date_start" class="form-control">
                             </div>
                         </div>
 
