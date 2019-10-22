@@ -17,9 +17,9 @@ class FacilityController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                return view('/admin_homepage');
-            } else if(Auth::user()->role === 'student'){
                 return view('/add_facility');
+            } else if(Auth::user()->role === 'student'){
+                return view('/rent_facility_application');
             } elseif (Auth::user()->role === 'staff') {
                 return view('/staff_homepage');
             }
