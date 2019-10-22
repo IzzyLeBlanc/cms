@@ -53,6 +53,16 @@
                             </div>
                         </div>
                     </form>
+
+                    <table class=" table table-boarderless" id="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Blok</th>
+                                <th>Tarikh</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
