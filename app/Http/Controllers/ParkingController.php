@@ -17,11 +17,11 @@ class ParkingController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                return view('/admin_homepage');
+                return view('/add_parking');
             } else if(Auth::user()->role === 'student'){
                 return view('/parking_application');
             } elseif (Auth::user()->role === 'staff') {
-                return view('/staff_homepage');
+                return view('/add_parking');
             }
             
         } else {
