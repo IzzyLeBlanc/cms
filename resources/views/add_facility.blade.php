@@ -12,7 +12,15 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program (jika ada):') }}</label>
+                            <label for="matrix" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="matrix" id="matrix" required autofocus class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program:') }}</label>
 
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="name" id="name" required>
@@ -51,10 +59,24 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Hantar Permohonan') }}
+                                    {{ __('Tambah') }}
+                                </button>
+                                <button type="reset" class="btn btn-primary">
+                                    {{ __('Reset') }}
                                 </button>
                             </div>
                         </div>
+                    </form>
+
+                    <table class=" table table-boarderless" id="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Kemudahan</th>
+                                <th>Tarikh</th>
+                            </tr>
+                        </thead>
+                    </table>
                     </form>
                 </div>
             </div>
