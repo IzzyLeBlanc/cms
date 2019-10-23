@@ -38,6 +38,8 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-parking')}}">
                                     {{ __('Hantar') }}
+                                <button type="submit" class="btn btn-primary" name="update" id="update" formaction="{{route('update-parking')}}">
+                                    {{ __('Reset') }}
                                 </button>
                             </div>
                         </div>
