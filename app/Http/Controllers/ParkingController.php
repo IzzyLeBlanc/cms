@@ -41,7 +41,7 @@ class ParkingController extends Controller
         ]);
 
         $id = $request->parking;
-        $parking = new parking;
+        $parking = new Parking;
         $parking->id = $id;
         $parking->block = $request->block;
         $parking->save(); 
