@@ -51,7 +51,7 @@ class ParkingController extends Controller
     public function update(Request $request){
 
         $this->validate($request,[
-            'id'=> 'required'
+            'id'=> 'required',
             'block'=> 'required'
         ]);
         
