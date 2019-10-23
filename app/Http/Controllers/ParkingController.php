@@ -41,7 +41,7 @@ class ParkingController extends Controller
             'block'=>'required'
         ]);
 
-        $id = $request->parking;
+        $id = $request->id;
         $parking = new parking;
         $parking->id = $id;
         $parking->block = $request->block;
