@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use App\Parking;
+use App\parking;
 
 class ParkingController extends Controller
 {
@@ -41,13 +41,12 @@ class ParkingController extends Controller
         ]);
 
         $id = $request->parking;
-        $parking = new Parking;
+        $parking = new parking;
         $parking->id = $id;
         $parking->block = $request->block;
         $parking->save(); 
         return redirect()->route('parking');
     }
-
     public function update(Request $request){
 
         $this->validate($request,[
@@ -55,7 +54,7 @@ class ParkingController extends Controller
         ]);
         
         
-        $parking = Parking::find($request->parking);
+        $parking = parking::find($request->parking);
         $parking->id = $request->parking;
         $parking->block = $request->block;
         $parking->update();
@@ -64,7 +63,7 @@ class ParkingController extends Controller
     }
     public function delete($id){
 
-        $parking = Parking::find($id);   
+        $parking = parking::find($id);   
         $parking->delete();
         return redirect()->route('parking');
         
