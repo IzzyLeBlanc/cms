@@ -12,6 +12,14 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="id" id="id" required autofocus class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="block" class="col-md-4 col-form-label tex-md-right">{{ __('Blok:') }}</label>
 
                             <div class="col-md-6">
@@ -42,6 +50,7 @@
                 <table class=" table table-striped" id="table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Block</th>
                         </tr>
                     </thead>
