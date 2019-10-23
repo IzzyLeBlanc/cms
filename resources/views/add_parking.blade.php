@@ -39,9 +39,6 @@
                                 <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-parking')}}">
                                     {{ __('Hantar') }}
                                 </button>
-                                <button class="btn btn-primary"type="submit" name="update" id="update" formaction="{{route('update-parking')}}">
-                                    {{__('Reset')}}
-                                </button>
                             </div>
                         </div>
                     </form>
@@ -61,6 +58,7 @@
                                  <td>{{ $parkings->block }}</td>
                                  <td>
                                    <a href="{{route('delete-parking', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                                   <a href="{{route('update-parking', $parkings->id)}}" class="btn btn-danger">{{__('Kemas kini')}}</a>
                                  </td>
          
                             </tr>

@@ -56,7 +56,7 @@ class ParkingController extends Controller
         ]);
         
         $parking = parking::find($request->parking);
-        $parking->id = $request->parking;
+        $parking->id = $request->id;
         $parking->block = $request->block;
         $parking->update();
 
