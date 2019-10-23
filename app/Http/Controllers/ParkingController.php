@@ -37,7 +37,7 @@ class ParkingController extends Controller
     public function create(Request $request){
 
         $this->validate($request, [
-            'id'=>'required'
+            'id'=>'required',
             'block'=>'required'
         ]);
 
