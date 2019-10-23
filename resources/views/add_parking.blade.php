@@ -8,64 +8,58 @@
                 <div class="card-header">{{ __('PENAMBAHAN TEMPAT LETAK KERETA') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST"  action="">
+                    <form method="POST" action="{{route('create-parking')}}" enctype="multipart/form-data">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="matrix" class="col-md-4 col-form-label text-md-right">{{ __('id:') }}</label>
-
-                            <div class="col-md-6">
-                                <input type="text" name="matrix" id="matrix" required autofocus class="form-control">
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="block" class="col-md-4 col-form-label tex-md-right">{{ __('Blok:') }}</label>
 
                             <div class="col-md-6">
-                                <select name="block" id="block" class="form-control">
+                                <select name="block" id="block" class="form-control" required>
                                     <option value="">{{ __('Pilih Blok') }}</option>
-                                    <option value="A">{{ __('A') }}</option>
-                                    <option value="B">{{ __('B') }}</option>
-                                    <option value="C">{{ __('C') }}</option>
-                                    <option value="D">{{ __('D') }}</option>
+                                    <option value="A">{{ __('A-B') }}</option>
+                                    <option value="B">{{ __('C-D') }}</option>
+                                    <option value="C">{{ __('C-E') }}</option>
+                                    <option value="D">{{ __('F') }}</option>
+                                    <option value="D">{{ __('G-H') }}</option>
                                 </select>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="date-created" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh:') }}</label>
-
-                            <div class="col-md-6">
-                                <input type="text" name="tarikh" id="tarikh" required autofocus class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Tambah') }}
+                                <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-parking')}}">
+                                    {{ __('Hantar') }}
                                 </button>
-                                <button type="reset" class="btn btn-primary">
-                                    {{ __('Reset') }}
+                                <button class="btn btn-primary"type="submit" name="update" id="update" formaction="{{route('update-parking')}}">
+                                    {{__('Reset')}}
                                 </button>
                             </div>
                         </div>
                     </form>
 
-                    <table class=" table table-boarderless" id="table">
+                    <table class=" table table-striped" id="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Blok</th>
-                                <th>Tarikh</th>
                             </tr>
                         </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                        <tbody>
+                            @foreach($parking as $parkings)
+                            <tr>
+                                 <td>{{ $parkings->id }}</td>
+                                 <td>{{ $parkings->floor }}</td>
+                                 <td>{{ $parkings->block }}</td>
+                                 <td>
+                                   <a href="{{route('delete-parking', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                                 </td>
+         
+                            </tr>
+                            @endforeach
+                         </tbody>
+                      </table>
+                     {{$parking->links() }}
+                 </div>
+             </div>
+         </div>
+         @endsection
