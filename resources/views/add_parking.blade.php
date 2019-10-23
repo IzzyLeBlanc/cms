@@ -37,18 +37,18 @@
                             </div>
                         </div>
                     </form>
-
-                    <table class=" table table-striped" id="table">
-                        <thead>
-                            <tr>
-                                <th>Blok</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                </div>
+            </div>
+                <table class=" table table-striped" id="table">
+                    <thead>
+                        <tr>
+                            <th>Block</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                             @foreach($parking as $parkings)
                             <tr>
                                  <td>{{ $parkings->id }}</td>
-                                 <td>{{ $parkings->floor }}</td>
                                  <td>{{ $parkings->block }}</td>
                                  <td>
                                    <a href="{{route('delete-parking', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>

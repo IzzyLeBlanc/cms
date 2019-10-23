@@ -36,8 +36,7 @@ class ParkingController extends Controller
 
     public function create(Request $request){
 
-        $this->validate($request, [
-            'parking'=>'required',
+        $this->validate($request, [,
             'block'=>'required'
         ]);
 
@@ -52,14 +51,12 @@ class ParkingController extends Controller
     public function update(Request $request){
 
         $this->validate($request,[
-            'parking' => 'required',
             'block'=> 'required'
         ]);
         
         
         $parking = Parking::find($request->parking);
         $parking->id = $request->parking;
-        $parking->floor = $request->floor;
         $parking->block = $request->block;
         $parking->update();
 
