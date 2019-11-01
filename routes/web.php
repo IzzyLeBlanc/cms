@@ -26,7 +26,9 @@ Route::post('/updatepassword', 'Auth\RegisterController@updatePassword')->name('
 
 //Room Rental Module
 Route::get('/roomrental', 'RoomRentalController@index')->name('room-rental');
-Route::post('/roomrental', 'RoomRentalController@create')->name('create-room-rental');
+Route::post('/roomrental/create', 'RoomRentalController@create')->name('create-room-rental');
+Route::post('roomrental/checkout/{id}', 'RoomRentalController@checkout')->name('checkout');
+Route::get('roomrental/checkout/{id}', 'RoomRentalController@checkout')->name('checkout');
 
 //Room Module
 Route::get('/room', 'RoomController@index')->name('room');

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Session;
+use App\RoomRental;
+
 class RoomRentalController extends Controller
 {
     //
@@ -17,11 +20,13 @@ class RoomRentalController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                return view('/room_rental_record');
+                $record = DB::table('room_record')->paginate(15);
+                return view('/room_rental_record',['record'=>$record]);
             } else if(Auth::user()->role === 'student'){
                 return view('/student_homepage');
             } elseif (Auth::user()->role === 'staff') {
-                return view('/room_rental_record');
+                $record = DB::table('room_record')->paginate(15);
+                return view('/room_rental_record',['record'=>$record]);
             }
             
         } else {
@@ -31,27 +36,56 @@ class RoomRentalController extends Controller
 
     public function create(Request $request){
         $this->validate($request,[
-            'matrix'=>'required',
-            'name'=>'required',
+            'user_id'=>'required',
             'block'=>'required',
             'floor'=>'required',
             'room'=>'required',
-            'date-start'=>'required',
-            'date-end'=>'required'
+            'sem'=>'required'
         ]);
 
-        $record = new Record();
-        $record->matrix = $request->matrix;
-        $record->name = $request->name;
+        $record = new RoomRental();
+        $record->user_id = $request->user_id;
         $record->block = $request->block;
         $record->floor = $request->floor;
         $record->room = $request->room;
-        $record->date_start = $request->date_start;
-        $note->save();
-
-        Session::flash('success','The new record have been created successfully.');
+        $record->sem = $request->sem;
+        $record->save();
 
         return view('/room_rental_record');
     }
 
+    /* KIV
+    public function update(Request $request){
+
+        $this->validate($request,[
+            'user_id'=>'required',
+            'block'=>'required',
+            'floor'=>'required',
+            'room'=>'required',
+            'sem'=>'required'
+        ]);
+
+        $record = RoomRecord::where([
+            ['user_id','=',$request->user_id],
+            ['block','=',$request->block],
+            ['floor','=',$request->floor],
+            ['room','=',$request->room],
+            ['sem','=',$request->sem]
+        ]);
+        $record->user_id = $request->user_id;
+        $record->block = $request->block;
+        $record->floor = $request->floor;
+        $record->room = $request->room;
+        $record->sem = $request->sem;
+        $record->update();
+    } */
+
+    public function checkout($id){
+
+        date_default_timezone_set('Asia/Kuala_Lumpur');
+        $record = RoomRental::find($id);
+        $record->checkout = date('Y-m-d H:i:s');
+        $record->save();
+        return redirect()->route('room-rental');
+    }
 }

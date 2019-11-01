@@ -59,7 +59,6 @@ class RoomController extends Controller
             'block'=> 'required'
         ]);
         
-        
         $room = Room::find($request->room);
         $room->id = $request->room;
         $room->floor = $request->floor;
@@ -68,6 +67,7 @@ class RoomController extends Controller
 
         return redirect()->route('room');
     }
+
     public function delete($id){
 
         $room = Room::find($id);   

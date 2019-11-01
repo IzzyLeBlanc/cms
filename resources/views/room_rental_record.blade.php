@@ -12,23 +12,15 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="matrix" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
+                            <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="matrix" id="matrix" required autofocus class="form-control" >
+                                <input type="text" name="user_id" id="user_id" required autofocus class="form-control" placeholder="A123456" pattern="A(\d{6})">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama:') }}</label>
-
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" name="name" id="name" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="block" class="col-md-4 col-form-label tex-md-right">{{ __('Blok:') }}</label>
+                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Blok:') }}</label>
 
                             <div class="col-md-6">
                                 <select name="block" id="block" class="form-control">
@@ -40,7 +32,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="floor" class="col-md-4 col-form-label tex-md-right">{{ __('Aras:') }}</label>
+                            <label for="floor" class="col-md-4 col-form-label text-md-right">{{ __('Aras:') }}</label>
 
                             <div class="col-md-6">
                                 <select name="floor" id="floor" class="form-control">
@@ -52,7 +44,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="room" class="col-md-4 col-form-label tex-md-right">{{ __('No. Bilik:') }}</label>
+                            <label for="room" class="col-md-4 col-form-label text-md-right">{{ __('No. Bilik:') }}</label>
 
                             <div class="col-md-6">
                                 <select name="room" id="room" class="form-control">
@@ -64,10 +56,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="date-start" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh Mula:') }}</label>
+                            <label for="sem" class="col-md-4 col-form-label text-md-right">{{ __('Semester:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="date" name="date_start" id="date_start" class="form-control">
+                                <input type="number" name="sem" id="sem" class="form-control" min="1" max="3" placeholder="1">
                             </div>
                         </div>
 
@@ -81,6 +73,33 @@
                     </form>
                 </div>
             </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>User ID</th>
+                   <th>Room</th>
+                   <th>Floor</th>
+                   <th>Block</th>
+                   <th>Sem</th>
+                   <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                   @foreach($record as $records)
+                   <tr>
+                        <td>{{ $records->id }}</td>
+                        <td>{{ $records->user_id }}</td>
+                        <td>{{ $records->room }}</td>
+                        <td>{{ $records->floor }}</td>
+                        <td>{{ $records->block }}</td>
+                        <td>{{ $records->sem }}</td>
+                        <td><a href="{{route('checkout', $records->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a></td>
+                   </tr>
+                   @endforeach
+                </tbody>
+             </table>
+            {{$record->links() }}
         </div>
     </div>
 </div>

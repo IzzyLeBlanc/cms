@@ -15,6 +15,11 @@ class CreateRoomRecordTable extends Migration
     {
         Schema::create('room_record', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_id');
+            $table->string('room');
+            $table->string('floor');
+            $table->string('block');
+            $table->string('sem');
             $table->timestamp('checkout');
             $table->timestamps();
         });
