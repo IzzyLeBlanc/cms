@@ -51,7 +51,7 @@ class RoomRentalController extends Controller
         $record->sem = $request->sem;
         $record->save();
 
-        return view('/room_rental_record');
+        return redirect()->route('room-rental');
     }
 
     /* KIV

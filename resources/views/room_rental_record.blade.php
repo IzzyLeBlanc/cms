@@ -82,6 +82,7 @@
                    <th>Floor</th>
                    <th>Block</th>
                    <th>Sem</th>
+                   <th>Checkout Time</th>
                    <th></th>
                 </tr>
                 </thead>
@@ -94,6 +95,7 @@
                         <td>{{ $records->floor }}</td>
                         <td>{{ $records->block }}</td>
                         <td>{{ $records->sem }}</td>
+                        <td>{{ $records->checkout }}</td>
                         <td><a href="{{route('checkout', $records->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a></td>
                    </tr>
                    @endforeach
