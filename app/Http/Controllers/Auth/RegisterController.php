@@ -11,6 +11,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -115,15 +116,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        return $this->registered($request, $user) ?: redirect($this->redirectPath());
-    }
-
     public function updatePassword(Request $request){
         if(Auth::check()){
             $this->validate($request, [
@@ -144,14 +136,17 @@ class RegisterController extends Controller
                 if($newpw === $passwordConfirm){
                     $user->password = Hash::make($newpw);
                     $user->update();
+                    Session::flash('status', 'Password succesfully changed.');
                     return redirect()->route('home');
                 }
                 else{
-                    return view('/admin_homepage');
+                    Session::flash('statusfail', 'New passwords do not match.');
+                    return redirect()->route('change-password');
                 }
             }
             else{
-                return view('/staff_homepage');
+                Session::flash('statusfail', 'Incorrect old password');
+                return redirect()->route('change-password');
             }
         }
         else{
@@ -161,7 +156,7 @@ class RegisterController extends Controller
 
     public function changePassword(){
         if(Auth::check()){
-            return view('/change_pw');
+            return view('Auth/change_pw');
         }
         else{
             return route('home');

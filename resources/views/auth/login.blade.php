@@ -7,6 +7,16 @@
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
+                @if($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    {{__('auth.failed')}}
+                </div>
+                @elseif(Session::has('registersuccess'))
+                <div class="alert alert-success" role="alert">
+                        {{__('auth.registersuccess')}}
+                    </div>
+                @endif
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
