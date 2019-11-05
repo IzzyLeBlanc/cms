@@ -11,6 +11,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class RegisterController extends Controller
@@ -34,7 +35,7 @@ class RegisterController extends Controller
      * @var string
      */
 
-     protected $redirectTo = '/';
+     protected $redirectTo = '/register';
 
     /**
      * Create a new controller instance.
@@ -43,6 +44,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        
     }
 
     /**Checks the role */
@@ -62,7 +64,8 @@ class RegisterController extends Controller
         /**
          * For initialising a user purpose only.
          */
-        return view('auth/register');
+        $user = DB::table('users')->paginate(15);
+        return view('auth/register',['user'=>$user]);
     }
     
     /**
@@ -161,5 +164,63 @@ class RegisterController extends Controller
         else{
             return route('home');
         }
+    }
+
+    public function updateUser(Request $request){
+        if(Auth::check()){
+            try{
+                $user = User::find($request->input('id'));
+                if ($request->input('email') == $user->email){
+                    $emailSame = true;
+                }
+                else{
+                    $emailSame = false;
+                }
+            }catch(Exception $e){
+                Session::flash('statusfail', 'No such user found');
+            }
+            if($emailSame){
+                $this->validate($request, [
+                    'id' => ['required', 'string', 'size:7'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'icNo' => ['required', 'string'],
+                    'phoneNo' => ['required', 'string', 'min:10', 'max:11'],
+                    'address' => ['required', 'string'],
+                    'role' => ['required', 'string',
+                    function($attribute, $value, $fail){
+                        if ($value !== "student" && $value !== "staff" && $value !== "admin"){
+                            $fail($attribute.' is invalid.');
+                            Session::flash('statusfail', $attribute.' is invalid.');
+                        }
+                    }]
+                ]);
+            } else{
+                $this->validate($request, [
+                    'id' => ['required', 'string', 'size:7'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'icNo' => ['required', 'string'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'phoneNo' => ['required', 'string', 'min:10', 'max:11'],
+                    'address' => ['required', 'string'],
+                    'role' => ['required', 'string',
+                    function($attribute, $value, $fail){
+                        if ($value !== "student" && $value !== "staff" && $value !== "admin"){
+                            $fail($attribute.' is invalid.');
+                            Session::flash('statusfail', $attribute.' is invalid.');
+                        }
+                    }]
+                ]);
+            }
+        }
+
+        $user->name = $request->input('name');
+        $user->icno = $request->input('icNo');
+        $user->email = $request->input('email');
+        $user->phoneNo = $request->input('phoneNo');
+        $user->address = $request->input('address');
+        $user->role = $request->input('role');
+        $user->update();
+        Session::flash('status', 'Update Success');
+        return redirect()->route('register');
     }
 }

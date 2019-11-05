@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register', 'Auth\RegisterController@index')->name('register');
 Route::get('/changepassword', 'Auth\RegisterController@changePassword')->name('change-password');
 Route::post('/updatepassword', 'Auth\RegisterController@updatePassword')->name('update-password');
+Route::post('/updateUser', 'Auth\RegisterController@updateUser')->name('update-user');
 
 //Room Rental Module
 Route::get('/roomrental', 'RoomRentalController@index')->name('room-rental');
