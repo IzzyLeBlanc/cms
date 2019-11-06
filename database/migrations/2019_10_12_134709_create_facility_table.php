@@ -20,6 +20,7 @@ class CreateFacilityTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('rates');
+            $table->string('staffid')->nullable();
             $table->timestamps();
         });
     }

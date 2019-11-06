@@ -21,6 +21,7 @@ class CreateRoomRecordTable extends Migration
             $table->string('block');
             $table->string('sem');
             $table->timestamp('checkout');
+            $table->string('staffid')->nullable();
             $table->timestamps();
         });
     }
