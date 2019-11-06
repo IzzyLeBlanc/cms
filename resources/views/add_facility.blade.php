@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col=md-8">
             <div class="card">
-                <div class="card-header">{{ __('PERMOHONAN SEWA KEMUDAHAN') }}</div>
+                <div class="card-header">{{ __('PENAMBAHAN RUANG KEMUDAHAN') }}</div>
                 
                 <div class="card-body">
                     <form method="POST"  action="">
@@ -20,18 +20,10 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program:') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Fasiliti:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="name" id="name" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="room" class="col-md-4 col-form-label tex-md-right">{{ __('Fasiliti yang Digunakan:') }}</label>
-
-                            <div class="col-md-6">
-                                <select name="room" id="room" class="form-control">
+                                <select name="facility" id="facility" class="form-control">
                                     <option value="">{{ __('Pilih Kemudahan') }}</option>
                                     <option value="1">{{ __('Dewan Besar Zaba') }}</option>
                                     <option value="2">{{ __('Kafeteria Zaba') }}</option>
@@ -41,18 +33,18 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="date-start" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh dan Masa Mula:') }}</label>
+                            <label for="description" class="col-md-4 col-form-label tex-md-right">{{ __('Keterangan:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="datetime-local" name="date-start" id="date-start" class="form-control">
+                                <input type="text" name="description" id="description" required autofocus class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="date-end" class="col-md-4 col-form-label tex-md-right">{{ __('Tarikh dan Masa Akhir:') }}</label>
+                            <label for="rates" class="col-md-4 col-form-label tex-md-right">{{ __('Pembayaran:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="datetime-local" name="date-end" id="date-end" class="form-control">
+                                <input type="text" name="rates" id="rates" class="form-control">
                             </div>
                         </div>
 
@@ -85,7 +77,7 @@
                                 <th>ID</th>
                                 <th>Facility</th>
                                 <th>Description</th>
-                                <th>Rate</th>
+                                <th>Rates</th>
                             </tr>
                         </thead>
                         <tbody>
