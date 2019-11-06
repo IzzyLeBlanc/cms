@@ -4,11 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col=md-8">
+            @if(Session::has('status'))
+            <div class="alert alert-success" role="alert">
+                {{Session::get('status')}}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('PENAMBAHAN BILIK') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST" action="{{route('create-room')}}" enctype="multipart/form-data">
+                    <form id="form" method="POST" enctype="multipart/form-data" action="{{ route('create-room') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -37,11 +42,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-room')}}">
+                                <button type="submit" class="btn btn-primary" name="create" id="create">
                                     {{ __('Hantar') }}
                                 </button>
-                                <button class="btn btn-primary"type="submit" name="update" id="update" formaction="{{route('update-room')}}">
-                                    {{__('Perbaharui')}}
+                                <button class="btn btn-primary"type="reset" name="reset" id="reset">
+                                    {{__('Semula')}}
                                 </button>
                             </div>
                         </div>
@@ -65,6 +70,18 @@
                         <td>{{ $rooms->block }}</td>
                         <td>
                           <a href="{{route('delete-room', $rooms->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+
+                          <button class="btn btn-warning" onclick="function moveToField(){
+                            document.getElementById('room').value = '{{ $rooms->id }}';
+                            document.getElementById('floor').value = '{{ $rooms->floor }}';
+                            document.getElementById('block').value = '{{ $rooms->block }}';
+                            document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                            document.getElementById('form').action = '{{route('update-room')}}';
+                            var form;
+                            form = document.getElementById('form');
+                            form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room?\');');
+                            } moveToField(); return false;">{{__('Perbaharui')}}
+                           </button>
                         </td>
 
                    </tr>

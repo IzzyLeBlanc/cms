@@ -48,6 +48,7 @@ class RoomController extends Controller
         $room->floor = $request->floor;
         $room->block = $request->block;
         $room->save(); 
+        Session::flash('status', 'Room created successfully.');
         return redirect()->route('room');
     }
 
@@ -63,8 +64,8 @@ class RoomController extends Controller
         $room->id = $request->room;
         $room->floor = $request->floor;
         $room->block = $request->block;
-        $room->update();
-
+        $room->save();
+        Session::flash('status', 'Room updated successfully.');
         return redirect()->route('room');
     }
 
@@ -72,6 +73,7 @@ class RoomController extends Controller
 
         $room = Room::find($id);   
         $room->delete();
+        Session::flash('status', 'Room deleted successfully.');
         return redirect()->route('room');
         
     }

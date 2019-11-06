@@ -50,7 +50,7 @@ class RoomRentalController extends Controller
         $record->room = $request->room;
         $record->sem = $request->sem;
         $record->save();
-
+        Sessiom::flash('status', 'New rental record created successfully.');
         return redirect()->route('room-rental');
     }
 
@@ -84,8 +84,15 @@ class RoomRentalController extends Controller
 
         date_default_timezone_set('Asia/Kuala_Lumpur');
         $record = RoomRental::find($id);
-        $record->checkout = date('Y-m-d H:i:s');
-        $record->save();
-        return redirect()->route('room-rental');
+        if($record->checkout == NULL){
+            $record->checkout = date('Y-m-d H:i:s');
+            $record->save();
+            Session::flash('status', 'Checkout successfully');
+            return redirect()->route('room-rental');
+        }
+        else{
+            Session::flash('statusfail', 'Checkout fail. Checkout time already exists.');
+            return redirect()->route('room-rental');
+        }
     }
 }

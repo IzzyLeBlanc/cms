@@ -4,6 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col=md-8">
+            @if(Session::has('status'))
+            <div class="alert alert-success" role="alert">
+                {{Session::get('status')}}
+            </div>
+            @endif
+            @if(Session::has('statusfail'))
+            <div class="alert alert-danger" role="alert">
+                {{Session::get('statusfail')}}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('PENDAFTARAN REKOD PENYEWAAN BILIK') }}</div>
                 
@@ -96,7 +106,9 @@
                         <td>{{ $records->block }}</td>
                         <td>{{ $records->sem }}</td>
                         <td>{{ $records->checkout }}</td>
-                        <td><a href="{{route('checkout', $records->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a></td>
+                        <td>
+                            <a href="{{route('checkout', $records->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a>
+                        </td>
                    </tr>
                    @endforeach
                 </tbody>

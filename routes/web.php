@@ -34,6 +34,7 @@ Route::get('roomrental/checkout/{id}', 'RoomRentalController@checkout')->name('c
 //Room Module
 Route::get('/room', 'RoomController@index')->name('room');
 Route::post('/room/create', 'RoomController@create')->name('create-room');
+Route::get('/room/create', 'RoomController@create')->name('create-room');
 Route::post('/room/update','RoomController@update')->name('update-room');
 Route::get('/room/delete/{id}','RoomController@delete')->name('delete-room');
 
