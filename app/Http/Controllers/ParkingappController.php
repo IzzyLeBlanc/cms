@@ -71,6 +71,7 @@ class ParkingappController extends Controller
         $parking->update();
 
         return redirect()->route('parking');
+    }
 
 
 }
