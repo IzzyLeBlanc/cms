@@ -5,85 +5,80 @@
     <div class="row justify-content-center">
         <div class="col=md-8">
             <div class="card">
-                <div class="card-header">{{ __('PENGESAHAN PERMOHONAN TEMPAT LETAK KERETA') }}</div>
+                <div class="card-header">{{ __('PERMOHONAN TEMPAT LETAK KERETA') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST" action="{{route('show-parking-rental')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('create-parking-rental')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="plat" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
+                            <label for="studentid" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="resit" id="resit" required>
+                                <input class="form-control" type="text" name="studentid" id="studentid" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="plat" class="col-md-4 col-form-label text-md-right">{{ __('No. Plat Kenderaan:') }}</label>
+                            <label for="parkingid" class="col-md-4 col-form-label text-md-right">{{ __('No.Lot Parking:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="plat" id="plat" required>
+                                <input class="form-control" type="text" name="parkingid" id="parkingid" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="jenis" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kenderaan:') }}</label>
+                            <label for="receiptNo" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="jenis" id="jenis" required>
+                                <input class="form-control" type="text" name="receiptNo" id="receiptNo" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="warna" class="col-md-4 col-form-label text-md-right">{{ __('Warna Kenderaan:') }}</label>
+                            <label for="plateNo" class="col-md-4 col-form-label text-md-right">{{ __('No. Plat Kenderaan:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="warna" id="warna" required>
+                                <input class="form-control" type="text" name="plateNo" id="plateNo" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="carModel" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kenderaan:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="carModel" id="carModel" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="carColor" class="col-md-4 col-form-label text-md-right">{{ __('Warna Kenderaan:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="carColor" id="carColor" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="status" id="status" disabled="disabled" required>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Sahkan') }}
-                                </button>
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="submit" class="btn btn-primary" name="create" id="create">
+                                        {{ __('Hantar') }}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                   <th>ID</th>
-                   <th>No. Receipt</th>
-                   <th>No. Plat Kenderaan</th>
-                   <th>Jenis Kenderaaan</th>
-                   <th>Warna Kenderaan</th>
-                   <th>Status</th>
-                   <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                   @foreach($record as $records)
-                   <tr>
-                        <td>{{ $records->id }}</td>
-                        <td>{{ $records->user_id }}</td>
-                        <td>{{ $records->room }}</td>
-                        <td>{{ $records->floor }}</td>
-                        <td>{{ $records->block }}</td>
-                        <td>{{ $records->sem }}</td>
-                        <td>{{ $records->checkout }}</td>
-                        <td>
-                            <a href="{{route('delete-parking-rental', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
-                            <a href="{{route('update-parking-rental', $parkings->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
-                          </td>
-                   </tr>
-                   @endforeach
-                </tbody>
-             </table>
-            {{$record->links() }}
         </div>
     </div>
 </div>
