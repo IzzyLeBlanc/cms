@@ -23,6 +23,7 @@ class CreateParkingRecordTable extends Migration
             $table->string('carColor');
             $table->string('status');
             $table->date('end');
+            $table->string('staffid')->nullable();
             $table->timestamps();
         });
     }

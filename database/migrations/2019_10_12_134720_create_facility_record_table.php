@@ -22,6 +22,7 @@ class CreateFacilityRecordTable extends Migration
             $table->dateTime('start');
             $table->dateTime('end');
             $table->string('receiptNo');
+            $table->string('staffid')->nullable();
             $table->timestamps();
         });
     }

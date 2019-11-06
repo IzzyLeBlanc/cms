@@ -18,6 +18,7 @@ class CreateParkingTable extends Migration
         Schema::create('parking', function (Blueprint $table) {
             $table->string('id');
             $table->string('block');
+            $table->string('staffid')->nullable();
             $table->timestamps();
         });
     }
