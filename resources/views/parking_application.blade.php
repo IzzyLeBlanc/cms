@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.parkingapp')
 
 @section('content')
 <div class="container">
@@ -65,6 +65,13 @@
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="status" id="status" disabled="disabled" required>
                             </div>
+
+                            <div class="form-group row">
+                            <label for="staffid" class="col-md-4 col-form-label text-md-right">{{ __('ID Staff:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="staffid" id="staffid" disabled="disabled" required>
+                            </div>
                         </div>
 
                         <div class="form-group row mb-0">
@@ -73,13 +80,64 @@
                                     <button type="submit" class="btn btn-primary" name="create" id="create">
                                         {{ __('Hantar') }}
                                     </button>
+                                    <button type="reset" class="btn btn-primary" name="reset" id="reset">
+                                        {{ __('Semula') }}
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                       <th>No Matrik</th>
+                       <th>No.Lot Parking</th>
+                       <th>No. Receipt</th>
+                       <th>No. Plat Kenderaan</th>
+                       <th>Jenis Kenderaan</th>
+                       <th>Warna Kenderaan</th>
+                       <th>Status</th>
+                       <th>Staff ID</th>
+                       <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                       @foreach($parkingappapp as $$parkingapps)
+                       <tr>
+                            <td>{{ $parkingapps->studentid }}</td>
+                            <td>{{ $parkingapps->parkingid }}</td>
+                            <td>{{ $parkingapps->receiptNo }}</td>
+                            <td>{{ $parkingapps->plateNo }}</td>
+                            <td>{{ $parkingapps->carModel}}</td>
+                            <td>{{ $parkingapps->carColor}}</td>
+                            <td>{{ $parkingapps->status }}</td>
+                            <td>{{ $parkingapps->staffid }}</td>
+                            <td>
+    
+                                <button class="btn btn-warning" onclick="function moveToField(){
+                                    document.getElementById('studentid').value = '{{ $parkingapps->studentid}}';
+                                    document.getElementById('parkingid').value = '{{ $parkingapps->parkingid }}';
+                                    document.getElementById('receiptNo').value = '{{ $parkingapps->receiptNo }}';
+                                    document.getElementById('plateNo').value = '{{ $parkingapps->plateNo }}';
+                                    document.getElementById('carModel').value = '{{ $parkingapps->carModel }}';
+                                    document.getElementById('carColor').value = '{{ $parkingapps->carColor }}';
+                                    document.getElementById('status').value = '{{ $parkingapps->status }}';
+                                    document.getElementById('staffid').value = '{{ $parkingapps->staffid }}';
+                                    document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                    document.getElementById('form').action = '{{route('update-parking-rental')}}';
+                                    var form;
+                                    form = document.getElementById('form');
+                                    form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this parking record?\');');
+                                    } moveToField(); return false;">{{__('Perbaharui')}}
+                                </button>
+                            </td>
+                       </tr>
+                       @endforeach
+                    </tbody>
+                 </table>
+                {{$parkingapp->links() }}
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection

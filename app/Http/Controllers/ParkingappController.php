@@ -42,7 +42,8 @@ class ParkingappController extends Controller
             'plateNo'=>'required',
             'carModel'=>'required',
             'carColor'=>'required',
-            'status'=>'required'
+            'status'=>'required',
+            'staffid'=>'required'
         ]);
 
         $id = $request->id;
@@ -62,16 +63,28 @@ class ParkingappController extends Controller
     public function update(Request $request){
 
         $this->validate($request,[
-            'id'=> 'required',
-            'block'=> 'required'
+            'studentid'=>'required',
+            'parkingid'=>'required',
+            'receiptNo'=>'required',
+            'plateNo'=>'required',
+            'carModel'=>'required',
+            'carColor'=>'required',
+            'status'=>'required',
+            'staffid'=>'required'
         ]);
         
-        $parking = parking::find($request->id);
-        $parking->id = $request->id;
-        $parking->block = $request->block;
+        $parking = ParkingRental::find($request->id);
+        $parkingapp->id = $id;
+        $parkingapp->studentid = $request->studentid;
+        $parkingapp->parkingid = $request->parkingid;
+        $parkingapp->receiptNo = $request->receiptNo;
+        $parkingapp->plateNo = $request->plateNo;
+        $parkingapp->carModel = $request->carModel;
+        $parkingapp->carColor = $request->carColor;
+        $parkingapp->status = $request->status;
         $parking->update();
 
-        return redirect()->route('parking');
+        return redirect()->route('parkingapp');
     }
 
 
