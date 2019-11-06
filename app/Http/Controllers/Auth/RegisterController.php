@@ -64,7 +64,7 @@ class RegisterController extends Controller
         /**
          * For initialising a user purpose only.
          */
-        $user = DB::table('users')->paginate(15);
+        $user = DB::table('users')->get();
         return view('auth/register',['user'=>$user]);
     }
     
