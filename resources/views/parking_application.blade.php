@@ -103,7 +103,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                       @foreach($rental as $rentals)
+                       @foreach ($rental as $rentals)
                        <tr>
                             <td>{{ $rentals->studentid }}</td>
                             <td>{{ $rentals->parkingid }}</td>

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\ParkingRental;
 
-class ParkingappController extends Controller
+class rentalController extends Controller
 {
     //
     public function __construct()
@@ -23,8 +23,8 @@ class ParkingappController extends Controller
                 $parking = DB::table('parking')->paginate(15);
                 return view('/add_parking',['parking'=>$parking]);
             } else if(Auth::user()->role === 'student'){
-                $parkingapp = DB::table('parking_record')->paginate(15);
-                return view('/parking_application');
+                $rental = DB::table('parking_record')->paginate(15);
+                return view('/add_parking',['parkingapp'=>$rental]);
             } elseif (Auth::user()->role === 'staff') {
                 return view('/parkingrental');
             }
@@ -47,16 +47,16 @@ class ParkingappController extends Controller
         ]);
 
         $id = $request->id;
-        $parkingapp = new ParkingRental;
-        $parkingapp->id = $id;
-        $parkingapp->studentid = $request->studentid;
-        $parkingapp->parkingid = $request->parkingid;
-        $parkingapp->receiptNo = $request->receiptNo;
-        $parkingapp->plateNo = $request->plateNo;
-        $parkingapp->carModel = $request->carModel;
-        $parkingapp->carColor = $request->carColor;
-        $parkingapp->status = $request->status;
-        $parkingapp->save(); 
+        $rental = new ParkingRental;
+        $rental->id = $id;
+        $rental->studentid = $request->studentid;
+        $rental->parkingid = $request->parkingid;
+        $rental->receiptNo = $request->receiptNo;
+        $rental->plateNo = $request->plateNo;
+        $rental->carModel = $request->carModel;
+        $rental->carColor = $request->carColor;
+        $rental->status = $request->status;
+        $rental->save(); 
         return redirect()->route('parkingapp');
     }
 
@@ -74,15 +74,15 @@ class ParkingappController extends Controller
         ]);
         
         $parking = ParkingRental::find($request->id);
-        $parkingapp->id = $id;
-        $parkingapp->studentid = $request->studentid;
-        $parkingapp->parkingid = $request->parkingid;
-        $parkingapp->receiptNo = $request->receiptNo;
-        $parkingapp->plateNo = $request->plateNo;
-        $parkingapp->carModel = $request->carModel;
-        $parkingapp->carColor = $request->carColor;
-        $parkingapp->status = $request->status;
-        $parking->update();
+        $rental->id = $id;
+        $rental->studentid = $request->studentid;
+        $rental->parkingid = $request->parkingid;
+        $rental->receiptNo = $request->receiptNo;
+        $rental->plateNo = $request->plateNo;
+        $rental->carModel = $request->carModel;
+        $rental->carColor = $request->carColor;
+        $rental->status = $request->status;
+        $rental->update();
 
         return redirect()->route('parkingapp');
     }
