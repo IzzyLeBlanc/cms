@@ -88,24 +88,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                            @foreach($app as $apps)
+                        @foreach($parkingapp as $parkingapps)
                             <tr>
-                                 <td>{{$apps->studentid}}</td>
-                                 <td>{{$apps->parkingid}}</td>
-                                 <td>{{$apps->receiptNo}}</td>
-                                 <td>{{$apps->plateNo}}</td>
-                                 <td>{{$apps->carModel}}</td>
-                                 <td>{{$apps->carColor}}</td>
-                                 <td>{{$apps->status}}</td>
+                                 <td>{{$parkingapps->studentid}}</td>
+                                 <td>{{$parkingapps->parkingid}}</td>
+                                 <td>{{$parkingapps->receiptNo}}</td>
+                                 <td>{{$parkingapps->plateNo}}</td>
+                                 <td>{{$parkingapps->carModel}}</td>
+                                 <td>{{$parkingapps->carColor}}</td>
+                                 <td>{{$parkingapps->status}}</td>
                                  <td>
                                    <a href="{{route('update-parking', $apps->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
                                  </td>
          
                             </tr>
-                            @endforeach
+                        @endforeach
                          </tbody>
                       </table>
-                     {{$app->links() }}
+                     {{$parkingapp->links() }}
                  </div>
              </div>
          </div>

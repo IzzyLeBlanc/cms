@@ -23,7 +23,7 @@ class ParkingappController extends Controller
                 $parking = DB::table('parking')->paginate(15);
                 return view('/add_parking',['parking'=>$parking]);
             } else if(Auth::user()->role === 'student'){
-                $app = DB::table('parking_record')->paginate(15);
+                $parkingapp = DB::table('parking_record')->paginate(15);
                 return view('/parking_application');
             } elseif (Auth::user()->role === 'staff') {
                 return view('/parkingrental');
@@ -45,16 +45,17 @@ class ParkingappController extends Controller
             'status'=>'required'
         ]);
 
-      
-        $app = new ParkingRental();
-        $app->studentid = $request->studentid;
-        $app->parkingid = $request->parkingid;
-        $app->receiptNo = $request->receiptNo;
-        $app->plateNo = $request->plateNo;
-        $app->carModel = $request->carModel;
-        $app->carColor = $request->carColor;
-        $app->status = $request->status;
-        $app->save(); 
+        $id = $request->id;
+        $parkingapp = new ParkingRental;
+        $parkingapp->id = $id;
+        $parkingapp->studentid = $request->studentid;
+        $parkingapp->parkingid = $request->parkingid;
+        $parkingapp->receiptNo = $request->receiptNo;
+        $parkingapp->plateNo = $request->plateNo;
+        $parkingapp->carModel = $request->carModel;
+        $parkingapp->carColor = $request->carColor;
+        $parkingapp->status = $request->status;
+        $parkingapp->save(); 
         return redirect()->route('parkingapp');
     }
 
