@@ -60,10 +60,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="warna" class="col-md-4 col-form-label text-md-right">{{ __('Status:') }}</label>
+                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="status" disabled="disabled" id="status" required>
+                                <input class="form-control" type="text" name="status" id="status" disabled="disabled" required>
                             </div>
                         </div>
 
