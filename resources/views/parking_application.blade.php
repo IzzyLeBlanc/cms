@@ -69,46 +69,16 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Daftar') }}
-                                </button>
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="submit" class="btn btn-primary" name="create" id="create">
+                                        {{ __('Hantar') }}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                   <th>No. Matrik</th>
-                   <th>No. Parking Lot</th>
-                   <th>No. Receipt</th>
-                   <th>No. Plat Kenderaan</th>
-                   <th>Jenis Kenderaaan</th>
-                   <th>Warna Kenderaan</th>
-                   <th>Status</th>
-                   <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                   @foreach($parkingapp as $parkingapps)
-                   <tr>
-                        <td>{{ $parkingapps->studentid }}</td>
-                        <td>{{ $parkingapps->parkingid }}</td>
-                        <td>{{ $parkingapps->receiptNo}}</td>
-                        <td>{{ $parkingapps->plateNo }}</td>
-                        <td>{{ $parkingapps->carModel }}</td>
-                        <td>{{ $parkingapps->carColor }}</td>
-                        <td>{{ $parkingapps->status }}</td>
-                        <td>
-                            <a href="{{route('delete-parking-rental', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
-                            <a href="{{route('update-parking-rental', $parkings->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
-                          </td>
-                   </tr>
-                   @endforeach
-                </tbody>
-             </table>
-            {{$parkingapp->links() }}
         </div>
     </div>
 </div>
