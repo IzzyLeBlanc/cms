@@ -12,6 +12,14 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="plat" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="studentid" id="studentid" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="plat" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
 
                             <div class="col-md-6">
@@ -40,6 +48,14 @@
 
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="warna" id="warna" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="warna" class="col-md-4 col-form-label text-md-right">{{ __('Status:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="status" disabled="disabled" id="status" required>
                             </div>
                         </div>
 
