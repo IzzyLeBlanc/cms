@@ -90,13 +90,13 @@
                     <tbody>
                             @foreach($app as $apps)
                             <tr>
-                                 <td>{{ $apps->studentid}}</td>
-                                 <td>{{ $apps->parkingid}}</td>
-                                 <td>{{ $apps->receiptNo}}</td>
-                                 <td>{{ $apps->plateNo}}</td>
-                                 <td>{{ $apps->carModel}}</td>
-                                 <td>{{ $apps->carColor}}</td>
-                                 <td>{{ $apps->status}}</td>
+                                 <td>{{$apps->studentid}}</td>
+                                 <td>{{$apps->parkingid}}</td>
+                                 <td>{{$apps->receiptNo}}</td>
+                                 <td>{{$apps->plateNo}}</td>
+                                 <td>{{$apps->carModel}}</td>
+                                 <td>{{$apps->carColor}}</td>
+                                 <td>{{$apps->status}}</td>
                                  <td>
                                    <a href="{{route('update-parking', $apps->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
                                  </td>
