@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\ParkingRental;
 
-class rentalController extends Controller
+class ParkingappController extends Controller
 {
     //
     public function __construct()
