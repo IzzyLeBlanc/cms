@@ -1,4 +1,4 @@
-@extends('layouts.parkingapp')
+@extends('layouts.rental')
 
 @section('content')
 <div class="container">
@@ -103,27 +103,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                       @foreach($parkingapp as $parkingapps)
+                       @foreach($rental as $rentals)
                        <tr>
-                            <td>{{ $parkingapps->studentid }}</td>
-                            <td>{{ $parkingapps->parkingid }}</td>
-                            <td>{{ $parkingapps->receiptNo }}</td>
-                            <td>{{ $parkingapps->plateNo }}</td>
-                            <td>{{ $parkingapps->carModel}}</td>
-                            <td>{{ $parkingapps->carColor}}</td>
-                            <td>{{ $parkingapps->status }}</td>
-                            <td>{{ $parkingapps->staffid }}</td>
+                            <td>{{ $rentals->studentid }}</td>
+                            <td>{{ $rentals->parkingid }}</td>
+                            <td>{{ $rentals->receiptNo }}</td>
+                            <td>{{ $rentals->plateNo }}</td>
+                            <td>{{ $rentals->carModel}}</td>
+                            <td>{{ $rentals->carColor}}</td>
+                            <td>{{ $rentals->status }}</td>
+                            <td>{{ $rentals->staffid }}</td>
                             <td>
     
                                 <button class="btn btn-warning" onclick="function moveToField(){
-                                    document.getElementById('studentid').value = '{{ $parkingapps->studentid}}';
-                                    document.getElementById('parkingid').value = '{{ $parkingapps->parkingid }}';
-                                    document.getElementById('receiptNo').value = '{{ $parkingapps->receiptNo }}';
-                                    document.getElementById('plateNo').value = '{{ $parkingapps->plateNo }}';
-                                    document.getElementById('carModel').value = '{{ $parkingapps->carModel }}';
-                                    document.getElementById('carColor').value = '{{ $parkingapps->carColor }}';
-                                    document.getElementById('status').value = '{{ $parkingapps->status }}';
-                                    document.getElementById('staffid').value = '{{ $parkingapps->staffid }}';
+                                    document.getElementById('studentid').value = '{{ $rentals->studentid}}';
+                                    document.getElementById('parkingid').value = '{{ $rentals->parkingid }}';
+                                    document.getElementById('receiptNo').value = '{{ $rentals->receiptNo }}';
+                                    document.getElementById('plateNo').value = '{{ $rentals->plateNo }}';
+                                    document.getElementById('carModel').value = '{{ $rentals->carModel }}';
+                                    document.getElementById('carColor').value = '{{ $rentals->carColor }}';
+                                    document.getElementById('status').value = '{{ $rentals->status }}';
+                                    document.getElementById('staffid').value = '{{ $rentals->staffid }}';
                                     document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
                                     document.getElementById('form').action = '{{route('update-parking-rental')}}';
                                     var form;
@@ -136,7 +136,7 @@
                        @endforeach
                     </tbody>
                  </table>
-                {{$parkingapp->links() }}
+                {{$rental->links() }}
             </div>
         </div>
     </div>
