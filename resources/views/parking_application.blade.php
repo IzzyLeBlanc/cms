@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="plat" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
+                            <label for="studentid" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="studentid" id="studentid" required>
@@ -20,34 +20,34 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="resit" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
+                            <label for="receiptNo" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="resit" id="resit" required>
+                                <input class="form-control" type="text" name="receiptNo" id="receiptNo" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="plat" class="col-md-4 col-form-label text-md-right">{{ __('No. Plat Kenderaan:') }}</label>
+                            <label for="plateNo" class="col-md-4 col-form-label text-md-right">{{ __('No. Plat Kenderaan:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="plat" id="plat" required>
+                                <input class="form-control" type="text" name="plateNo" id="plateNo" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="jenis" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kenderaan:') }}</label>
+                            <label for="carModel" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kenderaan:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="jenis" id="jenis" required>
+                                <input class="form-control" type="text" name="carModel" id="carModel" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="warna" class="col-md-4 col-form-label text-md-right">{{ __('Warna Kenderaan:') }}</label>
+                            <label for="carColor" class="col-md-4 col-form-label text-md-right">{{ __('Warna Kenderaan:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="warna" id="warna" required>
+                                <input class="form-control" type="text" name="carColor" id="carColor" required>
                             </div>
                         </div>
 

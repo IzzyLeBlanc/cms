@@ -37,19 +37,19 @@ class ParkingappController extends Controller
 
         $this->validate($request, [
             'studentid'=>'required',
-            'resit'=>'required',
-            'plat'=>'required',
-            'jenis'=>'required',
-            'warna'=>'required'
+            'receiptNo'=>'required',
+            'plateNo'=>'required',
+            'carModel'=>'required',
+            'carColor'=>'required'
         ]);
 
       
         $parkingapp = new ParkingRental();
         $parkingapp->studentid = $request->studentid;
-        $parkingapp->resit = $request->resit;
-        $parkingapp->plat = $request->plat;
-        $parkingapp->jenis = $request->jenis;
-        $parkingapp->warna = $request->warna;
+        $parkingapp->receiptNo = $request->receiptNo;
+        $parkingapp->plateNo = $request->plateNo;
+        $parkingapp->carModel = $request->carModel;
+        $parkingapp->carColor = $request->carColor;
         $parkingapp->save(); 
         return redirect()->route('parkingapp');
     }
