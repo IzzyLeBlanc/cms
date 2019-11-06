@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col=md-8">
             <div class="card">
-                <div class="card-header">{{ __('PERMOHONAN TEMPAT LETAK KERETA') }}</div>
+                <div class="card-header">{{ __('PENGESAHAN PERMOHONAN TEMPAT LETAK KERETA') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST" action="{{route('create-parking-rental')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('show-parking-rental')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -45,15 +45,45 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-parking-rental')}}">
-                                        {{ __('Hantar') }}
-                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Sahkan') }}
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                   <th>ID</th>
+                   <th>No. Receipt</th>
+                   <th>No. Plat Kenderaan</th>
+                   <th>Jenis Kenderaaan</th>
+                   <th>Warna Kenderaan</th>
+                   <th>Status</th>
+                   <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                   @foreach($record as $records)
+                   <tr>
+                        <td>{{ $records->id }}</td>
+                        <td>{{ $records->user_id }}</td>
+                        <td>{{ $records->room }}</td>
+                        <td>{{ $records->floor }}</td>
+                        <td>{{ $records->block }}</td>
+                        <td>{{ $records->sem }}</td>
+                        <td>{{ $records->checkout }}</td>
+                        <td>
+                            <a href="{{route('delete-parking-rental', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                            <a href="{{route('update-parking-rental', $parkings->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
+                          </td>
+                   </tr>
+                   @endforeach
+                </tbody>
+             </table>
+            {{$record->links() }}
         </div>
     </div>
 </div>

@@ -17,16 +17,38 @@ class ParkingappController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                return view('/add_parking');
+                //return view('/add_parking');
+                $parking = DB::table('parking')->paginate(15);
+                return view('/add_parking',['parking'=>$parking]);
             } else if(Auth::user()->role === 'student'){
                 return view('/parking_application');
             } elseif (Auth::user()->role === 'staff') {
-                return view('/staff_homepage');
+                return view('/parkingrental');
             }
             
         } else {
             return view('/login');
         }
+    }
+
+    public function create(Request $request){
+
+        $this->validate($request, [
+            'resit'=>'required',
+            'plat'=>'required'
+            'jenis'=>'required'
+            'warna'=>'required'
+        ]);
+
+        $id = $request->id;
+        $parkingapp = new ParkingRental;
+        $parkingapp->id = $id;
+        $parkingapp->resit = $request->resit;
+        $parkingapp->plat = $request->plat;
+        $parkingapp->jenis = $request->jenis;
+        $parkingapp->warna = $request->warna;
+        $parkingapp->save(); 
+        return redirect()->route('parking');
     }
 
 
