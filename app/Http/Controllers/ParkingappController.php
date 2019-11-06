@@ -43,9 +43,8 @@ class ParkingappController extends Controller
             'warna'=>'required'
         ]);
 
-        $id = $request->id;
+      
         $parkingapp = new ParkingRental();
-        $parkingapp->id = $id;
         $parkingapp->studentid = $request->studentid;
         $parkingapp->resit = $request->resit;
         $parkingapp->plat = $request->plat;
