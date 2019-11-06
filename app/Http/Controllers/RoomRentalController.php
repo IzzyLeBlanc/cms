@@ -43,21 +43,23 @@ class RoomRentalController extends Controller
             'sem'=>'required'
         ]);
 
+        $staffid = Auth::id();
         $record = new RoomRental();
         $record->user_id = $request->user_id;
         $record->block = $request->block;
         $record->floor = $request->floor;
         $record->room = $request->room;
         $record->sem = $request->sem;
+        $record->staffid = $staffid;
         $record->save();
-        Sessiom::flash('status', 'New rental record created successfully.');
+        Session::flash('status', 'New rental record created successfully.');
         return redirect()->route('room-rental');
     }
 
-    /* KIV
     public function update(Request $request){
 
         $this->validate($request,[
+            'id'=>'required',
             'user_id'=>'required',
             'block'=>'required',
             'floor'=>'required',
@@ -65,20 +67,16 @@ class RoomRentalController extends Controller
             'sem'=>'required'
         ]);
 
-        $record = RoomRecord::where([
-            ['user_id','=',$request->user_id],
-            ['block','=',$request->block],
-            ['floor','=',$request->floor],
-            ['room','=',$request->room],
-            ['sem','=',$request->sem]
-        ]);
+        $record = RoomRental::find($request->id);
         $record->user_id = $request->user_id;
         $record->block = $request->block;
         $record->floor = $request->floor;
         $record->room = $request->room;
         $record->sem = $request->sem;
-        $record->update();
-    } */
+        $record->save();
+        Session::flash('status', 'Updated successfully.');
+        return redirect()->route('room-rental');
+    }
 
     public function checkout($id){
 

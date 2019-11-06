@@ -28,8 +28,9 @@ Route::post('/updateUser', 'Auth\RegisterController@updateUser')->name('update-u
 //Room Rental Module
 Route::get('/roomrental', 'RoomRentalController@index')->name('room-rental');
 Route::post('/roomrental/create', 'RoomRentalController@create')->name('create-room-rental');
-Route::post('roomrental/checkout/{id}', 'RoomRentalController@checkout')->name('checkout');
-Route::get('roomrental/checkout/{id}', 'RoomRentalController@checkout')->name('checkout');
+Route::post('/roomrental/update', 'RoomRentalController@update')->name('update-room-rental');
+Route::post('roomrental/checkout/{id}', 'RoomRentalController@checkout')->name('checkout-room');
+Route::get('roomrental/checkout/{id}', 'RoomRentalController@checkout')->name('checkout-room');
 
 //Room Module
 Route::get('/room', 'RoomController@index')->name('room');

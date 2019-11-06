@@ -41,12 +41,13 @@ class RoomController extends Controller
             'floor'=>'required',
             'block'=>'required'
         ]);
-
+        $staffid = Auth::id();
         $id = $request->room;
         $room = new Room;
         $room->id = $id;
         $room->floor = $request->floor;
         $room->block = $request->block;
+        $room->staffid = $staffid;
         $room->save(); 
         Session::flash('status', 'Room created successfully.');
         return redirect()->route('room');

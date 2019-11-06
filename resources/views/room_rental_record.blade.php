@@ -18,9 +18,16 @@
                 <div class="card-header">{{ __('PENDAFTARAN REKOD PENYEWAAN BILIK') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST" action="{{route('create-room-rental')}}" enctype="multipart/form-data">
+                    <form id="form" method="POST" action="{{route('create-room-rental')}}" enctype="multipart/form-data" name="form" >
                         @csrf
 
+                        <div class="form-group row">
+                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="id" id="id" class="form-control" placeholder="">
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
@@ -75,8 +82,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" name="create" id="create">
                                     {{ __('Daftar') }}
+                                </button>
+                                <button type="reset" class="btn btn-primary" name="reset" id="reset">
+                                    {{ __('Semula') }}
                                 </button>
                             </div>
                         </div>
@@ -93,6 +103,7 @@
                    <th>Block</th>
                    <th>Sem</th>
                    <th>Checkout Time</th>
+                   <th>Staff ID</th>
                    <th></th>
                 </tr>
                 </thead>
@@ -106,8 +117,24 @@
                         <td>{{ $records->block }}</td>
                         <td>{{ $records->sem }}</td>
                         <td>{{ $records->checkout }}</td>
+                        <td>{{ $records->staffid }}</td>
                         <td>
-                            <a href="{{route('checkout', $records->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a>
+                            <a href="{{route('checkout-room', $records->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a>
+
+                            <button class="btn btn-warning" onclick="function moveToField(){
+                                document.getElementById('id').value = '{{ $records->id }}';
+                                document.getElementById('user_id').value = '{{ $records->user_id }}';
+                                document.getElementById('room').value = '{{ $records->room }}';
+                                document.getElementById('floor').value = '{{ $records->floor }}';
+                                document.getElementById('block').value = '{{ $records->block }}';
+                                document.getElementById('sem').value = '{{ $records->sem }}';
+                                document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                document.getElementById('form').action = '{{route('update-room-rental')}}';
+                                var form;
+                                form = document.getElementById('form');
+                                form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room record?\');');
+                                } moveToField(); return false;">{{__('Perbaharui')}}
+                            </button>
                         </td>
                    </tr>
                    @endforeach

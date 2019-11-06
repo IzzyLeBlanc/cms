@@ -56,9 +56,10 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                   <th>Room No.</th>
+                   <th>No. Bilik</th>
                    <th>Floor</th>
                    <th>Block</th>
+                   <th>Staff ID</th>
                    <th></th>
                 </tr>
                 </thead>
@@ -68,6 +69,7 @@
                         <td>{{ $rooms->id }}</td>
                         <td>{{ $rooms->floor }}</td>
                         <td>{{ $rooms->block }}</td>
+                        <td>{{ $rooms->staffid }}</td>
                         <td>
                           <a href="{{route('delete-room', $rooms->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
 
