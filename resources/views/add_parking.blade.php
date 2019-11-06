@@ -56,9 +56,20 @@
                                  <td>{{ $parkings->id }}</td>
                                  <td>{{ $parkings->block }}</td>
                                  <td>
-                                   <a href="{{route('delete-parking', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
-                                   <a href="{{route('update-parking', $parkings->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
-                                 </td>
+                                    <td>
+                                        <a href="{{route('delete-parking', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+              
+                                        <button class="btn btn-warning" onclick="function moveToField(){
+                                          document.getElementById('id').value = '{{ $parkings->id }}';
+                                          document.getElementById('block').value = '{{ $parkings->block }}';
+                                          document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                          document.getElementById('form').action = '{{route('update-parking')}}';
+                                          var form;
+                                          form = document.getElementById('form');
+                                          form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room?\');');
+                                          } moveToField(); return false;">{{__('Perbaharui')}}
+                                         </button>
+                                      </td>
          
                             </tr>
                             @endforeach
