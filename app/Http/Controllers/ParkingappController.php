@@ -37,6 +37,7 @@ class ParkingappController extends Controller
 
         $this->validate($request, [
             'studentid'=>'required',
+            'parkingid'=>'required',
             'receiptNo'=>'required',
             'plateNo'=>'required',
             'carModel'=>'required',
@@ -46,6 +47,7 @@ class ParkingappController extends Controller
       
         $parkingapp = new ParkingRental();
         $parkingapp->studentid = $request->studentid;
+        $parkingapp->parkingid = $request->studentid;
         $parkingapp->receiptNo = $request->receiptNo;
         $parkingapp->plateNo = $request->plateNo;
         $parkingapp->carModel = $request->carModel;

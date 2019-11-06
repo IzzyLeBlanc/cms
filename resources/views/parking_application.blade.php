@@ -17,6 +17,13 @@
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="studentid" id="studentid" required>
                             </div>
+
+                        <div class="form-group row">
+                            <label for="parkingid" class="col-md-4 col-form-label text-md-right">{{ __('No.Lot Parking:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="parkingid" id="parkingid" required>
+                            </div>
                         </div>
 
                         <div class="form-group row">
