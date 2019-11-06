@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col=md-8">
             <div class="card">
-                <div class="card-header">{{ __('PENDAFTARAN REKOD PENYEWAAN KEMUDAHAN') }}</div>
+                <div class="card-header">{{ __('PENDAFTARAN REKOD SEWA KEMUDAHAN') }}</div>
                 
                 <div class="card-body">
                     <form method="POST" action="{{route('create-facility-rental')}}" enctype="multipart/form-data">
