@@ -41,7 +41,8 @@ class ParkingappController extends Controller
             'receiptNo'=>'required',
             'plateNo'=>'required',
             'carModel'=>'required',
-            'carColor'=>'required'
+            'carColor'=>'required',
+            'status'=>'required'
         ]);
 
       
@@ -52,6 +53,7 @@ class ParkingappController extends Controller
         $parkingapp->plateNo = $request->plateNo;
         $parkingapp->carModel = $request->carModel;
         $parkingapp->carColor = $request->carColor;
+        $parkingapp->status = $request->status;
         $parkingapp->save(); 
         return redirect()->route('parkingapp');
     }
