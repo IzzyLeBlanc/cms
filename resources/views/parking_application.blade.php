@@ -103,7 +103,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                       @foreach($parkingappapp as $$parkingapps)
+                       @foreach($parkingappapp as $parkingapps)
                        <tr>
                             <td>{{ $parkingapps->studentid }}</td>
                             <td>{{ $parkingapps->parkingid }}</td>
