@@ -35,7 +35,6 @@ class ParkingappController extends Controller
     }
 
     public function create(Request $request){
-
         $this->validate($request, [
             'studentid'=>'required',
             'parkingid'=>'required',
@@ -47,7 +46,7 @@ class ParkingappController extends Controller
         ]);
 
       
-        $parkingapp = new ParkingRental;
+        $parkingapp = new ParkingRental();
         $parkingapp->studentid = $request->studentid;
         $parkingapp->parkingid = $request->parkingid;
         $parkingapp->receiptNo = $request->receiptNo;
