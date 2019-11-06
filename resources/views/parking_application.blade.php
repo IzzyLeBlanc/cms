@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('PERMOHONAN TEMPAT LETAK KERETA') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST" action="{{route('create-parking-rental')}}" enctype="multipart/form-data">
+                    <form id="form" method="POST" enctype="multipart/form-data" action="{{ route('create-parking-rental') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -79,6 +79,38 @@
                     </form>
                 </div>
             </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                   <th>No. Matrik</th>
+                   <th>No. Parking Lot</th>
+                   <th>No. Receipt</th>
+                   <th>No. Plat Kenderaan</th>
+                   <th>Jenis Kenderaaan</th>
+                   <th>Warna Kenderaan</th>
+                   <th>Status</th>
+                   <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                   @foreach($parkingapp as $parkingapps)
+                   <tr>
+                        <td>{{ $parkingapps->studentid }}</td>
+                        <td>{{ $parkingapps->parkingid }}</td>
+                        <td>{{ $parkingapps->receiptNo}}</td>
+                        <td>{{ $parkingapps->plateNo }}</td>
+                        <td>{{ $parkingapps->carModel }}</td>
+                        <td>{{ $parkingapps->carColor }}</td>
+                        <td>{{ $parkingapps->status }}</td>
+                        <td>
+                            <a href="{{route('delete-parking-rental', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                            <a href="{{route('update-parking-rental', $parkings->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
+                          </td>
+                   </tr>
+                   @endforeach
+                </tbody>
+             </table>
+            {{$parkingapp->links() }}
         </div>
     </div>
 </div>
