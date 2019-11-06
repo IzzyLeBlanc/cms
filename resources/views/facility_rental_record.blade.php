@@ -97,7 +97,9 @@
                         <td>{{ $facility_rental->status }}</td>
                         <td>{{ $facility_rental->no_receipt }}</td>
                         <td>{{ $facility_rental->checkout }}</td>
-                        <td><a href="{{route('checkout', $facility_rental->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a></td>
+                        <td>
+                            <a href="{{route('checkout', $facility_rental->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a>
+                        </td>
                    </tr>
                    @endforeach
                 </tbody>

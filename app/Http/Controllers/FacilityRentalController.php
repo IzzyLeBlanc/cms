@@ -21,12 +21,12 @@ class FacilityRentalController extends Controller
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
                 $facility_rent = DB::table('facility_record')->paginate(15);
-                return view('/facility_rental_record',['record'=>$facility_rent]);
+                return view('/add_facility',['facility'=>$facilitys]);
             } else if(Auth::user()->role === 'student'){
-                return view('/student_homepage');
+                return view('/facility_rental_record');
             } elseif (Auth::user()->role === 'staff') {
                 $facility_rent = DB::table('facility_record')->paginate(15);
-                return view('/facility_rental_record',['record'=>$facility_rent]);
+                return view('/facilityrental',['record'=>$facility_rent]);
             }
             
         } else {

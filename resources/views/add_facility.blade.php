@@ -75,27 +75,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($facility as $facility)
+                        @foreach($facility as $facilitys)
                         <tr>
-                            <td>{{ $facility->id }}</td>
-                            <td>{{ $facility->facility }}</td>
-                            <td>{{ $facility->description }}</td>
-                            <td>{{ $facility->rates }}</td>
+                            <td>{{ $facilitys->id }}</td>
+                            <td>{{ $facilitys->name }}</td>
+                            <td>{{ $facilitys->description }}</td>
+                            <td>{{ $facilitys->rates }}</td>
                             <td>
-                              <a href="{{route('delete-facility', $facility->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
-                              
-                              <button class="btn btn-warning" onclick="function moveToField(){
-                                  document.getElementById('id').value = '{{ $facility->id }}';
-                                  document.getElementById('name').value = '{{ $facility->name }}';
-                                  document.getElementById('description').value = '{{ $facility->description }}';
-                                  document.getElementById('rates').value = '{{ $facility->rates }}';
-                                  document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
-                                  document.getElementById('form').action = '{{route('update-facility')}}';
-                                  var form;
-                                  form = document.getElementById('form');
-                                  form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this facility?\');');
-                                  } moveToField(); return false;">{{__('Perbaharui')}}
-                            </td>    
+                                <a href="{{route('delete-parking', $facilitys->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                                <a href="{{route('update-parking', $facilitys->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
+                             </td>    
                         </tr>
                         @endforeach
                     </tbody>
