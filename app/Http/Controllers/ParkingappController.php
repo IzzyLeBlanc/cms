@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Session;
+use App\ParkingRental;
 
 class ParkingappController extends Controller
 {
@@ -48,7 +50,7 @@ class ParkingappController extends Controller
         $parkingapp->jenis = $request->jenis;
         $parkingapp->warna = $request->warna;
         $parkingapp->save(); 
-        return redirect()->route('parking');
+        return redirect()->route('parkingapp');
     }
 
 
