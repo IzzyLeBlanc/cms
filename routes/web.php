@@ -61,5 +61,6 @@ Route::get('/parkingapp/create', 'ParkingappController@create')->name('create-pa
 //Parking Module
 Route::get('/parking', 'ParkingController@index')->name('parking');
 Route::post('/parking/create', 'ParkingController@create')->name('create-parking');
+Route::get('/parking/create', 'ParkingController@create')->name('create-parking');
 Route::post('/parking/update','ParkingController@update')->name('update-parking');
 Route::get('/parking/delete/{id}','ParkingController@delete')->name('delete-parking');
