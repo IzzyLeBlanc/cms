@@ -62,7 +62,7 @@
                             <label for="warna" class="col-md-4 col-form-label text-md-right">{{ __('Status:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="status" disabled="disabled" id="status" required>
+                                <input class="form-control" type="text" name="status"  id="status" required>
                             </div>
                         </div>
 
