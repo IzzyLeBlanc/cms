@@ -58,6 +58,17 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-facility')}}">
+                                    {{ __('Hantar') }}
+                                </button>
+                                <button class="btn btn-primary"type="submit" name="update" id="update" formaction="{{route('update-facility')}}">
+                                    {{__('Perbaharui')}}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Tambah') }}
                                 </button>
@@ -72,13 +83,28 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Kemudahan</th>
-                                <th>Keterangan</th>
-                                <th>Tarikh Mula</th>
-                                <th>Tarikh Akhir</th>
+                                <th>Facility</th>
+                                <th>Description</th>
+                                <th>Rate</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach($facility as $facilitys)
+                            <tr>
+                                 <td>{{ $facilitys->id }}</td>
+                                 <td>{{ $facilitys->facility }}</td>
+                                 <td>{{ $facilitys->Description }}</td>
+                                 <td>{{ $facilitys->rate }}</td>
+                                 <td>
+                                   <a href="{{route('delete-facility', $facilitys->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                                   <a href="{{route('update-facility', $facilitys->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
+                                 </td>
+         
+                            </tr>
+                            @endforeach
+                         </tbody>
                     </table>
+                  {{$facility->links() }}
                     </form>
                 </div>
             </div>
