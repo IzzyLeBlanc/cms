@@ -48,13 +48,13 @@ class ParkingappController extends Controller
 
       
         $parkingapp = new ParkingRental();
-        $parkingapp->studentid = $request->studentid;
-        $parkingapp->parkingid = $request->parkingid;
-        $parkingapp->receiptNo = $request->receiptNo;
-        $parkingapp->plateNo = $request->plateNo;
-        $parkingapp->carModel = $request->carModel;
-        $parkingapp->carColor = $request->carColor;
-        $parkingapp->status = $request->status;
+        $parkingapp->studentid = $request->get('studentid');
+        $parkingapp->parkingid = $request->get('parkingid');
+        $parkingapp->receiptNo = $request->get('receiptNo');
+        $parkingapp->plateNo = $request->get('plateNo');
+        $parkingapp->carModel = $request->get('carModel');
+        $parkingapp->carColor = $request->get('carColor');
+        $parkingapp->status = $request->get('status');
         $parkingapp->save(); 
         return redirect()->route('parkingapp');
     }
