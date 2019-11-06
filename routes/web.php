@@ -40,13 +40,25 @@ Route::get('/room/delete/{id}','RoomController@delete')->name('delete-room');
 
 //Facility Module
 Route::get('/facility', 'FacilityController@index')->name('facility');
+Route::post('/facility/create', 'FacilityController@create')->name('create-facility');
+Route::get('/facility/update','FacilityController@update')->name('update-facility');
+Route::post('/facility/update','FacilityController@update')->name('update-facility');
+Route::get('/facility/delete/{id}','FacilityController@delete')->name('delete-facility');
+
+//Facility Rental Module
+Route::get('/facilityrental', 'FacilityRentalController@index')->name('facility-rental');
+Route::post('/facilityrental/create', 'FacilityRentalController@create')->name('create-facility-rental');
+Route::post('facilityrental/checkout/{id}', 'FacilityRentalController@checkout')->name('checkout');
+Route::get('facilityrental/checkout/{id}', 'FacilityRentalController@checkout')->name('checkout');
+
 
 //Parking app Module
 Route::get('/parkingapp', 'ParkingappController@index')->name('parkingapp');
+Route::post('/parkingapp/create', 'ParkingappRentalController@create')->name('create-parking-rental');
+
 
 //Parking Module
 Route::get('/parking', 'ParkingController@index')->name('parking');
 Route::post('/parking/create', 'ParkingController@create')->name('create-parking');
-Route::get('/parking/update','ParkingController@update')->name('update-parking');
 Route::post('/parking/update','ParkingController@update')->name('update-parking');
 Route::get('/parking/delete/{id}','ParkingController@delete')->name('delete-parking');

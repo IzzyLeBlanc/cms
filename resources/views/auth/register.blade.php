@@ -22,7 +22,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('Matirc No. or UKMPer') }}</label>
+                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('Matric No. or UKMPer') }}</label>
 
                             <div class="col-md-6">
                                 <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" value="{{ old('id') }}" required autocomplete="id" autofocus>
@@ -144,7 +144,7 @@
                     </form>
                 </div>
             </div>
-            <table class="table table-striped">
+            <table class="table table-striped" id="table_id">
                 <thead>
                 <tr>
                    <th>ID</th>
@@ -188,7 +188,6 @@
                     @endforeach
                 </tbody>
              </table>
-            {{$user->links() }}
         </div>
     </div>
 </div>
