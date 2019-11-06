@@ -47,9 +47,9 @@ class ParkingappController extends Controller
         ]);
 
       
-        $parkingapp = new ParkingRental();
+        $parkingapp = new ParkingRental;
         $parkingapp->studentid = $request->studentid;
-        $parkingapp->parkingid = $request->studentid;
+        $parkingapp->parkingid = $request->parkingid;
         $parkingapp->receiptNo = $request->receiptNo;
         $parkingapp->plateNo = $request->plateNo;
         $parkingapp->carModel = $request->carModel;
