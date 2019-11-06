@@ -8,14 +8,14 @@
                 <div class="card-header">{{ __('PENAMBAHAN RUANG KEMUDAHAN') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST"  action="">
+                    <form id="form" method="POST" enctype="multipart/form-data" action="{{ route('create-facility') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="matrix" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
+                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="matrix" id="matrix" required autofocus class="form-control">
+                                <input type="text" name="id" id="id" required autofocus class="form-control">
                             </div>
                         </div>
                         
@@ -50,25 +50,15 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-facility')}}">
+                                <button type="submit" class="btn btn-primary" name="create" id="create">
                                     {{ __('Hantar') }}
                                 </button>
-                                <button class="btn btn-primary"type="submit" name="update" id="update" formaction="{{route('update-facility')}}">
-                                    {{__('Perbaharui')}}
+                                <button class="btn btn-primary"type="reset" name="reset" id="reset">
+                                    {{__('Semula')}}
                                 </button>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Tambah') }}
-                                </button>
-                                <button type="reset" class="btn btn-primary">
-                                    {{ __('Reset') }}
-                                </button>
-                            </div>
-                        </div>
                     </form>
 
                     <table class=" table table-boarderless" id="table">
@@ -81,15 +71,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($facility as $facilitys)
+                            @foreach($facility as $facility)
                             <tr>
-                                 <td>{{ $facilitys->id }}</td>
-                                 <td>{{ $facilitys->facility }}</td>
-                                 <td>{{ $facilitys->Description }}</td>
-                                 <td>{{ $facilitys->rate }}</td>
+                                 <td>{{ $facility->id }}</td>
+                                 <td>{{ $facility->facility }}</td>
+                                 <td>{{ $facility->Description }}</td>
+                                 <td>{{ $facility->rates }}</td>
                                  <td>
-                                   <a href="{{route('delete-facility', $facilitys->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
-                                   <a href="{{route('update-facility', $facilitys->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
+                                   <a href="{{route('delete-facility', $facility->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                                   <button class="btn btn-warning" onclick="function moveToField(){
+                                    document.getElementById('id').value = '{{ $facility->id }}';
+                                    document.getElementById('name').value = '{{ $facility->name }}';
+                                    document.getElementById('description').value = '{{ $facility->description }}';
+                                    document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                    document.getElementById('form').action = '{{route('update-facility')}}';
+                                    var form;
+                                    form = document.getElementById('form');
+                                    form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this facility?\');');
+                                    } moveToField(); return false;">{{__('Perbaharui')}}
                                  </td>
          
                             </tr>

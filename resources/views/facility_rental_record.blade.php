@@ -54,8 +54,8 @@
                 <thead>
                 <tr>
                    <th>ID</th>
-                   <th>User ID</th>
-                   <th>Program name</th>
+                   <th>Student ID</th>
+                   <th>Program Name</th>
                    <th>Facility</th>
                    <th>No. Receipt</th>
                    <th>Checkout Time</th>

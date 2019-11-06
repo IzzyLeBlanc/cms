@@ -22,7 +22,7 @@ class FacilityController extends Controller
                 $facility = DB::table('facility')->paginate(15);
                 return view('/add_facility',['facility'=>$facility]);
             } else if(Auth::user()->role === 'student'){
-                return view('/rent_facility_application');
+                return view('/facility_rental_record');
             } elseif (Auth::user()->role === 'staff') {
                 return view('/staff_homepage');
             }
@@ -35,35 +35,35 @@ class FacilityController extends Controller
     public function create(Request $request){
 
         $this->validate($request, [
-            'user_id'=>'required',
-            'program_name'=>'required',
-            'facility'=>'required',
-            'no_receipt'=>'required'
+            'id'=>'required',
+            'name'=>'required',
+            'description'=>'required',
+            'rates'=>'required'
         ]);
 
         $id = $request->id;
         $facility = new facility;
-        $facility->user_id = $user_id;
-        $facility->program_name = $request->program_name;
-        $facility->facility = $request->facility;
-        $facility->no_receipt = $request->no_receipt;
+        $facility->id = $id;
+        $facility->name = $request->name;
+        $facility->description = $request->description;
+        $facility->rates = $request->rates;
         $facility->save(); 
         return redirect()->route('facility');
     }
     public function update(Request $request){
 
         $this->validate($request,[
-            'user_id'=>'required',
-            'program_name'=>'required',
-            'facility'=>'required',
-            'no_receipt'=>'required'
+            'id'=>'required',
+            'name'=>'required',
+            'description'=>'required',
+            'rates'=>'required'
         ]);
         
         $facility = facility::find($request->id);
-        $facility->user_id = $request->user_id;
-        $facility->program_name = $request->program_name;
-        $facility->facility = $request->facility;
-        $facility->no_receipt = $request->no_receipt;
+        $facility->id = $request->user_id;
+        $facility->name = $request->program_name;
+        $facility->description = $request->description;
+        $facility->rates = $request->rates;
         $facility->update();
 
         return redirect()->route('facility');
