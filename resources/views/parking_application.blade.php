@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="plat" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
+                            <label for="resit" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
 
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="resit" id="resit" required>
