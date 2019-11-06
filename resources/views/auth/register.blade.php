@@ -184,8 +184,8 @@
                                 } moveToField(); return false;">{{__('Update')}}
                             </button>
                         </td>
-                   </tr>
-                   @endforeach
+                    </tr>
+                    @endforeach
                 </tbody>
              </table>
             {{$user->links() }}
