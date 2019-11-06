@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('PERMOHONAN TEMPAT LETAK KERETA') }}</div>
                 
                 <div class="card-body">
-                    <form id="form" method="POST" enctype="multipart/form-data" action="{{ route('create-parking-rental') }}">
+                    <form method="POST" action="{{route('create-parking-rental')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
