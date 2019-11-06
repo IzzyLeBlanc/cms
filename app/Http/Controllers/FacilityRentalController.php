@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
-use App\RoomRental;
+use App\FacilityRental;
 
 class FacilityRentalController extends Controller
 {
@@ -20,13 +20,13 @@ class FacilityRentalController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                $record = DB::table('facility_record')->paginate(15);
-                return view('/facility_rental_record',['record'=>$record]);
+                $facility_rent = DB::table('facility_record')->paginate(15);
+                return view('/facility_rental_record',['record'=>$facility_rent]);
             } else if(Auth::user()->role === 'student'){
                 return view('/student_homepage');
             } elseif (Auth::user()->role === 'staff') {
-                $record = DB::table('facility_record')->paginate(15);
-                return view('/facility_rental_record',['record'=>$record]);
+                $facility_rent = DB::table('facility_record')->paginate(15);
+                return view('/facility_rental_record',['record'=>$facility_rent]);
             }
             
         } else {
@@ -36,19 +36,23 @@ class FacilityRentalController extends Controller
 
     public function create(Request $request){
         $this->validate($request,[
-            'user_id'=>'required',
+            'studentid'=>'required',
             'program_name'=>'required',
-            'facility'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
             'no_receipt'=>'required',
         ]);
 
-        $record = new FacilityRental();
-        $record->user_id = $request->user_id;
-        $record->program_name = $request->program_name;
-        $record->facility = $request->facility;
-        $record->no_receipt= $request->no_receipt;
-        $record->save();
+        $facility_rent = new FacilityRental();
+        $facility_rent->studentid = $request->studentid;
+        $facility_rent->program_name = $request->program_name;
+        $facility_rent->start_date = $request->start_date;
+        $facility_rent->end_date = $request->end_date;
+        $facility_rent->status = $request->status;
+        $facility_rent->no_receipt= $request->no_receipt;
+        $facility_rent->save();
 
+        Sessiom::flash('status', 'New rental record created successfully.');
         return redirect()->route('facility-rental');
     }
 
@@ -56,30 +60,39 @@ class FacilityRentalController extends Controller
     public function update(Request $request){
 
         $this->validate($request,[
-            'user_id'=>'required',
+            'studentid'=>'required',
             'program_name'=>'required',
-            'facility'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'status'=>'required',
             'no_receipt'=>'required',
         ]);
-        $record = FacilityRecord::where([
-            ['user_id','=',$request->user_id],
+        $facility_rent = FacilityRecord::where([
+            ['studentid','=',$request->studentid],
             ['program_name','=',$request->program_name],
-            ['facility','=',$request->facility],
+            ['start_date','=',$request->start_date],
+            ['end_date','=',$request->end_date],
+            ['status','=',$request->status],
             ['no_receipt','=',$request->no_receipt],
         ]);
-        $record->user_id = $request->user_id;
-        $record->program_name = $request->program_name;
-        $record->facility = $request->facility;
-        $record->no_receipt = $request->no_receipt;
-        $record->update();
+        $facility_rent->studentid = $request->studentid;
+        $facility_rent->program_name = $request->program_name;
+        $facility_rent->start_date = $request->start_date;
+        $facility_rent->end_date = $request->end_date;
+        $facility_rent->no_receipt = $request->no_receipt;
+        $facility_rent->update();
     } */
 
     public function checkout($id){
 
         date_default_timezone_set('Asia/Kuala_Lumpur');
-        $record = FacilityRental::find($id);
-        $record->checkout = date('Y-m-d H:i:s');
-        $record->save();
+        $facility_rent = FacilityRental::find($id);
+        $facility_rent->checkout = date('Y-m-d H:i:s');
+        $facility_rent->save();
+        return redirect()->route('facility-rental');
+    }
+    else{
+        Session::flash('statusfail', 'Checkout fail. Checkout time already exists.');
         return redirect()->route('facility-rental');
     }
 }

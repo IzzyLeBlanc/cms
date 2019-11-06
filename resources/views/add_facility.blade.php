@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col=md-8">
+            @if(Session::has('status'))
+            <div class="alert alert-success" role="alert">
+                {{Session::get('status')}}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('PENAMBAHAN RUANG KEMUDAHAN') }}</div>
                 
@@ -41,10 +46,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="rates" class="col-md-4 col-form-label tex-md-right">{{ __('Pembayaran:') }}</label>
+                            <label for="rates" class="col-md-4 col-form-label tex-md-right">{{ __('Pembayaran(RM):') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="rates" id="rates" class="form-control">
+                                <input type="number" name="rates" id="rates" class="form-control">
                             </div>
                         </div>
 
@@ -58,46 +63,44 @@
                                 </button>
                             </div>
                         </div>
-
-                    </form>
-
-                    <table class=" table table-boarderless" id="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Facility</th>
-                                <th>Description</th>
-                                <th>Rates</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($facility as $facility)
-                            <tr>
-                                 <td>{{ $facility->id }}</td>
-                                 <td>{{ $facility->facility }}</td>
-                                 <td>{{ $facility->Description }}</td>
-                                 <td>{{ $facility->rates }}</td>
-                                 <td>
-                                   <a href="{{route('delete-facility', $facility->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
-                                   <button class="btn btn-warning" onclick="function moveToField(){
-                                    document.getElementById('id').value = '{{ $facility->id }}';
-                                    document.getElementById('name').value = '{{ $facility->name }}';
-                                    document.getElementById('description').value = '{{ $facility->description }}';
-                                    document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
-                                    document.getElementById('form').action = '{{route('update-facility')}}';
-                                    var form;
-                                    form = document.getElementById('form');
-                                    form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this facility?\');');
-                                    } moveToField(); return false;">{{__('Perbaharui')}}
-                                 </td>
-         
-                            </tr>
-                            @endforeach
-                         </tbody>
-                    </table>
-                  {{$facility->links() }}
-                    </form>
+                     </form>
                 </div>
+                 <table class="table table-striped">
+                     <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Facility</th>
+                        <th>Description</th>
+                        <th>Rates</th>   
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($facility as $facility)
+                        <tr>
+                            <td>{{ $facility->id }}</td>
+                            <td>{{ $facility->facility }}</td>
+                            <td>{{ $facility->description }}</td>
+                            <td>{{ $facility->rates }}</td>
+                            <td>
+                              <a href="{{route('delete-facility', $facility->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                              
+                              <button class="btn btn-warning" onclick="function moveToField(){
+                                  document.getElementById('id').value = '{{ $facility->id }}';
+                                  document.getElementById('name').value = '{{ $facility->name }}';
+                                  document.getElementById('description').value = '{{ $facility->description }}';
+                                  document.getElementById('rates').value = '{{ $facility->rates }}';
+                                  document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                  document.getElementById('form').action = '{{route('update-facility')}}';
+                                  var form;
+                                  form = document.getElementById('form');
+                                  form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this facility?\');');
+                                  } moveToField(); return false;">{{__('Perbaharui')}}
+                            </td>    
+                        </tr>
+                        @endforeach
+                    </tbody>
+                 </table>
+                {{$facility->links() }}
             </div>
         </div>
     </div>

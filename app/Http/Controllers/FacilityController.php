@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Session;
+use App\facility;
 
 class FacilityController extends Controller
 {
@@ -60,8 +62,8 @@ class FacilityController extends Controller
         ]);
         
         $facility = facility::find($request->id);
-        $facility->id = $request->user_id;
-        $facility->name = $request->program_name;
+        $facility->id = $request->id;
+        $facility->name = $request->name;
         $facility->description = $request->description;
         $facility->rates = $request->rates;
         $facility->update();

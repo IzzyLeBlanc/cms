@@ -4,47 +4,69 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col=md-8">
+            @if(Session::has('status'))
+            <div class="alert alert-success" role="alert">
+                {{Session::get('status')}}
+            </div>
+            @endif
+            @if(Session::has('statusfail'))
+            <div class="alert alert-danger" role="alert">
+                {{Session::get('statusfail')}}
+            </div>
+            @endif
             <div class="card">
-                <div class="card-header">{{ __('PENDAFTARAN REKOD SEWA KEMUDAHAN') }}</div>
+                <div class="card-header">{{ __('PERMOHONAN SEWA KEMUDAHAN') }}</div>
                 
                 <div class="card-body">
                     <form method="POST" action="{{route('create-facility-rental')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
+                            <label for="studentid" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="user_id" id="user_id" required autofocus class="form-control" placeholder="A141141" pattern="A(\d{6})">
+                                <input type="text" name="studentid" id="studentid" required autofocus class="form-control" placeholder="A123456" pattern="A(\d{6})">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program(Jika Ada):') }}</label>
+                            <label for="program_name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program(Jika Ada):') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="name" id="name" required>
+                                <input class="form-control" type="text" name="program_name" id="program_name" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="room" class="col-md-4 col-form-label tex-md-right">{{ __('Fasiliti yang Ditempah:') }}</label>
-
-                            <div class="col-md-6">
-                                <select name="room" id="room" class="form-control">
-                                    <option value="">{{ __('Pilih Kemudahan') }}</option>
-                                    <option value="1">{{ __('Dewan Besar Zaba') }}</option>
-                                    <option value="2">{{ __('Kafeteria Zaba') }}</option>
-                                    <option value="3">{{ __('Perpustakaan Zaba') }}</option>
-                                </select>
-                            </div>
+                                <label for="start_date" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh dan Masa Mula:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="datetime-local" name="start_date" id="start_date" required>
+                                </div>
                         </div>
+
+                        <div class="form-group row">
+                                <label for="end_date" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh dan Masa Selesai:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="datetime-local" name="end_date" id="end_date" required>
+                                </div>
+                        </div>
+
+                        <div class="form-group row">
+                                <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="status" disabled="disabled" id="status" required>
+                                </div>
+                            </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Hantar') }}
-                                </button>
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-facility-rental')}}">
+                                        {{ __('Hantar') }}
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -56,27 +78,31 @@
                    <th>ID</th>
                    <th>Student ID</th>
                    <th>Program Name</th>
-                   <th>Facility</th>
+                   <th>Start Date</th>
+                   <th>End Date</th>
+                   <th>Status</th>
                    <th>No. Receipt</th>
                    <th>Checkout Time</th>
                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                   @foreach($record as $records)
+                   @foreach($facility_rent as $facility_rental)
                    <tr>
-                        <td>{{ $records->id }}</td>
-                        <td>{{ $records->user_id }}</td>
-                        <td>{{ $records->program_name }}</td>
-                        <td>{{ $records->facility }}</td>
-                        <td>{{ $records->no_receipt }}</td>
-                        <td>{{ $records->checkout }}</td>
-                        <td><a href="{{route('checkout', $records->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a></td>
+                        <td>{{ $facility_rental->id }}</td>
+                        <td>{{ $facility_rental->user_id }}</td>
+                        <td>{{ $facility_rental->program_name }}</td>
+                        <td>{{ $facility_rental->start_date }}</td>
+                        <td>{{ $facility_rental->end_date }}</td>
+                        <td>{{ $facility_rental->status }}</td>
+                        <td>{{ $facility_rental->no_receipt }}</td>
+                        <td>{{ $facility_rental->checkout }}</td>
+                        <td><a href="{{route('checkout', $facility_rental->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a></td>
                    </tr>
                    @endforeach
                 </tbody>
              </table>
-            {{$record->links() }}
+            {{$facility_rent->links() }}
         </div>
     </div>
 </div>
