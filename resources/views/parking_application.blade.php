@@ -69,11 +69,9 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" name="create" id="create">
-                                        {{ __('Hantar') }}
-                                    </button>
-                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Daftar') }}
+                                </button>
                             </div>
                         </div>
                     </form>
