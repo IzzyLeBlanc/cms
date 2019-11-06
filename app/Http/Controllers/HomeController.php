@@ -25,13 +25,13 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::check()){
-            if(Auth::user()->role === 'student'){
+            if(checkPermission(['student'])){
                 return view('/student_homepage');
             }
-            else if(Auth::user()->role === 'staff'){
+            else if(checkPermission(['staff'])){
                 return view('/staff_homepage');
             }
-            else if(Auth::user()->role === 'admin'){
+            else if(checkPermission(['admin'])){
                 return view('/admin_homepage');
             }
         }
