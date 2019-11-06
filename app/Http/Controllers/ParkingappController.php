@@ -35,8 +35,8 @@ class ParkingappController extends Controller
 
         $this->validate($request, [
             'resit'=>'required',
-            'plat'=>'required'
-            'jenis'=>'required'
+            'plat'=>'required',
+            'jenis'=>'required',
             'warna'=>'required'
         ]);
 
