@@ -54,7 +54,7 @@ Route::get('facilityrental/checkout/{id}', 'FacilityRentalController@checkout')-
 
 //Parking app Module
 Route::get('/parkingapp', 'ParkingappController@index')->name('parkingapp');
-Route::post('/parkingapp/create', 'ParkingappRentalController@create')->name('create-parking-rental');
+Route::post('/parkingapp/create', 'ParkingappController@create')->name('create-parking-rental');
 
 
 //Parking Module
