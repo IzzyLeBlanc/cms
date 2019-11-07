@@ -12,6 +12,14 @@
                         @csrf
 
                         <div class="form-group row">
+                                <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="id" id="id" required>
+                                </div>
+                        </div>
+    
+                        <div class="form-group row">
                             <label for="studentid" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
@@ -91,6 +99,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        <th>ID</th>
                        <th>No Matrik</th>
                        <th>No.Lot Parking</th>
                        <th>No. Receipt</th>
@@ -105,6 +114,7 @@
                     <tbody>
                        @foreach ($rental as $rentals)
                        <tr>
+                            <td>{{ $rentals->id }}</td>
                             <td>{{ $rentals->studentid }}</td>
                             <td>{{ $rentals->parkingid }}</td>
                             <td>{{ $rentals->receiptNo }}</td>

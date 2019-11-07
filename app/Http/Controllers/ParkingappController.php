@@ -36,6 +36,7 @@ class ParkingappController extends Controller
 
     public function create(Request $request){
         $this->validate($request, [
+            'id'=>'required',
             'studentid'=>'required',
             'parkingid'=>'required',
             'receiptNo'=>'required',
@@ -63,6 +64,7 @@ class ParkingappController extends Controller
     public function update(Request $request){
 
         $this->validate($request,[
+            'id'=>'required',
             'studentid'=>'required',
             'parkingid'=>'required',
             'receiptNo'=>'required',
