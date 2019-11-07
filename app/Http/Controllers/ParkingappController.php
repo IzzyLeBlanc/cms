@@ -48,7 +48,7 @@ class ParkingappController extends Controller
         ]);
 
         $id = $request->id;
-        $rental = new ParkingRental;
+        $rental = new ParkingRental();
         $rental->id = $id;
         $rental->studentid = $request->studentid;
         $rental->parkingid = $request->parkingid;
