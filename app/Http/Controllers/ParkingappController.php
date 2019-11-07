@@ -36,27 +36,25 @@ class ParkingappController extends Controller
 
     public function create(Request $request){
         $this->validate($request, [
-            'id'=>'required',
+            //'id'=>'required',
             'studentid'=>'required',
             'parkingid'=>'required',
             'receiptNo'=>'required',
             'plateNo'=>'required',
             'carModel'=>'required',
             'carColor'=>'required',
-            'status'=>'required',
-            'staffid'=>'required'
         ]);
 
         $id = $request->id;
         $rental = new ParkingRental();
-        $rental->id = $id;
+        //$rental->id = $id;
         $rental->studentid = $request->studentid;
         $rental->parkingid = $request->parkingid;
         $rental->receiptNo = $request->receiptNo;
         $rental->plateNo = $request->plateNo;
         $rental->carModel = $request->carModel;
         $rental->carColor = $request->carColor;
-        $rental->status = $request->status;
+        $rental->status = 'Pending';
         $rental->save(); 
         return redirect()->route('parkingapp');
     }
