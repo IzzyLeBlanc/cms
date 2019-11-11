@@ -38,38 +38,19 @@
                                     <td>{{ $rentals->staffid }}</td>
                                     <td>
             
-                                        <button class="btn btn-warning" onclick="function moveToField(){
-                                            document.getElementById('studentid').value = '{{ $rentals->studentid}}';
-                                            document.getElementById('parkingid').value = '{{ $rentals->parkingid }}';
-                                            document.getElementById('receiptNo').value = '{{ $rentals->receiptNo }}';
-                                            document.getElementById('plateNo').value = '{{ $rentals->plateNo }}';
-                                            document.getElementById('carModel').value = '{{ $rentals->carModel }}';
-                                            document.getElementById('carColor').value = '{{ $rentals->carColor }}';
-                                            document.getElementById('status').value = '{{ $rentals->status }}';
-                                            document.getElementById('staffid').value = '{{ $rentals->staffid }}';
-                                            document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
-                                            document.getElementById('form').action = '{{route('update-parking-rental')}}';
-                                            var form;
-                                            form = document.getElementById('form');
-                                            form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this parking record?\');');
-                                            } moveToField(); return false;">{{__('Perbaharui')}}
-                                        </button>
+                                        <a href="{{route('approved-parking-rental', $rentals->id)}}" class="btn btn-warning">{{__('Diterima')}}</a>
+                                        <a href="{{route('rejected-parking-rental', $rentals->id)}}" class="btn btn-warning">{{__('Ditolak')}}</a>
+                                        <a href="{{route('delete-parking-rental', $rentals->id)}}" class="btn btn-danger">{{__('Delete')}}</a>
                                     </td>
                                </tr>
                                @endforeach
                             </tbody>
                          </table>
+                        </form>
                         {{$rental->links() }}
                     </div>
                 </div>
             </div>
             @endsection
 
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                  

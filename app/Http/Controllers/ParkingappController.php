@@ -25,7 +25,8 @@ class ParkingappController extends Controller
             } else if(Auth::user()->role === 'student'){
                 $rental = DB::table('parking_record')->paginate(15);
                 return view('/parking_application',['rental'=>$rental]);
-            } elseif (Auth::user()->role === 'staff')->paginate(15); {
+            } elseif (Auth::user()->role === 'staff'); {
+                $rental = DB::table('parking_record')->paginate(15);
                 return view('/parkingrental',['rental'=>$rental]);
             }
             
@@ -45,6 +46,7 @@ class ParkingappController extends Controller
             'carColor'=>'required',
         ]);
 
+       
         $id = $request->id;
         $rental = new ParkingRental();
         //$rental->id = $id;
@@ -73,6 +75,7 @@ class ParkingappController extends Controller
             'staffid'=>'required'
         ]);
         
+        
         $parking = ParkingRental::find($request->id);
         $rental->id = $id;
         $rental->studentid = $request->studentid;
@@ -86,6 +89,41 @@ class ParkingappController extends Controller
 
         return redirect()->route('parkingapp');
     }
+
+    public function postApprove($id) {
+        $rental = ParkingRental::find($id);
+        if($rental)
+        {
+            $staffid = Auth::id();
+            $rental->status = 'Approved';
+            $rental->staffid = $staffid;
+            $rental->save();
+            
+        }
+        return redirect()->route('parkingapp');
+        
+    }
+
+    public function postReject($id) {
+        $rental = ParkingRental::find($id);
+        if($rental)
+        {
+            $staffid = Auth::id();
+            $rental->status = 'Rejected';
+            $rental->staffid = $staffid;
+            $rental->save();
+        }
+        return redirect()->route('parkingapp');
+    }
+
+    public function delete($id){
+
+        $rental = ParkingRental::find($id);   
+        $rental->delete();
+        return redirect()->route('parkingapp');
+        
+    }
+
 
 
 }

@@ -20,17 +20,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="block" class="col-md-4 col-form-label tex-md-right">{{ __('Blok:') }}</label>
+                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('ParkingNo:') }}</label>
 
                             <div class="col-md-6">
-                                <select name="block" id="block" class="form-control" required>
-                                    <option value="">{{ __('Pilih Blok') }}</option>
-                                    <option value="A">{{ __('A-B') }}</option>
-                                    <option value="B">{{ __('C-D') }}</option>
-                                    <option value="C">{{ __('C-E') }}</option>
-                                    <option value="D">{{ __('F') }}</option>
-                                    <option value="D">{{ __('G-H') }}</option>
-                                </select>
+                                <input type="text" name="block" id="block" required autofocus class="form-control">
                             </div>
                         </div>
 
