@@ -25,8 +25,8 @@ class ParkingappController extends Controller
             } else if(Auth::user()->role === 'student'){
                 $rental = DB::table('parking_record')->paginate(15);
                 return view('/parking_application',['rental'=>$rental]);
-            } elseif (Auth::user()->role === 'staff') {
-                return view('/parkingrental');
+            } elseif (Auth::user()->role === 'staff')->paginate(15); {
+                return view('/parkingrental',['rental'=>$rental]);
             }
             
         } else {
