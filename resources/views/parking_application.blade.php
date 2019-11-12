@@ -109,7 +109,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                       <th>ID</th>
                        <th>No Matrik</th>
                        <th>Lot Parking</th>
                        <th>No. Receipt</th>

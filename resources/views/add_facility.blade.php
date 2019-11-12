@@ -28,7 +28,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Fasiliti:') }}</label>
 
                             <div class="col-md-6">
-                                <select name="facility" id="facility" class="form-control">
+                                <select name="name" id="name" class="form-control">
                                     <option value="">{{ __('Pilih Kemudahan') }}</option>
                                     <option value="1">{{ __('Dewan Besar Zaba') }}</option>
                                     <option value="2">{{ __('Kafeteria Zaba') }}</option>
@@ -57,7 +57,6 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary" name="create" id="create">
                                     {{ __('Hantar') }}
-                                </button>
                                 <button class="btn btn-primary"type="reset" name="reset" id="reset">
                                     {{__('Semula')}}
                                 </button>
@@ -65,13 +64,14 @@
                         </div>
                      </form>
                 </div>
-                 <table class="table table-striped">
+                 <table class="table table-striped" id=table>
                      <thead>
                     <tr>
                         <th>ID</th>
                         <th>Facility</th>
                         <th>Description</th>
-                        <th>Rates</th>   
+                        <th>Rates</th>
+                        <th>StaffID</th>   
                     </tr>
                     </thead>
                     <tbody>
@@ -81,9 +81,22 @@
                             <td>{{ $facilitys->name }}</td>
                             <td>{{ $facilitys->description }}</td>
                             <td>{{ $facilitys->rates }}</td>
+                            <td>{{ $facilitys->staffid }}</td>
                             <td>
-                                <a href="{{route('delete-parking', $facilitys->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
-                                <a href="{{route('update-parking', $facilitys->id)}}" class="btn btn-danger">{{__('Edit')}}</a>
+                                <a href="{{route('delete-facility', $facilitys->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+      
+                                <button class="btn btn-warning" onclick="function moveToField(){
+                                  document.getElementById('id').value = '{{ $facilitys->id }}';
+                                  document.getElementById('name').value = '{{ $facilitys->name }}';
+                                  document.getElementById('description').value = '{{ $facilitys->description }}';
+                                  document.getElementById('rates').value = '{{ $facilitys->rates }}';
+                                  document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                  document.getElementById('form').action = '{{route('update-facility')}}';
+                                  var form;
+                                  form = document.getElementById('form');
+                                  form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room?\');');
+                                  } moveToField(); return false;">{{__('Perbaharui')}}
+                                 </button>
                              </td>    
                         </tr>
                         @endforeach

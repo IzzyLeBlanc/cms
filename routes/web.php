@@ -47,10 +47,17 @@ Route::post('/facility/update','FacilityController@update')->name('update-facili
 Route::get('/facility/delete/{id}','FacilityController@delete')->name('delete-facility');
 
 //Facility Rental Module
-Route::get('/facilityrental', 'FacilityRentalController@index')->name('facility-rental');
-Route::post('/facilityrental/create', 'FacilityRentalController@create')->name('create-facility-rental');
-Route::post('facilityrental/checkout/{id}', 'FacilityRentalController@checkout')->name('checkout');
-Route::get('facilityrental/checkout/{id}', 'FacilityRentalController@checkout')->name('checkout');
+Route::get('/facility-rental', 'FacilityRentalController@index')->name('facility-rental');
+Route::post('/facility-rental/create', 'FacilityRentalController@create')->name('create-facility-rental');
+//Route::get('/facility-rental/create', 'FacilityRentalController@create')->name('create-facility-rental');
+Route::post('/facility-rental/update','FacilityRentalController@update')->name('update-facility-rental');
+Route::get('/facility-rental/approve/{id}', 'FacilityRentalController@postApprove')->name('approved-facility-rental');
+//Route::post('/facility-rental/approve/{id}', 'FacilityRentalController@postApprove')->name('approved-facility-rental');
+Route::get('/facility-rental/reject/{id}', 'FacilityRentalController@postReject')->name('rejected-facility-rental');
+//Route::post('/facility-rental/reject/{id}', 'FacilityRentalController@postReject')->name('rejected-facility-rental');
+Route::get('/facility-rental/delete/{id}','FacilityRentalController@delete')->name('delete-facility-rental');
+//Route::post('facility-rental/checkout/{id}', 'FacilityRentalController@checkout')->name('checkout');
+//Route::get('facility-rental/checkout/{id}', 'FacilityRentalController@checkout')->name('checkout');
 
 
 //Parking app Module

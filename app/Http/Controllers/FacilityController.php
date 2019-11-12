@@ -32,6 +32,8 @@ class FacilityController extends Controller
         } else {
             return view('/login');
         }
+        //$facility = DB::table('facility')->get();
+        //return view('auth/register',['facility'=>$facility]);
     }
 
     public function create(Request $request){
@@ -42,7 +44,7 @@ class FacilityController extends Controller
             'description'=>'required',
             'rates'=>'required'
         ]);
-
+        $staffid = Auth::id();
         $id = $request->id;
         $facility = new facility;
         $facility->id = $id;
@@ -72,8 +74,8 @@ class FacilityController extends Controller
     }
     public function delete($id){
 
-        $parking = facility::find($id);   
-        $parking->delete();
+        $facility = facility::find($id);   
+        $facility->delete();
         return redirect()->route('facility');
         
     }

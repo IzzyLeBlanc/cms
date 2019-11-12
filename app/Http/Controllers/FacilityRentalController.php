@@ -20,18 +20,21 @@ class FacilityRentalController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                $facility_rent = DB::table('facility_record')->paginate(15);
-                return view('/add_facility',['facility'=>$facilitys]);
+                $facility = DB::table('facility')->paginate(15);
+                return view('/add_facility',['facility'=>$facility]);
             } else if(Auth::user()->role === 'student'){
-                return view('/facility_rental_record');
+                $facility_rental = DB::table('facility_record')->paginate(15);
+                return view('/facility_rental_record',['facility_rental'=>$facility_rental]);
             } elseif (Auth::user()->role === 'staff') {
-                $facility_rent = DB::table('facility_record')->paginate(15);
-                return view('/facilityrental',['record'=>$facility_rent]);
+                $facility_rental = DB::table('facility_record')->paginate(15);
+                return view('/facilityrental',['facility_rental'=>$facility_rental]);
             }
             
         } else {
             return view('/login');
         }
+        //$facility = DB::table('facility_rental')->get();
+        //return view('auth/register',['facility_rental'=>$facility]);
     }
 
     public function create(Request $request){
@@ -42,57 +45,80 @@ class FacilityRentalController extends Controller
             'end_date'=>'required',
             'no_receipt'=>'required',
         ]);
-
-        $facility_rent = new FacilityRental();
-        $facility_rent->studentid = $request->studentid;
-        $facility_rent->program_name = $request->program_name;
-        $facility_rent->start_date = $request->start_date;
-        $facility_rent->end_date = $request->end_date;
-        $facility_rent->status = $request->status;
-        $facility_rent->no_receipt= $request->no_receipt;
-        $facility_rent->save();
+        
+        $id = $request->id;
+        $facility_rental = new FacilityRental();
+        $facility_rental->studentid = $request->studentid;
+        $facility_rental->program_name = $request->program_name;
+        $facility_rental->start_date = $request->start_date;
+        $facility_rental->end_date = $request->end_date;
+        $facility_rental->status = 'pending';
+        $facility_rental->no_receipt= $request->no_receipt;
+        $facility_rental->save();
 
         Sessiom::flash('status', 'New rental record created successfully.');
         return redirect()->route('facility-rental');
     }
 
-    /* KIV
     public function update(Request $request){
 
         $this->validate($request,[
+            'id'=>'required',
             'studentid'=>'required',
             'program_name'=>'required',
             'start_date'=>'required',
             'end_date'=>'required',
-            'status'=>'required',
             'no_receipt'=>'required',
+            'status'=>'required',
+            'staffid'=>'required'
         ]);
-        $facility_rent = FacilityRecord::where([
-            ['studentid','=',$request->studentid],
-            ['program_name','=',$request->program_name],
-            ['start_date','=',$request->start_date],
-            ['end_date','=',$request->end_date],
-            ['status','=',$request->status],
-            ['no_receipt','=',$request->no_receipt],
-        ]);
-        $facility_rent->studentid = $request->studentid;
-        $facility_rent->program_name = $request->program_name;
-        $facility_rent->start_date = $request->start_date;
-        $facility_rent->end_date = $request->end_date;
-        $facility_rent->no_receipt = $request->no_receipt;
-        $facility_rent->update();
-    } */
+        
+        
+        $facility = FacilityRental::find($request->id);
+        $facility_rental->id = $id;
+        $facility_rental->studentid = $request->studentid;
+        $facility_rental->program_name = $request->program_name;
+        $facility_rental->start_date = $request->start_date;
+        $facility_rental->end_date = $request->end_date;
+        $facility_rental->no_receipt = $request->no_receipt;
+        $facility_rental->status = $request->status;
+        $facility_rental->staffid = $request->staffid;
+        $facility_rental->update();
 
-    public function checkout($id){
-
-        date_default_timezone_set('Asia/Kuala_Lumpur');
-        $facility_rent = FacilityRental::find($id);
-        $facility_rent->checkout = date('Y-m-d H:i:s');
-        $facility_rent->save();
         return redirect()->route('facility-rental');
     }
-    else{
-        Session::flash('statusfail', 'Checkout fail. Checkout time already exists.');
+
+    public function postApprove($id) {
+        $facility_rental = FacilityRental::find($id);
+        if($facility_rental)
+        {
+            $staffid = Auth::id();
+            $facility_rental->status = 'Approved';
+            $facility_rental->staffid = $staffid;
+            $facility_rental->save();
+            
+        }
         return redirect()->route('facility-rental');
+        
+    }
+
+    public function postReject($id) {
+        $facility_rental = FacilityRental::find($id);
+        if($facility_rental)
+        {
+            $staffid = Auth::id();
+            $facility_rental->status = 'Rejected';
+            $facility_rental->staffid = $staffid;
+            $facility_rental->save();
+        }
+        return redirect()->route('facility-rental');
+    }
+
+    public function delete($id){
+
+        $facility_rental = FacilityRental::find($id);   
+        $facility_rental->delete();
+        return redirect()->route('facility-rental');
+        
     }
 }
