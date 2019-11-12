@@ -9,6 +9,11 @@
                 {{Session::get('status')}}
             </div>
             @endif
+            @if(Session::has('statusfail'))
+            <div class="alert alert-danger" role="alert">
+                {{Session::get('statusfail')}}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('PENAMBAHAN BILIK') }}</div>
                 

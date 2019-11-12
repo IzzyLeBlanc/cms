@@ -61,13 +61,19 @@ class RoomController extends Controller
             'block'=> 'required'
         ]);
         
-        $room = Room::find($request->room);
-        $room->id = $request->room;
-        $room->floor = $request->floor;
-        $room->block = $request->block;
-        $room->save();
-        Session::flash('status', 'Room updated successfully.');
-        return redirect()->route('room');
+        if (Room::where('id', '=', $request->room)->exists()) {
+            $room = Room::find($request->room);
+            $room->floor = $request->floor;
+            $room->block = $request->block;
+            $room->update();
+            Session::flash('status', 'Room updated successfully.');
+            return redirect()->route('room');
+         }
+         else{
+            Session::flash('statusfail', 'Room update failed.');
+            return redirect()->route('room');
+         }
+        
     }
 
     public function delete($id){
