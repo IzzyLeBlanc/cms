@@ -20,7 +20,7 @@ class CreateRoomRecordTable extends Migration
             $table->string('floor');
             $table->string('block');
             $table->string('sem');
-            $table->timestamp('checkout');
+            $table->timestamp('checkout')->nullable();
             $table->string('staffid')->nullable();
             $table->timestamps();
         });
