@@ -19,19 +19,29 @@
                                 </div>
                         </div>-->
     
-                        <div class="form-group row">
+                        <!--<div class="form-group row">
                             <label for="studentid" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
                                 <input class="form-control" type="text" name="studentid" id="studentid" required>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group row">
-                            <label for="parkingid" class="col-md-4 col-form-label text-md-right">{{ __('No.Lot Parking:') }}</label>
+                            <label for="parkingid" class="col-md-4 col-form-label text-md-right">{{ __('Lot Parking:') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="parkingid" id="parkingid" required>
+                                <select name="parkingid" id="parkingid" class="form-control">
+                                    <option value="">{{ __('Pilih Blok Parking') }}</option>
+                                    <option value="A">{{ __('A') }}</option>
+                                    <option value="B">{{ __('B') }}</option>
+                                    <option value="C">{{ __('C') }}</option>
+                                    <option value="D">{{ __('D') }}</option>
+                                    <option value="E">{{ __('E') }}</option>
+                                    <option value="F">{{ __('F') }}</option>
+                                    <option value="G">{{ __('G') }}</option>
+                                    <option value="H">{{ __('h') }}</option>
+                                </select>
                             </div>
                         </div>
 
@@ -101,7 +111,7 @@
                     <tr>
                         <th>ID</th>
                        <th>No Matrik</th>
-                       <th>No.Lot Parking</th>
+                       <th>Lot Parking</th>
                        <th>No. Receipt</th>
                        <th>No. Plat Kenderaan</th>
                        <th>Jenis Kenderaan</th>
@@ -123,25 +133,7 @@
                             <td>{{ $rentals->carColor}}</td>
                             <td>{{ $rentals->status }}</td>
                             <td>{{ $rentals->staffid }}</td>
-                            <td>
-    
-                                <button class="btn btn-warning" onclick="function moveToField(){
-                                    document.getElementById('studentid').value = '{{ $rentals->studentid}}';
-                                    document.getElementById('parkingid').value = '{{ $rentals->parkingid }}';
-                                    document.getElementById('receiptNo').value = '{{ $rentals->receiptNo }}';
-                                    document.getElementById('plateNo').value = '{{ $rentals->plateNo }}';
-                                    document.getElementById('carModel').value = '{{ $rentals->carModel }}';
-                                    document.getElementById('carColor').value = '{{ $rentals->carColor }}';
-                                    document.getElementById('status').value = '{{ $rentals->status }}';
-                                    document.getElementById('staffid').value = '{{ $rentals->staffid }}';
-                                    document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
-                                    document.getElementById('form').action = '{{route('update-parking-rental')}}';
-                                    var form;
-                                    form = document.getElementById('form');
-                                    form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this parking record?\');');
-                                    } moveToField(); return false;">{{__('Perbaharui')}}
-                                </button>
-                            </td>
+                            
                        </tr>
                        @endforeach
                     </tbody>

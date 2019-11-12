@@ -38,7 +38,6 @@ class ParkingappController extends Controller
     public function create(Request $request){
         $this->validate($request, [
             //'id'=>'required',
-            'studentid'=>'required',
             'parkingid'=>'required',
             'receiptNo'=>'required',
             'plateNo'=>'required',
@@ -46,11 +45,11 @@ class ParkingappController extends Controller
             'carColor'=>'required',
         ]);
 
-       
+        $studentid = Auth::id();
         $id = $request->id;
         $rental = new ParkingRental();
         //$rental->id = $id;
-        $rental->studentid = $request->studentid;
+        $rental->studentid = $studentid;
         $rental->parkingid = $request->parkingid;
         $rental->receiptNo = $request->receiptNo;
         $rental->plateNo = $request->plateNo;
@@ -115,16 +114,6 @@ class ParkingappController extends Controller
         }
         return redirect()->route('parkingapp');
     }
-
-    public function delete($id){
-
-        $rental = ParkingRental::find($id);   
-        $rental->delete();
-        return redirect()->route('parkingapp');
-        
-    }
-
-
 
 }
 

@@ -40,7 +40,7 @@
             
                                         <a href="{{route('approved-parking-rental', $rentals->id)}}" class="btn btn-warning">{{__('Diterima')}}</a>
                                         <a href="{{route('rejected-parking-rental', $rentals->id)}}" class="btn btn-warning">{{__('Ditolak')}}</a>
-                                        <a href="{{route('delete-parking-rental', $rentals->id)}}" class="btn btn-danger">{{__('Delete')}}</a>
+            
                                     </td>
                                </tr>
                                @endforeach

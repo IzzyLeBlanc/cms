@@ -31,11 +31,11 @@
     </div>
     <div class="card-body">
         <div class="row justify-content-xl-center">
-            <button class="btn btn-outline-primary">PERMOHONAN TEMPAT LETAK KERETA</button>
+            <a href="{{route('parkingapp')}}"><button class="btn btn-outline-primary">PERMOHONAN TEMPAT LETAK KERETA</button></a>
         </div>
         <br>
         <div class="row justify-content-xl-center">
-            <button class="btn btn-outline-primary">PERMOHONAN TEMPAT KEMUDAHAN</button>
+            <a href="{{route('facility-rental')}}"><button class="btn btn-outline-primary">PENDAFTARAN REKOD SEWA KEMUDAHAN</button></a>
         </div>
     </div>
     <div class="card-header text-center">

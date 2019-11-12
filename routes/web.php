@@ -62,7 +62,7 @@ Route::get('/parkingapp/approve/{id}', 'ParkingappController@postApprove')->name
 //Route::post('/parkingapp/approve/{id}', 'ParkingappController@postApprove')->name('approved-parking-rental');
 Route::get('/parkingapp/reject/{id}', 'ParkingappController@postReject')->name('rejected-parking-rental');
 //Route::post('/parkingapp/reject/{id}', 'ParkingappController@postReject')->name('rejected-parking-rental');
-Route::get('/parkingapp/delete/{id}','ParkingappController@delete')->name('delete-parking-rental');
+//Route::get('/parkingapp/delete/{id}','ParkingappController@delete')->name('delete-parking-rental');
 
 
 //Parking Module
