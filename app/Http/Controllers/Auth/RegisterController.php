@@ -170,15 +170,15 @@ class RegisterController extends Controller
     public function updateUser(Request $request){
         if(Auth::check()){
             try{
+                $emailSame = false;
                 $user = User::find($request->input('id'));
-                if ($request->input('email') == $user->email){
-                    $emailSame = true;
-                }
-                else{
-                    $emailSame = false;
+                if($user){
+                    if ($request->input('email') == $user->email){
+                        $emailSame = true;
+                    }
                 }
             }catch(Exception $e){
-                Session::flash('statusfail', 'No such user found');
+                
             }
             if($emailSame){
                 $this->validate($request, [
@@ -212,16 +212,21 @@ class RegisterController extends Controller
                     }]
                 ]);
             }
+            
+            if($user){
+                $user->name = $request->input('name');
+                $user->icno = $request->input('icNo');
+                $user->email = $request->input('email');
+                $user->phoneNo = $request->input('phoneNo');
+                $user->address = $request->input('address');
+                $user->role = $request->input('role');
+                $user->update();
+                Session::flash('status', 'Update Success');
+            }
+            else{
+                Session::flash('statusfail', 'No such user found.');
+            }
         }
-
-        $user->name = $request->input('name');
-        $user->icno = $request->input('icNo');
-        $user->email = $request->input('email');
-        $user->phoneNo = $request->input('phoneNo');
-        $user->address = $request->input('address');
-        $user->role = $request->input('role');
-        $user->update();
-        Session::flash('status', 'Update Success');
         return redirect()->route('register');
     }
 }
