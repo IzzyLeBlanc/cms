@@ -4,16 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col=md-8">
-            @if(Session::has('status'))
-            <div class="alert alert-success" role="alert">
-                {{Session::get('status')}}
-            </div>
-            @endif
-            @if(Session::has('statusfail'))
-            <div class="alert alert-danger" role="alert">
-                {{Session::get('statusfail')}}
-            </div>
-            @endif
             <div class="card">
                 <div class="card-header">{{ __('PERMOHONAN SEWA KEMUDAHAN') }}</div>
                 
@@ -38,10 +28,18 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="program_name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program(Jika Ada):') }}</label>
+                                <label for="facilityid" class="col-md-4 col-form-label text-md-right">{{ __('No. Fasiliti:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="facilityid" id="facilityid" required>
+                                </div>
+                            </div>
+
+                        <div class="form-group row">
+                            <label for="programName" class="col-md-4 col-form-label text-md-right">{{ __('Nama Program(Jika Ada):') }}</label>
 
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="program_name" id="program_name" required>
+                                <input class="form-control" type="text" name="programName" id="programName" required>
                             </div>
                         </div>
 
@@ -60,6 +58,15 @@
                                     <input class="form-control" type="datetime-local" name="end_date" id="end_date" required>
                                 </div>
                         </div>
+
+                        <div class="form-group row">
+                                <label for="no_receipt" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="no_receipt" id="no_receipt" required>
+                                </div>
+                        </div>
+
 
                         <!--<div class="form-group row">
                                 <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status:') }}</label>
@@ -96,13 +103,13 @@
                 <tr>
                    <th>ID</th>
                    <th>Student ID</th>
+                   <th>Facility ID</th>
                    <th>Program Name</th>
                    <th>Start Date</th>
                    <th>End Date</th>
                    <th>Status</th>
                    <th>Staffid</th>
                    <th>No. Receipt</th>
-                   <th>Checkout Time</th>
                    <th></th>
                 </tr>
                 </thead>
@@ -110,8 +117,9 @@
                    @foreach($facility_rental as $facility_rentals)
                    <tr>
                         <td>{{ $facility_rentals->id }}</td>
+                        <td>{{ $facility_rentals->facilityid }}</td>
                         <td>{{ $facility_rentals->studentid }}</td>
-                        <td>{{ $facility_rentals->program_name }}</td>
+                        <td>{{ $facility_rentals->programName }}</td>
                         <td>{{ $facility_rentals->start_date }}</td>
                         <td>{{ $facility_rentals->end_date }}</td>
                         <td>{{ $facility_rentals->status }}</td>
@@ -120,8 +128,9 @@
                         <td>
                             <button class="btn btn-warning" onclick="function moveToField(){
                                 document.getElementById('studentid').value = '{{ $facility_rentals->studentid}}';
+                                document.getElementById('studentid').value = '{{ $facility_rentals->facilityid}}';
                                 document.getElementById('id').value = '{{ $facility_rentals->id }}';
-                                document.getElementById('program_name').value = '{{ $facility_rentals->program_name }}';
+                                document.getElementById('program_name').value = '{{ $facility_rentals->programName }}';
                                 document.getElementById('start_date').value = '{{ $facility_rentals->start_date }}';
                                 document.getElementById('end_date').value = '{{ $facility_rentals->end_date }}';
                                 document.getElementById('no_receipt').value = '{{ $facility_rentals->no_receipt}}';

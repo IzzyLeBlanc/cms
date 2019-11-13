@@ -40,6 +40,7 @@ class FacilityRentalController extends Controller
     public function create(Request $request){
         $this->validate($request,[
             'studentid'=>'required',
+            'facilityid'=>'required',
             'program_name'=>'required',
             'start_date'=>'required',
             'end_date'=>'required',
@@ -49,6 +50,7 @@ class FacilityRentalController extends Controller
         $id = $request->id;
         $facility_rental = new FacilityRental();
         $facility_rental->studentid = $request->studentid;
+        $facility_rental->facilityid = $request->facilityid;
         $facility_rental->program_name = $request->program_name;
         $facility_rental->start_date = $request->start_date;
         $facility_rental->end_date = $request->end_date;
@@ -65,6 +67,7 @@ class FacilityRentalController extends Controller
         $this->validate($request,[
             'id'=>'required',
             'studentid'=>'required',
+            'facilityid'=>'required',
             'program_name'=>'required',
             'start_date'=>'required',
             'end_date'=>'required',
@@ -77,6 +80,7 @@ class FacilityRentalController extends Controller
         $facility = FacilityRental::find($request->id);
         $facility_rental->id = $id;
         $facility_rental->studentid = $request->studentid;
+        $facility_rental->facilityid = $request->facilityid;
         $facility_rental->program_name = $request->program_name;
         $facility_rental->start_date = $request->start_date;
         $facility_rental->end_date = $request->end_date;
