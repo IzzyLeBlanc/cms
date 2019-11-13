@@ -20,8 +20,8 @@ class ParkingappController extends Controller
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
                 //return view('/add_parking');
-                $parking = DB::table('parking')->paginate(15);
-                return view('/add_parking',['parking'=>$parking]);
+                $rental = DB::table('parking_record')->paginate(15);
+                return view('/parkingrental',['rental'=>$rental]);
             } else if(Auth::user()->role === 'student'){
                 $rental = DB::table('parking_record')->paginate(15);
                 return view('/parking_application',['rental'=>$rental]);

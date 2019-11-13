@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('ParkingNo:') }}</label>
+                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Blok:') }}</label>
 
                             <div class="col-md-6">
                                 <input type="text" name="block" id="block" required autofocus class="form-control">
@@ -40,7 +40,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Block</th>
+                            <th>Blok</th>
                         </tr>
                     </thead>
                     <tbody>
