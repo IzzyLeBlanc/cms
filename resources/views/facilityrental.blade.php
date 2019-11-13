@@ -26,27 +26,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($facility_rent as $facility_rental)
+                                @foreach ($facility_rental as $facility_rentals)
                                 <tr>
-                                    <td>{{ $facility_rental->id }}</td>
-                                    <td>{{ $facility_rental->user_id }}</td>
-                                    <td>{{ $facility_rental->program_name }}</td>
-                                    <td>{{ $facility_rental->start_date }}</td>
-                                    <td>{{ $facility_rental->end_date }}</td>
-                                    <td>{{ $facility_rental->status }}</td>
-                                    <td>{{ $facility_rental->staffid }}</td>
-                                    <td>{{ $facility_rental->no_receipt }}</td>
+                                    <td>{{ $facility_rentals->id }}</td>
+                                    <td>{{ $facility_rentals->user_id }}</td>
+                                    <td>{{ $facility_rentals->program_name }}</td>
+                                    <td>{{ $facility_rentals->start_date }}</td>
+                                    <td>{{ $facility_rentals->end_date }}</td>
+                                    <td>{{ $facility_rentals->status }}</td>
+                                    <td>{{ $facility_rentals->staffid }}</td>
+                                    <td>{{ $facility_rentals->no_receipt }}</td>
                                     <td>
-                                            <a href="{{route('approved-facility-rental', $facility_rental->id)}}" class="btn btn-warning">{{__('Diterima')}}</a>
-                                            <a href="{{route('rejected-facility-rental', $facility_rental->id)}}" class="btn btn-warning">{{__('Ditolak')}}</a>
-                                            <a href="{{route('delete-facility-rental', $facility_rental->id)}}" class="btn btn-danger">{{__('Delete')}}</a>
+                                            <a href="{{route('approved-facility-rental', $facility_rentals->id)}}" class="btn btn-warning">{{__('Diterima')}}</a>
+                                            <a href="{{route('rejected-facility-rental', $facility_rentals->id)}}" class="btn btn-warning">{{__('Ditolak')}}</a>
                                     </td>
                                 </tr>
                                  @endforeach
                             </tbody>
                         </table>
                     </form>
-                    {{$facility_rent->links() }}
+                    {{$facility_rental->links() }}
                 </div>
             </div>
         </div>

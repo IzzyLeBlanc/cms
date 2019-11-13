@@ -47,9 +47,10 @@ class FacilityRentalController extends Controller
             'no_receipt'=>'required',
         ]);
         
+        $studentid = Auth::id();
         $id = $request->id;
         $facility_rental = new FacilityRental();
-        $facility_rental->studentid = $request->studentid;
+        $facility_rental->studentid = studentid;
         $facility_rental->facilityid = $request->facilityid;
         $facility_rental->program_name = $request->program_name;
         $facility_rental->start_date = $request->start_date;

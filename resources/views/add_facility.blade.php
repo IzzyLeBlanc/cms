@@ -17,23 +17,18 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
+                            <label for="staffid" class="col-md-4 col-form-label text-md-right">{{ __('Staff ID:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="id" id="id" required autofocus class="form-control">
+                                <input type="text" name="staffid" id="staffid" required autofocus class="form-control">
                             </div>
                         </div>
                         
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Fasiliti:') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Fasiliti:') }}</label>
 
                             <div class="col-md-6">
-                                <select name="name" id="name" class="form-control">
-                                    <option value="">{{ __('Pilih Kemudahan') }}</option>
-                                    <option value="1">{{ __('Dewan Besar Zaba') }}</option>
-                                    <option value="2">{{ __('Kafeteria Zaba') }}</option>
-                                    <option value="3">{{ __('Perpustakaan Zaba') }}</option>
-                                </select>
+                                <input type="text" name="name" id="name" required autofocus class="form-control">
                             </div>
                         </div>
 
@@ -67,7 +62,6 @@
                  <table class="table table-striped" id=table>
                      <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Facility</th>
                         <th>Description</th>
                         <th>Rates</th>

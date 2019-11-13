@@ -19,13 +19,13 @@
                                 </div>
                         </div>-->
 
-                        <div class="form-group row">
+                        <!--<div class="form-group row">
                             <label for="studentid" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
                                 <input type="text" name="studentid" id="studentid" required autofocus class="form-control" placeholder="A123456" pattern="A(\d{6})">
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group row">
                                 <label for="facilityid" class="col-md-4 col-form-label text-md-right">{{ __('No. Fasiliti:') }}</label>
@@ -108,7 +108,7 @@
                    <th>Start Date</th>
                    <th>End Date</th>
                    <th>Status</th>
-                   <th>Staffid</th>
+                   <!--<th>Staffid</th>-->
                    <th>No. Receipt</th>
                    <th></th>
                 </tr>
