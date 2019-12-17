@@ -41,7 +41,15 @@
                             <label for="room" class="col-md-4 col-form-label tex-md-right">{{ __('No. Bilik:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="number" name="room" id="room" class="form-control" required>
+                                <input type="text" name="room" id="room" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="max" class="col-md-4 col-form-label tex-md-right">{{ __('Maksimum:') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="number" name="max" id="max" class="form-control" required>
                             </div>
                         </div>
 
@@ -65,6 +73,7 @@
                    <th>Floor</th>
                    <th>Block</th>
                    <th>Staff ID</th>
+                   <th>Max Occupant</th>
                    <th></th>
                 </tr>
                 </thead>
@@ -75,6 +84,7 @@
                         <td>{{ $rooms->floor }}</td>
                         <td>{{ $rooms->block }}</td>
                         <td>{{ $rooms->staffid }}</td>
+                        <td>{{ $rooms->maxOccupant }}</td>
                         <td>
                           <a href="{{route('delete-room', $rooms->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
 
@@ -82,6 +92,7 @@
                             document.getElementById('room').value = '{{ $rooms->id }}';
                             document.getElementById('floor').value = '{{ $rooms->floor }}';
                             document.getElementById('block').value = '{{ $rooms->block }}';
+                            document.getElementById('max').value = '{{ $rooms->maxOccupant }}';
                             document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
                             document.getElementById('form').action = '{{route('update-room')}}';
                             var form;

@@ -19,8 +19,8 @@ class CreateRoomTable extends Migration
             $table->string('id');
             $table->string('block');
             $table->string('floor');
-            $table->string('maxOccupant');
-            $table->string('currentOccupant');
+            $table->integer('maxOccupant');
+            $table->integer('currentOccupant');
             $table->string('staffid')->nullable();
             $table->timestamps();
         });

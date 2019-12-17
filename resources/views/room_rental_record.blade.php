@@ -31,7 +31,7 @@
                             <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="user_id" id="user_id" required autofocus class="form-control" placeholder="A123456" pattern="A(\d{6})">
+                                <input type="text" name="user_id" id="user_id" required autofocus class="form-control">
                             </div>
                         </div>
 
@@ -40,10 +40,11 @@
 
                             <div class="col-md-6">
                                 <select name="block" id="block" class="form-control">
-                                    <option value="">{{ __('Pilih Blok') }}</option>
-                                    <option value="A">{{ __('A') }}</option>
-                                    <option value="B">{{ __('B') }}</option>
+                                    @foreach ($room as $rooms)
+                                    <option value="{{ $rooms->block }}">{{ ( $rooms->block) }}</option>
+                                    @endforeach 
                                 </select>
+                                 
                             </div>
                         </div>
 
@@ -52,9 +53,9 @@
 
                             <div class="col-md-6">
                                 <select name="floor" id="floor" class="form-control">
-                                    <option value="">{{ __('Pilih Aras') }}</option>
-                                    <option value="1">{{ __('1') }}</option>
-                                    <option value="2">{{ __('2') }}</option>
+                                    @foreach ($room as $rooms)
+                                    <option value="{{ $rooms->floor }}">{{ ( $rooms->floor) }}</option>
+                                    @endforeach 
                                 </select>
                             </div>
                         </div>
@@ -64,9 +65,9 @@
 
                             <div class="col-md-6">
                                 <select name="room" id="room" class="form-control">
-                                    <option value="">{{ __('Pilih Bilik') }}</option>
-                                    <option value="1">{{ __('1') }}</option>
-                                    <option value="2">{{ __('2') }}</option>
+                                    @foreach ($room as $rooms)
+                                    <option value="{{ $rooms->id }}">{{ ( $rooms->id) }}</option>
+                                    @endforeach 
                                 </select>
                             </div>
                         </div>
@@ -75,7 +76,7 @@
                             <label for="sem" class="col-md-4 col-form-label text-md-right">{{ __('Semester:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="number" name="sem" id="sem" class="form-control" min="1" max="3" placeholder="1">
+                                <input type="number" name="sem" id="sem" class="form-control" min="1" max="3">
                             </div>
                         </div>
 
@@ -119,8 +120,8 @@
                         <td>{{ $records->staffid }}</td>
                         <td>
                             <a href="{{route('checkout-room', $records->id)}}" class="btn btn-danger">{{__('Daftar Keluar')}}</a>
-
-                            <button class="btn btn-warning" onclick="function moveToField(){
+                            @if ($records->checkout === null)
+                            <button id="updateBtn" class="btn btn-warning" onclick="function moveToField(){
                                 document.getElementById('id').value = '{{ $records->id }}';
                                 document.getElementById('user_id').value = '{{ $records->user_id }}';
                                 document.getElementById('room').value = '{{ $records->room }}';
@@ -134,6 +135,8 @@
                                 form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room record?\');');
                                 } moveToField(); return false;">{{__('Perbaharui')}}
                             </button>
+                            @endif
+                            
                         </td>
                    </tr>
                    @endforeach
