@@ -56,6 +56,7 @@ class ParkingappController extends Controller
         $rental->carModel = $request->carModel;
         $rental->carColor = $request->carColor;
         $rental->status = 'Pending';
+        $rental->rejectReason = '';
         $rental->save(); 
         return redirect()->route('parkingapp');
     }
@@ -72,6 +73,7 @@ class ParkingappController extends Controller
             'carColor'=>'required',
             'status'=>'required',
             'staffid'=>'required'
+            'rejectReason'=>'required'
         ]);
         
         
@@ -84,6 +86,7 @@ class ParkingappController extends Controller
         $rental->carModel = $request->carModel;
         $rental->carColor = $request->carColor;
         $rental->status = $request->status;
+        $rental->rejectReason = $request->rejectReason;
         $rental->update();
 
         return redirect()->route('parkingapp');
@@ -109,7 +112,9 @@ class ParkingappController extends Controller
         {
             $staffid = Auth::id();
             $rental->status = 'Rejected';
+            $rental->rejectReason = 'Rejected';
             $rental->staffid = $staffid;
+
             $rental->save();
         }
         return redirect()->route('parkingapp');

@@ -19,8 +19,9 @@
                                <th>No. Plat Kenderaan</th>
                                <th>Jenis Kenderaan</th>
                                <th>Warna Kenderaan</th>
-                               <th>Status</th>
                                <th>Staff ID</th>
+                               <th>Status</th>
+                               <th>Comment</th>
                                <th></th>
                             </tr>
                             </thead>
@@ -34,8 +35,9 @@
                                     <td>{{ $rentals->plateNo }}</td>
                                     <td>{{ $rentals->carModel}}</td>
                                     <td>{{ $rentals->carColor}}</td>
-                                    <td>{{ $rentals->status }}</td>
                                     <td>{{ $rentals->staffid }}</td>
+                                    <td>{{ $rentals->status }}</td>
+                                    <td>{{ $rentals->rejectReason }}</td>
                                     <td>
             
                                         <a href="{{route('approved-parking-rental', $rentals->id)}}" class="btn btn-warning">{{__('Diterima')}}</a>

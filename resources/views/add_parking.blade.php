@@ -12,20 +12,31 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
+                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('Parking No:') }}</label>
 
                             <div class="col-md-6">
                                 <input type="text" name="id" id="id" required autofocus class="form-control">
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Blok:') }}</label>
+                        <<div class="form-group row">
+                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Block:') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="block" id="block" required autofocus class="form-control">
+                                <select name="block" id="block" class="form-control">
+                                    <option value="">{{ __('Senarai Blok Parking') }}</option>
+                                    <option value="A">{{ __('A') }}</option>
+                                    <option value="B">{{ __('B') }}</option>
+                                    <option value="C">{{ __('C') }}</option>
+                                    <option value="D">{{ __('D') }}</option>
+                                    <option value="E">{{ __('E') }}</option>
+                                    <option value="F">{{ __('F') }}</option>
+                                    <option value="G">{{ __('G') }}</option>
+                                    <option value="H">{{ __('H') }}</option>
+                                </select>
                             </div>
                         </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
