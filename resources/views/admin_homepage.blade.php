@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('contents')
-<div class="container">
+<div class="sidebar">
     <div class="card-header text-center">
         SENARAI 
     </div>
-    <div class="card-body ">
+    <div class="card-body">
         <div class="row justify-content-xl-center">
             <a href="{{route('register')}}"><button class="btn btn-outline-primary">PENDAFTARAN PELAJAR/STAF</button></a>
         </div>
@@ -37,10 +37,6 @@
         <div class="row justify-content-xl-center">
             <a href="{{route('facility-rental')}}"><button class="btn btn-outline-primary">PERMOHONAN SEWA KEMUDAHAN</button></a>
         </div>
-        <br>
-        <div class="row justify-content-xl-center">
-            <a href="{{route('facility-rental')}}"><button class="btn btn-outline-primary">PENGESAHAN PERMOHONAN SEWA KEMUDAHAN</button></a>
-        </div>
     </div>
     <div class="card-header text-center">
         LAIN-LAIN
@@ -50,4 +46,67 @@
             <a href="{{route('change-password')}}"><button class="btn btn-outline-primary">TUKAR KATA LALUAN</button></a>
         </div>
     </div>
+</div>
+
+<div class="main-box">
+    <div class="row justify-content-center">
+        <div class='col-md-12'>
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+                
+                <div class="card-body">
+                    <div style="width: 100%; display: table;">
+                        <div style="display: table-row">
+                            <div class="category" style="width: 50vh; display: table-cell;">
+                                <p>Room</p>
+                            </div>
+                            <div class="category" style="width: 50vh; display: table-cell;">
+                                <p>Room</p>
+                            </div>
+                        </div>
+                        <div style="display: table-row">
+                            <div class="category" style="height: 30vh;width: 50vh; display: table-cell;">
+                                <div style="height: 200px" class="ct-chart"></div>
+                            </div>
+                            <script>
+                                // THIS IS WHERE THE ERROR OCCURS
+                                var data = {
+                                    labels: ['Empty', 'Non-empty', 'Grapes',],
+                                    series: [20, 15, 40]
+                                };
+
+                                var options = {
+                                    labelInterpolationFnc: function(value) {
+                                        return value[0]
+                                    }
+                                };
+
+                                var responsiveOptions = [
+                                    ['screen and (min-width: 640px)', {
+                                        chartPadding: 30,
+                                        labelOffset: 100,
+                                        labelDirection: 'explode',
+                                        labelInterpolationFnc: function(value) {
+                                        return value;
+                                        }
+                                    }],
+                                    ['screen and (min-width: 1024px)', {
+                                        labelOffset: 80,
+                                        chartPadding: 20
+                                    }]
+                                ];
+
+                                new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
+                             
+                              </script>
+                            <div class="category" style="width: 50vh; display: table-cell;">
+                                <p>Room</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
 @endsection

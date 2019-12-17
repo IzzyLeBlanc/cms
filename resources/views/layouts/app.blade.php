@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!--Chartist-->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -86,3 +90,5 @@ $(document).ready( function () {
     $('#table_id').DataTable();
 } );
 </script>
+
+
