@@ -61,7 +61,7 @@
                                 <p>Room</p>
                             </div>
                             <div class="category" style="width: 50vh; display: table-cell;">
-                                <p>Room</p>
+                                <p>Parking</p>
                             </div>
                         </div>
                         <div style="display: table-row">
@@ -69,10 +69,9 @@
                                 <div style="height: 200px" class="ct-chart"></div>
                             </div>
                             <script>
-                                // THIS IS WHERE THE ERROR OCCURS
                                 var data = {
-                                    labels: ['Empty', 'Non-empty', 'Grapes',],
-                                    series: [20, 15, 40]
+                                    labels: ['Occupied', 'Empty'],
+                                    series: [{{$space[1]}}, {{$space[0] - $space[1]}}]
                                 };
 
                                 var options = {
@@ -97,10 +96,54 @@
                                 ];
 
                                 new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
-                             
-                              </script>
+                            </script>
+                            <div class="category" style="height: 30vh;width: 50vh; display: table-cell;">
+                                <div style="height: 200px" class="ct-chart2"></div>
+                            </div>
+                            <script>
+                                var data = {
+                                    labels: ['Occupied', 'Empty'],
+                                    series: [{{$occupiedParkingLot}}, {{$totalParkingLot - $occupiedParkingLot}}]
+                                };
+
+                                var options = {
+                                    labelInterpolationFnc: function(value) {
+                                        return value[0]
+                                    }
+                                };
+
+                                var responsiveOptions = [
+                                    ['screen and (min-width: 640px)', {
+                                        chartPadding: 30,
+                                        labelOffset: 100,
+                                        labelDirection: 'explode',
+                                        labelInterpolationFnc: function(value) {
+                                        return value;
+                                        }
+                                    }],
+                                    ['screen and (min-width: 1024px)', {
+                                        labelOffset: 80,
+                                        chartPadding: 20
+                                    }]
+                                ];
+
+                                new Chartist.Pie('.ct-chart2', data, options, responsiveOptions);
+                            </script>
+                        </div>
+                        <div style="display: table-row">
                             <div class="category" style="width: 50vh; display: table-cell;">
-                                <p>Room</p>
+                                <p>Facilities used in the past month</p>
+                            </div>
+                            <div class="category" style="width: 50vh; display: table-cell;">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div style="display: table-row">
+                            <div class="category" style="width: 50vh; display: table-cell;">
+                                <h1 style="margin-left: auto; margin-right: auto">{{$facilityUsePastMonth}}</p>
+                            </div>
+                            <div class="category" style="width: 50vh; display: table-cell;">
+                                <p></p>
                             </div>
                         </div>
                     </div>
