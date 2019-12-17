@@ -19,6 +19,7 @@ class CreateRoomTable extends Migration
             $table->string('id');
             $table->string('block');
             $table->string('floor');
+            $table->string('occupantNo');
             $table->string('staffid')->nullable();
             $table->timestamps();
         });
