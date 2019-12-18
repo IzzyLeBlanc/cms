@@ -40,12 +40,10 @@ class ParkingController extends Controller
             'id'=>'required',
             'block'=>'required'
         ]);
-        $staffid = Auth::id()
         $id = $request->id;
         $parking = new parking;
         $parking->id = $id;
         $parking->block = $request->block;
-        $parking->staffid = $staffid;
         $parking->save(); 
         return redirect()->route('parking');
     }

@@ -66,6 +66,14 @@
                                         <input class="form-control" type="text" name="rejectReason" id="rejectReason" required>
                                     </div>
                                 </div>
+
+                            <div class="form-group row">
+                                        <label for="rejectReason" class="col-md-4 col-form-label text-md-right">{{ __('Komen:') }}</label>
+            
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" name="rejectReason" id="rejectReason" required>
+                                        </div>
+                            </div>
     
     
                             <div class="form-group row mb-0">
@@ -95,7 +103,7 @@
                            <th>Staff ID</th>
                            <th>Status</th>
                            <th>Komen</th>
-    
+                           <th>Tarikh Akhir</th>
                            <th></th>
                         </tr>
                         </thead>
@@ -112,6 +120,7 @@
                                 <td>{{ $rentals->staffid }}</td>
                                 <td>{{ $rentals->status }}</td>
                                 <td>{{ $rentals->rejectReason}}</td>
+                                <td>{{ $rentals->end}}</td>
                                 <td>
                                        
                                         <button class="btn btn-warning" onclick="function moveToField(){

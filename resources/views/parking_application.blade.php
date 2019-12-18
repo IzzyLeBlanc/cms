@@ -112,6 +112,7 @@
                        <th>Staff ID</th>
                        <th>Status</th>
                        <th>Maklumat Permohonan</th>
+                       <th>Tarikh Akhir</th>
 
                        <th></th>
                     </tr>
@@ -129,6 +130,7 @@
                             <td>{{ $rentals->staffid }}</td>
                             <td>{{ $rentals->status }}</td>
                             <td>{{ $rentals->rejectReason}}</td>
+                            <td>{{ $rentals->end}}</td>
                             
                        </tr>
                        @endforeach

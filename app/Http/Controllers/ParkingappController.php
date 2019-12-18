@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\ParkingRental;
+use Carbon
 
 class ParkingappController extends Controller
 {
@@ -100,6 +101,26 @@ class ParkingappController extends Controller
         }
         return redirect()->route('parkingapp');
     }
-
+    public function end($id){
+        
+        date_default_timezone_set('Asia/Kuala_Lumpur');
+        $record = RoomRental::find($id);
+        $update = Room::find($record->room);
+        $currentOccupant = $update->currentOccupant;
+        if($record->checkout == NULL){
+            $staffid = Auth::id();
+            $record->checkout = date('Y-m-d H:i:s');
+            $record->staffid = $staffid;
+            $update->currentOccupant = $currentOccupant-1;
+            $record->save();
+            $update->save();
+            Session::flash('status', 'Checkout successfully');
+            return redirect()->route('room-rental');
+        }
+        else{
+            Session::flash('statusfail', 'Checkout fail. Checkout time already exists.');
+            return redirect()->route('room-rental');
+        }
+    }
 }
 
