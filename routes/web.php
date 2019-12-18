@@ -49,6 +49,7 @@ Route::get('/facility/delete/{id}','FacilityController@delete')->name('delete-fa
 //Facility Rental Module
 Route::get('/facility-rental', 'FacilityRentalController@index')->name('facility-rental');
 Route::post('/facility-rental/create', 'FacilityRentalController@create')->name('create-facility-rental');
+Route::post('/facility-rental/create/{id}', 'FacilityRentalController@create')->name('create2-facility-rental');
 //Route::get('/facility-rental/create', 'FacilityRentalController@create')->name('create-facility-rental');
 Route::post('/facility-rental/update','FacilityRentalController@update')->name('update-facility-rental');
 Route::get('/facility-rental/approve/{id}', 'FacilityRentalController@postApprove')->name('approved-facility-rental');
@@ -63,14 +64,10 @@ Route::get('/facility-rental/reject/{id}', 'FacilityRentalController@postReject'
 //Parking app Module
 Route::get('/parkingapp', 'ParkingappController@index')->name('parkingapp');
 Route::post('/parkingapp/create', 'ParkingappController@create')->name('create-parking-rental');
-//Route::get('/parkingapp/create', 'ParkingappController@create')->name('create-parking-rental');
-Route::post('/parkingapp/update','ParkingappController@update')->name('update-parking-rental');
+Route::post('/parkingapp/update/{id}','ParkingappController@update')->name('update-parking-rental');
+//Route::get('/parkingapp/update/{id}','ParkingappController@update')->name('update-parking-rental');
 Route::get('/parkingapp/approve/{id}', 'ParkingappController@postApprove')->name('approved-parking-rental');
-//Route::post('/parkingapp/approve/{id}', 'ParkingappController@postApprove')->name('approved-parking-rental');
 Route::get('/parkingapp/reject/{id}', 'ParkingappController@postReject')->name('rejected-parking-rental');
-//Route::post('/parkingapp/reject/{id}', 'ParkingappController@postReject')->name('rejected-parking-rental');
-//Route::get('/parkingapp/delete/{id}','ParkingappController@delete')->name('delete-parking-rental');
-
 
 //Parking Module
 Route::get('/parking', 'ParkingController@index')->name('parking');

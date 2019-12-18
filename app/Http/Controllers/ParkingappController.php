@@ -43,6 +43,7 @@ class ParkingappController extends Controller
             'plateNo'=>'required',
             'carModel'=>'required',
             'carColor'=>'required',
+            'rejectReason'=>'required'
         ]);
 
         $studentid = Auth::id();
@@ -56,39 +57,21 @@ class ParkingappController extends Controller
         $rental->carModel = $request->carModel;
         $rental->carColor = $request->carColor;
         $rental->status = 'Pending';
-        $rental->rejectReason = '';
+        $rental->rejectReason = $request->rejectReason;
         $rental->save(); 
         return redirect()->route('parkingapp');
     }
 
-    public function update(Request $request){
-
-        $this->validate($request,[
-            'id'=>'required',
-            'studentid'=>'required',
-            'parkingid'=>'required',
-            'receiptNo'=>'required',
-            'plateNo'=>'required',
-            'carModel'=>'required',
-            'carColor'=>'required',
-            'status'=>'required',
-            'staffid'=>'required'
-            'rejectReason'=>'required'
-        ]);
-        
-        
-        $parking = ParkingRental::find($request->id);
-        $rental->id = $id;
-        $rental->studentid = $request->studentid;
+    public function update(Request $request, $id){
+        $rental = ParkingRental::find($id);
         $rental->parkingid = $request->parkingid;
         $rental->receiptNo = $request->receiptNo;
         $rental->plateNo = $request->plateNo;
         $rental->carModel = $request->carModel;
         $rental->carColor = $request->carColor;
-        $rental->status = $request->status;
+        $rental->status = 'Pending';
         $rental->rejectReason = $request->rejectReason;
         $rental->update();
-
         return redirect()->route('parkingapp');
     }
 
@@ -112,9 +95,7 @@ class ParkingappController extends Controller
         {
             $staffid = Auth::id();
             $rental->status = 'Rejected';
-            $rental->rejectReason = 'Rejected';
             $rental->staffid = $staffid;
-
             $rental->save();
         }
         return redirect()->route('parkingapp');

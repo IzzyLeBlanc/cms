@@ -34,10 +34,12 @@
                                 <input type="text" name="rates" id="rates" required autofocus class="form-control">
                             </div>
                         </div>
+                        
+                        <input type="hidden" name="id" id="id" value="">
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-facility')}}">
+                                <button type="submit" class="btn btn-primary" name="create" id="create">
                                     {{__('Hantar') }}
                                 <button class="btn btn-primary" type="reset" name="reset" id="reset">
                                     {{__('Semula')}}
@@ -58,7 +60,6 @@
                     <tbody>
                         @foreach($facility as $facilitys)
                         <tr>
-                            <td>{{ $facilitys->id }}</td>
                             <td>{{ $facilitys->name }}</td>
                             <td>{{ $facilitys->description }}</td>
                             <td>{{ $facilitys->rates }}</td>
@@ -67,7 +68,7 @@
                                 <a href="{{route('delete-facility', $facilitys->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
       
                                 <button class="btn btn-warning" onclick="function moveToField(){
-                                  document.getElementById('id').value = '{{ $facilitys->id }}';
+                                    document.getElementById('id').value = '{{ $facilitys->id }}';
                                   document.getElementById('name').value = '{{ $facilitys->name }}';
                                   document.getElementById('description').value = '{{ $facilitys->description }}';
                                   document.getElementById('rates').value = '{{ $facilitys->rates }}';

@@ -37,16 +37,13 @@ class FacilityController extends Controller
     public function create(Request $request){
 
         $this->validate($request, [
-            'id'=>'required',
             'name'=>'required',
             'description'=>'required',
             'rates'=>'required'
         ]);
 
         $staffid = Auth::id();
-        $id = $request->id;
         $facility = new facility;
-        $facility->id = $id;
         $facility->name = $request->name;
         $facility->description = $request->description;
         $facility->rates = $request->rates;
@@ -63,7 +60,7 @@ class FacilityController extends Controller
             'rates'=>'required'
         ]);
         
-        $facility = facility::find($request->id);
+        $facility = facility::find($request->input('id'));
         $facility->id = $request->id;
         $facility->name = $request->name;
         $facility->description = $request->description;
