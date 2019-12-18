@@ -12,6 +12,8 @@
                 @if(Session::has('statusfail'))
                 <div class="alert alert-danger" role="alert">
                     {{Session::get('statusfail')}}
+                </div>
+                @endif
             <div class="card">
                 <div class="card-header">{{ __('PERMOHONAN TEMPAT LETAK KERETA') }}</div>
                 
