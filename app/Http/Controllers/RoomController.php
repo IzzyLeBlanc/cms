@@ -43,9 +43,8 @@ class RoomController extends Controller
             'max'=>'required'
         ]);
         $staffid = Auth::id();
-        $id = $request->room;
         $room = new Room;
-        $room->id = $id;
+        $room->room = $request->room;
         $room->floor = $request->floor;
         $room->block = $request->block;
         $room->maxOccupant = $request->max;
@@ -64,17 +63,15 @@ class RoomController extends Controller
             'block'=> 'required'
         ]);
         
-        if (Room::where('id', '=', $request->room)->exists()) {
-            $room = Room::find($request->room);
-            $room->floor = $request->floor;
-            $room->block = $request->block;
+        if (Room::where([['room', '=', $request->room], ['floor', '=', $request->floor], ['block', '=', $request->block]])->exists()) {
+            $room = Room::find($request->id);
             $room->maxOccupant = $request->max;
             $room->update();
             Session::flash('status', 'Room updated successfully.');
             return redirect()->route('room');
          }
          else{
-            Session::flash('statusfail', 'Room update failed.');
+            Session::flash('statusfail', 'Room update failed. Block/floor/room can only be changed by deleting and re-adding.');
             return redirect()->route('room');
          }
         
@@ -82,7 +79,7 @@ class RoomController extends Controller
 
     public function delete($id){
 
-        $room = Room::find($id);   
+        $room = Room::find($id);  
         $room->delete();
         Session::flash('status', 'Room deleted successfully.');
         return redirect()->route('room');

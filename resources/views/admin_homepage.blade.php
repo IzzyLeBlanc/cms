@@ -70,7 +70,7 @@
                             </div>
                             <script>
                                 var data = {
-                                    labels: ['Occupied', 'Empty'],
+                                    labels: ['Occupied {{$space[1]}}', 'Empty {{$space[0] - $space[1]}}'],
                                     series: [{{$space[1]}}, {{$space[0] - $space[1]}}]
                                 };
 
