@@ -22,7 +22,7 @@ class CreateParkingRecordTable extends Migration
             $table->string('carModel');
             $table->string('carColor');
             $table->string('status');
-            $table->string('rejectReason');
+            $table->string('rejectReason')->nullable();
             $table->date('end')->nullable();
             $table->string('staffid')->nullable();
             $table->timestamps();

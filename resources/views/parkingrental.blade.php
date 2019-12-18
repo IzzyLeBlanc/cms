@@ -66,14 +66,6 @@
                                         <input class="form-control" type="text" name="rejectReason" id="rejectReason" required>
                                     </div>
                                 </div>
-
-                            <div class="form-group row">
-                                        <label for="rejectReason" class="col-md-4 col-form-label text-md-right">{{ __('Komen:') }}</label>
-            
-                                        <div class="col-md-6">
-                                            <input class="form-control" type="text" name="rejectReason" id="rejectReason" required>
-                                        </div>
-                            </div>
     
     
                             <div class="form-group row mb-0">
@@ -98,8 +90,6 @@
                            <th>Lot Parking</th>
                            <th>No. Receipt</th>
                            <th>No. Plat Kenderaan</th>
-                           <th>Jenis Kenderaan</th>
-                           <th>Warna Kenderaan</th>
                            <th>Staff ID</th>
                            <th>Status</th>
                            <th>Komen</th>
@@ -115,8 +105,6 @@
                                 <td>{{ $rentals->parkingid }}</td>
                                 <td>{{ $rentals->receiptNo }}</td>
                                 <td>{{ $rentals->plateNo }}</td>
-                                <td>{{ $rentals->carModel}}</td>
-                                <td>{{ $rentals->carColor}}</td>
                                 <td>{{ $rentals->staffid }}</td>
                                 <td>{{ $rentals->status }}</td>
                                 <td>{{ $rentals->rejectReason}}</td>
@@ -139,8 +127,8 @@
                                     {{ __('Lihat') }}
                                          </button>
                                 </td>
-                                <td><a href="{{route('approved-parking-rental', $rentals->id)}}" class="btn btn-warning">{{__('Diterima')}}</a></td>
-                                <td><a href="{{route('rejected-parking-rental', $rentals->id)}}" class="btn btn-warning">{{__('Ditolak')}}</a></td>
+                                <td><a href="{{route('approved-parking-rental', $rentals->id)}}" class="btn btn-danger">{{__('Diterima')}}</a></td>
+                                <td><a href="{{route('rejected-parking-rental', $rentals->id)}}" class="btn btn-danger">{{__('Ditolak')}}</a></td>
 
          
                            </tr>

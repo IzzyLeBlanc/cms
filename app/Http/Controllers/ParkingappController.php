@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\ParkingRental;
-use Carbon
+use Carbon\Carbon;
 
 class ParkingappController extends Controller
 {
@@ -44,7 +44,6 @@ class ParkingappController extends Controller
             'plateNo'=>'required',
             'carModel'=>'required',
             'carColor'=>'required',
-            'rejectReason'=>'required'
         ]);
 
         $studentid = Auth::id();
@@ -58,7 +57,6 @@ class ParkingappController extends Controller
         $rental->carModel = $request->carModel;
         $rental->carColor = $request->carColor;
         $rental->status = 'Pending';
-        $rental->rejectReason = $request->rejectReason;
         $rental->save(); 
         return redirect()->route('parkingapp');
     }
@@ -72,6 +70,7 @@ class ParkingappController extends Controller
         $rental->carColor = $request->carColor;
         $rental->status = 'Pending';
         $rental->rejectReason = $request->rejectReason;
+        $rental->end =Carbon::now()->addMonth(3);
         $rental->update();
         return redirect()->route('parkingapp');
     }
@@ -82,6 +81,7 @@ class ParkingappController extends Controller
         {
             $staffid = Auth::id();
             $rental->status = 'Approved';
+            $rental->rejectReason = 'Sila Ambil Kad di Pejabat';
             $rental->staffid = $staffid;
             $rental->save();
             
@@ -101,26 +101,6 @@ class ParkingappController extends Controller
         }
         return redirect()->route('parkingapp');
     }
-    public function end($id){
-        
-        date_default_timezone_set('Asia/Kuala_Lumpur');
-        $record = RoomRental::find($id);
-        $update = Room::find($record->room);
-        $currentOccupant = $update->currentOccupant;
-        if($record->checkout == NULL){
-            $staffid = Auth::id();
-            $record->checkout = date('Y-m-d H:i:s');
-            $record->staffid = $staffid;
-            $update->currentOccupant = $currentOccupant-1;
-            $record->save();
-            $update->save();
-            Session::flash('status', 'Checkout successfully');
-            return redirect()->route('room-rental');
-        }
-        else{
-            Session::flash('statusfail', 'Checkout fail. Checkout time already exists.');
-            return redirect()->route('room-rental');
-        }
-    }
+    
 }
 
