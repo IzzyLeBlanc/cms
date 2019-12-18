@@ -16,7 +16,7 @@ class CreateFacilityTable extends Migration
     public function up()
     {
         Schema::create('facility', function (Blueprint $table) {
-            $table->string('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
             $table->string('rates');
