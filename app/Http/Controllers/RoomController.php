@@ -43,11 +43,8 @@ class RoomController extends Controller
             'max'=>'required'
         ]);
         $staffid = Auth::id();
-        $id = $request->room;
         $room = new Room;
-        $room->id = $id;
-        $room->floor = $request->floor;
-        $room->block = $request->block;
+        $room->room = $request->block . "-" . $request->floor . "-" . $request->room;
         $room->maxOccupant = $request->max;
         $room->currentOccupant = 0;
         $room->staffid = $staffid;
@@ -61,20 +58,21 @@ class RoomController extends Controller
         $this->validate($request,[
             'room' => 'required',
             'floor' => 'required',
-            'block'=> 'required'
+            'block'=> 'required',
+            'max' => 'required'
         ]);
         
-        if (Room::where('id', '=', $request->room)->exists()) {
-            $room = Room::find($request->room);
-            $room->floor = $request->floor;
-            $room->block = $request->block;
+        $roomid = $request->block . "-" . $request->floor . "-" . $request->room;
+
+        if (Room::where('room', '=', $roomid)->exists()) {
+            $room = Room::find($request->id);
             $room->maxOccupant = $request->max;
             $room->update();
             Session::flash('status', 'Room updated successfully.');
             return redirect()->route('room');
          }
          else{
-            Session::flash('statusfail', 'Room update failed.');
+            Session::flash('statusfail', 'Room update failed. Block/floor/room can only be changed by removing and re-adding.');
             return redirect()->route('room');
          }
         

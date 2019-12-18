@@ -21,12 +21,8 @@
                     <form id="form" method="POST" action="{{route('create-room-rental')}}" enctype="multipart/form-data" name="form" >
                         @csrf
 
-                        <div class="form-group row">
-                            
-                            <div class="col-md-6">
-                                <input type="hidden" name="id" id="id" class="form-control" placeholder="">
-                            </div>
-                        </div>
+                        <input type="hidden" name="id" id="id" class="form-control" placeholder="">
+                        
                         <div class="form-group row">
                             <label for="user_id" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
 
@@ -40,8 +36,8 @@
 
                             <div class="col-md-6">
                                 <select name="block" id="block" class="form-control">
-                                    @foreach ($room as $rooms)
-                                    <option value="{{ $rooms->block }}">{{ ( $rooms->block) }}</option>
+                                    @foreach ($blocks as $block)
+                                    <option value="{{ $block }}">{{ ( $block) }}</option>
                                     @endforeach
                                 </select>
                                  
@@ -142,7 +138,6 @@
                    @endforeach
                 </tbody>
              </table>
-            {{$record->links() }}
         </div>
     </div>
 </div>

@@ -20,22 +20,34 @@ class RoomRentalController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                $record = DB::table('room_record')->paginate(15);
-                $room = DB::table('room')->where('currentOccupant','!==','maxOccupant')->distinct()->get();
-                return view('/room_rental_record',['record'=>$record],['room'=>$room]);
+                $record = DB::table('room_record')->get();
+                $room = DB::table('room')->where('currentOccupant','!==','maxOccupant')->get();
+                $blocks = $this->getBlock($room);
+                return view('/room_rental_record', compact('record', 'room', 'blocks'));
 
             } else if(Auth::user()->role === 'student'){
                 return view('/student_homepage');
 
             } elseif (Auth::user()->role === 'staff') {
-                $record = DB::table('room_record')->paginate(15);
-                $room = DB::table('room')->where('currentOccupant','!==', 'maxOccupant')->distinct()->get();
-                return view('/room_rental_record',['record'=>$record],['room'=>$room]);
+                $record = DB::table('room_record')->get();
+                $rooms = DB::table('room')->where('currentOccupant','!==','maxOccupant')->get();
+                $blocks = $this->getBlock($rooms);
+                return view('/room_rental_record', compact('record', 'room', 'blocks'));
             }
             
         } else {
             return view('/login');
         }
+    }
+
+    //returns array of unique blocks
+    private function getBlock($rooms){
+        $blocks = array();
+        foreach($rooms as $room){
+            $blockid = strtok($room->room, "-");
+            array_push($blocks, $blockid);
+        }
+        return array_unique($blocks);
     }
 
     public function create(Request $request){

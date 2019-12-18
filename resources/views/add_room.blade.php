@@ -53,6 +53,8 @@
                             </div>
                         </div>
 
+                        <input type="hidden" name="id" id="id" value="">
+
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary" name="create" id="create">
@@ -66,12 +68,12 @@
                     </form>
                 </div>
             </div>
-            <table class="table table-striped">
+            <table id="table_id" class="table table-striped">
                 <thead>
                 <tr>
-                   <th>No. Bilik</th>
-                   <th>Floor</th>
-                   <th>Block</th>
+                   <th>{{__('Blok')}}</th>
+                   <th>{{__('Aras')}}</th>
+                   <th>{{__('No. Bilik')}}</th>
                    <th>Staff ID</th>
                    <th>Max Occupant</th>
                    <th></th>
@@ -80,25 +82,26 @@
                 <tbody>
                    @foreach($room as $rooms)
                    <tr>
-                        <td>{{ $rooms->id }}</td>
-                        <td>{{ $rooms->floor }}</td>
-                        <td>{{ $rooms->block }}</td>
+                        <td>{{ $roomID = strtok($rooms->room, "-") }}</td>
+                        <td>{{ $roomID = strtok("-") }}</td>
+                        <td>{{ $roomID = strtok("-") }}</td>
                         <td>{{ $rooms->staffid }}</td>
                         <td>{{ $rooms->maxOccupant }}</td>
                         <td>
-                          <a href="{{route('delete-room', $rooms->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                          <a href="{{route('delete-room', $rooms->room)}}" class="btn btn-danger">{{__('Padam')}}</a>
 
                           <button class="btn btn-warning" onclick="function moveToField(){
-                            document.getElementById('room').value = '{{ $rooms->id }}';
-                            document.getElementById('floor').value = '{{ $rooms->floor }}';
-                            document.getElementById('block').value = '{{ $rooms->block }}';
-                            document.getElementById('max').value = '{{ $rooms->maxOccupant }}';
-                            document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
-                            document.getElementById('form').action = '{{route('update-room')}}';
-                            var form;
-                            form = document.getElementById('form');
-                            form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room?\');');
-                            } moveToField(); return false;">{{__('Perbaharui')}}
+                                document.getElementById('id').value = '{{ $rooms->id }}';
+                                document.getElementById('block').value = '{{ $roomID = strtok($rooms->room, '-') }}';
+                                document.getElementById('floor').value = '{{ $roomID = strtok('-') }}';
+                                document.getElementById('room').value = '{{ $roomID = strtok('-') }}';
+                                document.getElementById('max').value = '{{ $rooms->maxOccupant }}';
+                                document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                document.getElementById('form').action = '{{route('update-room')}}';
+                                var form;
+                                form = document.getElementById('form');
+                                form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room?\');');
+                                } moveToField(); return false;">{{__('Perbaharui')}}
                            </button>
                         </td>
 

@@ -16,9 +16,8 @@ class CreateRoomTable extends Migration
     public function up()
     {
         Schema::create('room', function (Blueprint $table) {
-            $table->string('id');
-            $table->string('block');
-            $table->string('floor');
+            $table->bigIncrements('id');
+            $table->string('room')->unique();
             $table->integer('maxOccupant');
             $table->integer('currentOccupant');
             $table->string('staffid')->nullable();
