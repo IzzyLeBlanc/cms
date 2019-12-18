@@ -39,35 +39,82 @@
                             <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Blok:') }}</label>
 
                             <div class="col-md-6">
-                                <select name="block" id="block" class="form-control">
-                                    @foreach ($room as $rooms)
-                                    <option value="{{ $rooms->block }}">{{ ( $rooms->block) }}</option>
+                                <select name="block" id="block" class="form-control" onclick="selectBlock();">
+                                    <option value="" class="">Choose</option>
+                                    @foreach ($rooms as $room)
+                                    <option value="{{ $room[0] }}">{{ $room[0] }}</option>
                                     @endforeach
                                 </select>
-                                 
                             </div>
                         </div>
+
+                        <script>
+                            function selectBlock(){
+                                var block = document.getElementById("block").value;
+                                var floorSelect = document.getElementById("floor");
+                                floorSelect.selectedIndex = 0;
+
+                                for(i = 0; i < floorSelect.length; i++){
+                                    floor = floorSelect[i];
+
+                                    if(floor.className == block || floor.className == ""){
+                                        floor.style["display"] = "";
+                                    }
+                                    else{
+                                        floor.style["display"] = "none";
+                                    }
+                                }
+                            }
+                        </script>
 
                         <div class="form-group row">
                             <label for="floor" class="col-md-4 col-form-label text-md-right">{{ __('Aras:') }}</label>
 
                             <div class="col-md-6">
-                                <select name="floor" id="floor" class="form-control">
-                                    @foreach ($room as $rooms)
-                                    <option value="{{ $rooms->floor }}">{{ ( $rooms->floor) }}</option>
-                                    @endforeach 
+                                <select name="floor" id="floor" class="form-control" onclick="selectFloor();">
+                                    <option value="" class="">Choose</option>
+                                    @foreach ($rooms as $block)
+                                    @foreach ($block[1] as $floor)
+                                    <option class="{{$block[0]}}" value="{{$floor[0]}}" style="display: none;">{{$floor[0]}}</option>
+                                    @endforeach
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
+
+                        <script>
+                            function selectFloor(){
+                                var block = document.getElementById("block").value; 
+                                var floor = document.getElementById("floor").value;
+                                var roomSelect = document.getElementById("room");
+                                roomSelect.selectedIndex = 0;
+
+                                for(i = 0; i < roomSelect.length; i++){
+                                    room = roomSelect[i];
+
+                                    if(room.className == block + " " + floor || room.className == ""){
+                                        room.style["display"] = "";
+                                    }
+                                    else{
+                                        room.style["display"] = "none";
+                                    }
+                                }
+                            }
+                        </script>
 
                         <div class="form-group row">
                             <label for="room" class="col-md-4 col-form-label text-md-right">{{ __('No. Bilik:') }}</label>
 
                             <div class="col-md-6">
                                 <select name="room" id="room" class="form-control">
-                                    @foreach ($room as $rooms)
-                                    <option value="{{ $rooms->id }}">{{ ( $rooms->id) }}</option>
-                                    @endforeach 
+                                    <option value="" class="">Choose</option>
+                                    @foreach ($rooms as $block)
+                                    @foreach ($block[1] as $floor)
+                                    @foreach ($floor[1] as $room)
+                                    <option class="{{$block[0]}} {{$floor[0]}}" value="{{$room}}" style="display: none;">{{$room}}</option>
+                                    @endforeach
+                                    @endforeach
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -93,7 +140,7 @@
                     </form>
                 </div>
             </div>
-            <table class="table table-striped">
+            <table id="table_id" class="table table-striped">
                 <thead>
                 <tr>
                    <th>ID</th>
@@ -142,7 +189,6 @@
                    @endforeach
                 </tbody>
              </table>
-            {{$record->links() }}
         </div>
     </div>
 </div>

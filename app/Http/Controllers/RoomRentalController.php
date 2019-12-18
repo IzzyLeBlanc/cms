@@ -20,22 +20,76 @@ class RoomRentalController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                $record = DB::table('room_record')->paginate(15);
-                $room = DB::table('room')->where('currentOccupant','!==','maxOccupant')->distinct()->get();
-                return view('/room_rental_record',['record'=>$record],['room'=>$room]);
+                $record = DB::table('room_record')->get();
+                $roomsRaw = DB::table('room')->whereRaw('currentOccupant != maxOccupant')->get();
+                $rooms = $this->getRoomsArray($roomsRaw);
+                return view('/room_rental_record', compact('record', 'rooms'));
 
             } else if(Auth::user()->role === 'student'){
                 return view('/student_homepage');
 
             } elseif (Auth::user()->role === 'staff') {
-                $record = DB::table('room_record')->paginate(15);
-                $room = DB::table('room')->where('currentOccupant','!==', 'maxOccupant')->distinct()->get();
-                return view('/room_rental_record',['record'=>$record],['room'=>$room]);
+                $record = DB::table('room_record')->get();
+                $roomsRaw = DB::table('room')->whereRaw('currentOccupant != maxOccupant')->get();
+                $rooms = $this->getRoomsArray($roomsRaw);
+                return view('/room_rental_record', compact('record', 'rooms'));
             }
             
         } else {
             return view('/login');
         }
+    }
+
+    //get rooms in form of array
+    private function getRoomsArray($roomsRaw){
+        $result = array();
+        $total = count($roomsRaw);
+        $blocks = array();
+
+        for($i = 0; $i < $total; $i++){
+            array_push($blocks, $roomsRaw[$i]->block);
+        }
+        
+        $blocks = array_unique($blocks);
+        sort($blocks);
+        $blocks = array_values($blocks);
+        $blockTotal = count($blocks);
+
+        for($i = 0; $i < $blockTotal; $i++){
+            array_push($result, array($blocks[$i], array()));
+        }
+
+        for($i = 0; $i < $blockTotal; $i++){
+            $temp = array();
+            for($j = 0; $j < $total; $j++){
+                if($roomsRaw[$j]->block == $blocks[$i]){
+                    array_push($temp, $roomsRaw[$j]->floor);
+                }
+            }
+            $temp = array_unique($temp);
+            sort($temp);
+            $temp = array_values($temp);
+            $tempTotal = count($temp);
+
+            for($j = 0; $j < $tempTotal; $j++){
+                array_push($result[$i][1], array($temp[$j], array()));
+            }
+        }
+
+        for($i = 0; $i < $blockTotal; $i++){
+            for($j = 0; $j < $total; $j++){
+                if($roomsRaw[$j]->block == $blocks[$i]){
+                    $floorTotal = count($result[$i][1]);
+                    for($k = 0; $k < $floorTotal; $k++){
+                        if($roomsRaw[$j]->floor == $result[$i][1][$k][0]){
+                            array_push($result[$i][1][$k][1], $roomsRaw[$j]->room);
+                        }
+                    }
+                }
+            }
+        }
+
+        return $result;
     }
 
     public function create(Request $request){
@@ -55,7 +109,7 @@ class RoomRentalController extends Controller
         $record->room = $request->room;
         $record->sem = $request->sem;
         $record->staffid = $staffid;
-        $update = Room::find($request->room);
+        $update = Room::where([['room', '=', $request->room], ['floor', '=', $request->floor], ['block', '=', $request->block]])->first();
         $update->currentOccupant +=1;
         $update->save();
         $record->save();
@@ -77,14 +131,29 @@ class RoomRentalController extends Controller
 
         $staffid = Auth::id();
         $record = RoomRental::find($request->id);
+        if($record->user_id == $request->user_id){
+            
+            if($record->block != $request->block || $record->floor != $request->floor || $record->room != $request->room){
+                Session::flash('status', 'Updated successfully.');
+                $update = Room::where([['room', '=', $record->room], ['floor', '=', $record->floor], ['block', '=', $record->block]])->first();
+                $update->currentOccupant -=1;
+                $update->save();
+                $update = Room::where([['room', '=', $request->room], ['floor', '=', $request->floor], ['block', '=', $request->block]])->first();
+                $update->currentOccupant +=1;
+                $update->save();
+            }
+        } else{
+            Session::flash('statusfail', 'Failed');
+        }
         //$record->user_id = $request->user_id;
         $record->block = $request->block;
         $record->floor = $request->floor;
         $record->room = $request->room;
         $record->sem = $request->sem;
         $record->staffid = $staffid;
+        
         $record->save();
-        Session::flash('status', 'Updated successfully.');
+        
         return redirect()->route('room-rental');
     }
 
@@ -92,13 +161,13 @@ class RoomRentalController extends Controller
         
         date_default_timezone_set('Asia/Kuala_Lumpur');
         $record = RoomRental::find($id);
-        $update = Room::find($record->room);
+        $update = Room::where([['room', '=', $record->room], ['floor', '=', $record->floor], ['block', '=', $record->block]])->first();
         $currentOccupant = $update->currentOccupant;
         if($record->checkout == NULL){
             $staffid = Auth::id();
             $record->checkout = date('Y-m-d H:i:s');
             $record->staffid = $staffid;
-            $update->currentOccupant = $currentOccupant-1;
+            $update->currentOccupant -= $currentOccupant;
             $record->save();
             $update->save();
             Session::flash('status', 'Checkout successfully');

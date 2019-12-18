@@ -53,6 +53,8 @@
                             </div>
                         </div>
 
+                        <input type="hidden" name="id" id="id" value="">
+
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary" name="create" id="create">
@@ -80,7 +82,7 @@
                 <tbody>
                    @foreach($room as $rooms)
                    <tr>
-                        <td>{{ $rooms->id }}</td>
+                        <td>{{ $rooms->room }}</td>
                         <td>{{ $rooms->floor }}</td>
                         <td>{{ $rooms->block }}</td>
                         <td>{{ $rooms->staffid }}</td>
@@ -89,7 +91,8 @@
                           <a href="{{route('delete-room', $rooms->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
 
                           <button class="btn btn-warning" onclick="function moveToField(){
-                            document.getElementById('room').value = '{{ $rooms->id }}';
+                              document.getElementById('id').value = '{{ $rooms->id }}'
+                            document.getElementById('room').value = '{{ $rooms->room }}';
                             document.getElementById('floor').value = '{{ $rooms->floor }}';
                             document.getElementById('block').value = '{{ $rooms->block }}';
                             document.getElementById('max').value = '{{ $rooms->maxOccupant }}';
