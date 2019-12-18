@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col=md-8">
             <div class="card">
-                <div class="card-header">{{ __('PERMOHONAN SEWA KEMUDAHAN') }}</div>
+                <div class="card-header">{{ __('PERMOHONAN SEWA RUANG KEMUDAHAN') }}</div>
                 
                 <div class="card-body">
-                    <form id="form" method="POST" action="{{route('create-facility-rental')}}" enctype="multipart/form-data" name="form">
+                    <form method="POST" action="{{route('create-facility-rental')}}" enctype="multipart/form-data">
                         @csrf
 
                          <!--<div class="form-group row">
@@ -31,7 +31,17 @@
                                 <label for="facilityid" class="col-md-4 col-form-label text-md-right">{{ __('No. Fasiliti:') }}</label>
     
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" name="facilityid" id="facilityid" required>
+                                    <select name="facilityid" id="facilityid" class="form-control">
+                                        <option value="">{{ __('Senarai Fasiliti') }}</option>
+                                        <option value="A">{{ __('A') }}</option>
+                                        <option value="B">{{ __('B') }}</option>
+                                        <option value="C">{{ __('C') }}</option>
+                                        <option value="D">{{ __('D') }}</option>
+                                        <option value="E">{{ __('E') }}</option>
+                                        <option value="F">{{ __('F') }}</option>
+                                        <option value="G">{{ __('G') }}</option>
+                                        <option value="H">{{ __('H') }}</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -44,19 +54,35 @@
                         </div>
 
                         <div class="form-group row">
-                                <label for="start_date" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh dan Masa Mula:') }}</label>
+                                <label for="start_date" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh Mula:') }}</label>
     
                                 <div class="col-md-6">
-                                    <input class="form-control" type="datetime-local" name="start_date" id="start_date" required>
+                                    <input class="form-control" type="date" name="start_date" id="start_date" required>
                                 </div>
                         </div>
 
                         <div class="form-group row">
-                                <label for="end_date" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh dan Masa Selesai:') }}</label>
+                                <label for="end_date" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh Akhir:') }}</label>
     
                                 <div class="col-md-6">
-                                    <input class="form-control" type="datetime-local" name="end_date" id="end_date" required>
+                                    <input class="form-control" type="date" name="end_date" id="end_date" required>
                                 </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="start_time" class="col-md-4 col-form-label text-md-right">{{ __('Masa Mula:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="time" name="start_time" id="start_time" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="end_time" class="col-md-4 col-form-label text-md-right">{{ __('Masa Akhir:') }}</label>
+
+                            <div class="col-md-6">
+                                <input class="form-control" type="time" name="end_time" id="end_time" required>
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -125,7 +151,7 @@
                         <td>{{ $facility_rentals->status }}</td>
                         <td>{{ $facility_rentals->staffid }}</td>
                         <td>{{ $facility_rentals->no_receipt }}</td>
-                        <td>
+                        <!--<td>
                             <button class="btn btn-warning" onclick="function moveToField(){
                                 document.getElementById('studentid').value = '{{ $facility_rentals->studentid}}';
                                 document.getElementById('studentid').value = '{{ $facility_rentals->facilityid}}';
@@ -143,12 +169,38 @@
                                 form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this parking record?\');');
                                 } moveToField(); return false;">{{__('Perbaharui')}}
                             </button>
-                        </td>
+                        </td>-->
                    </tr>
                    @endforeach
                 </tbody>
              </table>
             {{$facility_rental->links() }}
+            
+            <!--<div class="sidebar">   
+                <div class="sidebar-header">{{ __('SENARAI RUANG KEMUDAHAN') }}</div>
+                    
+                <div class="sidebar-body">
+                     <form method="POST" action="{{route('create-facility-rental')}}" enctype="multipart/form-data">
+                        @csrf
+
+                         <div class="form-group row">
+                                <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('ID:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="id" id="id" required>
+                                </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="studentid" class="col-md-4 col-form-label text-md-right">{{ __('No. Matrik:') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="studentid" id="studentid" required autofocus class="form-control" placeholder="A123456" pattern="A(\d{6})">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>-->
         </div>
     </div>
 </div>

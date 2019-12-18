@@ -19,11 +19,11 @@
         </div>
         <div class="card-body">
             <div class="row justify-content-xl-center">
-                <a href="{{route('parkingapp')}}"><button class="btn btn-outline-primary">PERMOHONAN TEMPAT LETAK KERETA</button></a>
+                <a href="{{route('parkingapp')}}"><button class="btn btn-outline-primary">PENGESAHAN TEMPAT LETAK KERETA</button></a>
             </div>
             <br>
             <div class="row justify-content-xl-center">
-                <a href="{{route('facility-rental')}}"><button class="btn btn-outline-primary">PENDAFTARAN TEMPAT KEMUDAHAN</button></a>
+                <a href="{{route('facility-rental')}}"><button class="btn btn-outline-primary">PENGESAHAN TEMPAT KEMUDAHAN</button></a>
             </div>
         </div>
         <div class="card-header text-center">

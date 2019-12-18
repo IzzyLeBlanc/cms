@@ -21,7 +21,7 @@
                                 <th>Status</th>
                                 <th>Staffid</th>
                                 <th>No. Receipt</th>
-                                <th>Checkout Time</th>
+                                <!--<th>Checkout Time</th>-->
                                 <th></th>
                             </tr>
                             </thead>

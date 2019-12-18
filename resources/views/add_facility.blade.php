@@ -4,11 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col=md-8">
-            @if(Session::has('status'))
-            <div class="alert alert-success" role="alert">
-                {{Session::get('status')}}
-            </div>
-            @endif
             <div class="card">
                 <div class="card-header">{{ __('PENAMBAHAN RUANG KEMUDAHAN') }}</div>
                 
@@ -16,14 +11,6 @@
                     <form id="form" method="POST" enctype="multipart/form-data" action="{{ route('create-facility') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="staffid" class="col-md-4 col-form-label text-md-right">{{ __('Staff ID:') }}</label>
-
-                            <div class="col-md-6">
-                                <input type="text" name="staffid" id="staffid" required autofocus class="form-control">
-                            </div>
-                        </div>
-                        
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Fasiliti:') }}</label>
 
@@ -33,7 +20,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label tex-md-right">{{ __('Keterangan:') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Keterangan:') }}</label>
 
                             <div class="col-md-6">
                                 <input type="text" name="description" id="description" required autofocus class="form-control">
@@ -41,32 +28,32 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="rates" class="col-md-4 col-form-label tex-md-right">{{ __('Pembayaran(RM):') }}</label>
+                            <label for="rates" class="col-md-4 col-form-label text-md-right">{{ __('Pembayaran(RM):') }}</label>
 
                             <div class="col-md-6">
-                                <input type="number" name="rates" id="rates" class="form-control">
+                                <input type="text" name="rates" id="rates" required autofocus class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary" name="create" id="create">
-                                    {{ __('Hantar') }}
-                                <button class="btn btn-primary"type="reset" name="reset" id="reset">
+                                <button type="submit" class="btn btn-primary" name="create" id="create" formaction="{{route('create-facility')}}">
+                                    {{__('Hantar') }}
+                                <button class="btn btn-primary" type="reset" name="reset" id="reset">
                                     {{__('Semula')}}
                                 </button>
                             </div>
                         </div>
                      </form>
                 </div>
-                 <table class="table table-striped" id=table>
-                     <thead>
-                    <tr>
-                        <th>Facility</th>
-                        <th>Description</th>
-                        <th>Rates</th>
-                        <th>StaffID</th>   
-                    </tr>
+                 <table class="table table-striped" id="table">
+                    <thead>
+                         <tr>
+                             <th>Facility Name</th>
+                             <th>Description</th>
+                             <th>Rates</th>
+                             <th>Staff ID</th>   
+                         </tr>
                     </thead>
                     <tbody>
                         @foreach($facility as $facilitys)
@@ -84,11 +71,11 @@
                                   document.getElementById('name').value = '{{ $facilitys->name }}';
                                   document.getElementById('description').value = '{{ $facilitys->description }}';
                                   document.getElementById('rates').value = '{{ $facilitys->rates }}';
-                                  document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                  document.getElementById('create').innerHTML = '{{__('Kemaskini')}}';
                                   document.getElementById('form').action = '{{route('update-facility')}}';
                                   var form;
                                   form = document.getElementById('form');
-                                  form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room?\');');
+                                  form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this form?\');');
                                   } moveToField(); return false;">{{__('Perbaharui')}}
                                  </button>
                              </td>    
