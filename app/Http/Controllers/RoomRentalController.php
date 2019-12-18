@@ -21,10 +21,7 @@ class RoomRentalController extends Controller
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
                 $record = DB::table('room_record')->paginate(15);
-                $room = DB::table('room')->distinct()->get();
-                $block = DB::table('room')->distinct('block');
-                
-
+                $room = DB::table('room')->where('currentOccupant','!==','maxOccupant')->distinct()->get();
                 return view('/room_rental_record',['record'=>$record],['room'=>$room]);
 
             } else if(Auth::user()->role === 'student'){
@@ -32,7 +29,7 @@ class RoomRentalController extends Controller
 
             } elseif (Auth::user()->role === 'staff') {
                 $record = DB::table('room_record')->paginate(15);
-                $room = DB::table('room')->distinct()->get();
+                $room = DB::table('room')->where('currentOccupant','!==', 'maxOccupant')->distinct()->get();
                 return view('/room_rental_record',['record'=>$record],['room'=>$room]);
             }
             

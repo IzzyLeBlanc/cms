@@ -42,7 +42,7 @@
                                 <select name="block" id="block" class="form-control">
                                     @foreach ($room as $rooms)
                                     <option value="{{ $rooms->block }}">{{ ( $rooms->block) }}</option>
-                                    @endforeach 
+                                    @endforeach
                                 </select>
                                  
                             </div>
