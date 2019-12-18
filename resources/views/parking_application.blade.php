@@ -4,6 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col=md-8">
+                @if(Session::has('status'))
+                <div class="alert alert-success" role="alert">
+                    {{Session::get('status')}}
+                </div>
+                @endif
+                @if(Session::has('statusfail'))
+                <div class="alert alert-danger" role="alert">
+                    {{Session::get('statusfail')}}
             <div class="card">
                 <div class="card-header">{{ __('PERMOHONAN TEMPAT LETAK KERETA') }}</div>
                 
@@ -104,7 +112,7 @@
                        <th>Warna Kenderaan</th>
                        <th>Staff ID</th>
                        <th>Status</th>
-                       <th>Maklumat Permohonan</th>
+                       <th>Komen</th>
                        <th>Tarikh Akhir</th>
 
                        <th></th>

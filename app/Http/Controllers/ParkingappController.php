@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\ParkingRental;
+use Session;
 use Carbon\Carbon;
 
 class ParkingappController extends Controller
@@ -57,7 +58,8 @@ class ParkingappController extends Controller
         $rental->carModel = $request->carModel;
         $rental->carColor = $request->carColor;
         $rental->status = 'Pending';
-        $rental->save(); 
+        $rental->save();
+        Session::flash('status', 'Parking application created successfully.');
         return redirect()->route('parkingapp');
     }
 
@@ -70,8 +72,8 @@ class ParkingappController extends Controller
         $rental->carColor = $request->carColor;
         $rental->status = 'Pending';
         $rental->rejectReason = $request->rejectReason;
-        $rental->end =Carbon::now()->addMonth(3);
         $rental->update();
+        Session::flash('status', 'Parking application updated successfully.');
         return redirect()->route('parkingapp');
     }
 
@@ -83,6 +85,7 @@ class ParkingappController extends Controller
             $rental->status = 'Approved';
             $rental->rejectReason = 'Sila Ambil Kad di Pejabat';
             $rental->staffid = $staffid;
+            $rental->end =Carbon::now()->addMonth(3);
             $rental->save();
             
         }
@@ -97,6 +100,7 @@ class ParkingappController extends Controller
             $staffid = Auth::id();
             $rental->status = 'Rejected';
             $rental->staffid = $staffid;
+            $rental->end =Carbon::now();
             $rental->save();
         }
         return redirect()->route('parkingapp');

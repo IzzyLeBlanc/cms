@@ -44,7 +44,8 @@ class ParkingController extends Controller
         $parking = new parking;
         $parking->id = $id;
         $parking->block = $request->block;
-        $parking->save(); 
+        $parking->save();
+        Session::flash('status', 'Parking created successfully.');
         return redirect()->route('parking');
     }
 
@@ -73,6 +74,7 @@ class ParkingController extends Controller
 
         $parking = parking::find($id);   
         $parking->delete();
+        Session::flash('status', 'Parking deleted successfully.');
         return redirect()->route('parking');
         
     }
