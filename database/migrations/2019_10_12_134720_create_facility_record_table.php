@@ -19,8 +19,10 @@ class CreateFacilityRecordTable extends Migration
             $table->string('facilityid');
             $table->string('programName')->nullable();
             $table->string('status');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->dateTime('start_date');
+            $table->dateTime('start_time');
+            $table->dateTime('end_date');
+            $table->dateTime('end_time');
             $table->string('receiptNo');
             $table->string('rejectReason');
             $table->string('staffid')->nullable();

@@ -49,7 +49,7 @@ Route::get('/facility/delete/{id}','FacilityController@delete')->name('delete-fa
 //Facility Rental Module
 Route::get('/facility-rental', 'FacilityRentalController@index')->name('facility-rental');
 Route::post('/facility-rental/create', 'FacilityRentalController@create')->name('create-facility-rental');
-Route::post('/facility-rental/create/{id}', 'FacilityRentalController@create')->name('create2-facility-rental');
+//Route::post('/facility-rental/create/{id}', 'FacilityRentalController@create')->name('create2-facility-rental');
 //Route::get('/facility-rental/create', 'FacilityRentalController@create')->name('create-facility-rental');
 Route::post('/facility-rental/update','FacilityRentalController@update')->name('update-facility-rental');
 Route::get('/facility-rental/approve/{id}', 'FacilityRentalController@postApprove')->name('approved-facility-rental');

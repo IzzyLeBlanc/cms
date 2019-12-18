@@ -87,7 +87,7 @@ class ParkingappController extends Controller
             $rental->staffid = $staffid;
             $rental->end =Carbon::now()->addMonth(3);
             $rental->save();
-            
+
         }
         return redirect()->route('parkingapp');
         
