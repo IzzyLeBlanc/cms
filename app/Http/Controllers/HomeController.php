@@ -63,9 +63,9 @@ class HomeController extends Controller
         $occupiedParkingLot = 0;
         $date = new Carbon;
 
-        $parkings = DB::table('parking')->get();
-        foreach($parkings as $parking){
-            if($date >= $parking->end){
+        $parkingRecords = DB::table('parking_record')->get();
+        foreach($parkingRecords as $parkingRecord){
+            if($date >= $parkingRecord->end){
                 $occupiedParkingLot++;
             }
         }
