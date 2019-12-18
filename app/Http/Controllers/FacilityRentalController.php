@@ -20,8 +20,8 @@ class FacilityRentalController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
-                $facility = DB::table('facility')->paginate(15);
-                return view('/add_facility',['facility'=>$facility]);
+                $facility_rental = DB::table('facility_record')->paginate(15);
+                return view('/facilityrental',['facility_rental'=>$facility_rental]);
             } else if(Auth::user()->role === 'student'){
                 $facility_rental = DB::table('facility_record')->paginate(15);
                 return view('/facility_rental_record',['facility_rental'=>$facility_rental]);
@@ -33,8 +33,6 @@ class FacilityRentalController extends Controller
         } else {
             return view('/login');
         }
-        //$facility = DB::table('facility_rental')->get();
-        //return view('auth/register',['facility_rental'=>$facility]);
     }
 
     public function create(Request $request){
@@ -50,16 +48,16 @@ class FacilityRentalController extends Controller
         $studentid = Auth::id();
         $id = $request->id;
         $facility_rental = new FacilityRental();
-        $facility_rental->studentid = studentid;
+        $facility_rental->studentid = $studentid;
         $facility_rental->facilityid = $request->facilityid;
         $facility_rental->program_name = $request->program_name;
         $facility_rental->start_date = $request->start_date;
         $facility_rental->end_date = $request->end_date;
-        $facility_rental->status = 'pending';
+        $facility_rental->status = 'Pending';
         $facility_rental->no_receipt= $request->no_receipt;
         $facility_rental->save();
 
-        Sessiom::flash('status', 'New rental record created successfully.');
+        //Session::flash('status', 'New rental record created successfully.');
         return redirect()->route('facility-rental');
     }
 

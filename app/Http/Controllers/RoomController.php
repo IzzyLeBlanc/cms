@@ -39,7 +39,8 @@ class RoomController extends Controller
         $this->validate($request, [
             'room'=>'required',
             'floor'=>'required',
-            'block'=>'required'
+            'block'=>'required',
+            'max'=>'required'
         ]);
         $staffid = Auth::id();
         $id = $request->room;
@@ -47,6 +48,8 @@ class RoomController extends Controller
         $room->id = $id;
         $room->floor = $request->floor;
         $room->block = $request->block;
+        $room->maxOccupant = $request->max;
+        $room->currentOccupant = 0;
         $room->staffid = $staffid;
         $room->save(); 
         Session::flash('status', 'Room created successfully.');
@@ -65,6 +68,7 @@ class RoomController extends Controller
             $room = Room::find($request->room);
             $room->floor = $request->floor;
             $room->block = $request->block;
+            $room->maxOccupant = $request->max;
             $room->update();
             Session::flash('status', 'Room updated successfully.');
             return redirect()->route('room');
