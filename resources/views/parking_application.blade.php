@@ -76,22 +76,15 @@
                                 <input class="form-control" type="text" name="carColor" id="carColor" required>
                             </div>
                         </div>
-
-                        <!--<div class="form-group row">
-                            <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status:') }}</label>
-
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" name="status" id="status" disabled="disabled" required>
+                        
+                        <div class="form-group row">
+                                <label for="rejectReason" class="col-md-4 col-form-label text-md-right">{{ __('Maklumat Borang Lengkap:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="rejectReason" id="rejectReason" placeholder="Yes/No"required>
+                                </div>
                             </div>
-
-                            <div class="form-group row">
-                            <label for="staffid" class="col-md-4 col-form-label text-md-right">{{ __('ID Staff:') }}</label>
-
-                            <div class="col-md-6">
-                                <input class="form-control" type="text" name="staffid" id="staffid" disabled="disabled" required>
-                            </div>
-                        </div>-->
-
+                       
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <div class="col-md-8 offset-md-4">
@@ -116,8 +109,10 @@
                        <th>No. Plat Kenderaan</th>
                        <th>Jenis Kenderaan</th>
                        <th>Warna Kenderaan</th>
-                       <th>Status</th>
                        <th>Staff ID</th>
+                       <th>Status</th>
+                       <th>Maklumat Borang</th>
+
                        <th></th>
                     </tr>
                     </thead>
@@ -131,8 +126,9 @@
                             <td>{{ $rentals->plateNo }}</td>
                             <td>{{ $rentals->carModel}}</td>
                             <td>{{ $rentals->carColor}}</td>
-                            <td>{{ $rentals->status }}</td>
                             <td>{{ $rentals->staffid }}</td>
+                            <td>{{ $rentals->status }}</td>
+                            <td>{{ $rentals->rejectReason}}</td>
                             
                        </tr>
                        @endforeach

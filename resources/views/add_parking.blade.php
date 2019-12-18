@@ -70,7 +70,7 @@
                                           document.getElementById('form').action = '{{route('update-parking')}}';
                                           var form;
                                           form = document.getElementById('form');
-                                          form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this room?\');');
+                                          form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this parking?\');');
                                           } moveToField(); return false;">{{__('Perbaharui')}}
                                          </button>
                                       </td>
