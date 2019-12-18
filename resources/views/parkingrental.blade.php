@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('PENGESAHAN PERMOHONAN TEMPAT LETAK KERETA') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('create-parking-rental')}}" enctype="multipart/form-data">
+                    <form  id="form" method="POST" action="{{route('create-parking-rental')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                                 <label for="parkingid" class="col-md-4 col-form-label text-md-right">{{ __('Lot Parking:') }}</label>
@@ -94,7 +94,7 @@
                            <th>Warna Kenderaan</th>
                            <th>Staff ID</th>
                            <th>Status</th>
-                           <th>Comment</th>
+                           <th>Komen</th>
     
                            <th></th>
                         </tr>

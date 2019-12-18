@@ -4,11 +4,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col=md-8">
+                @if(Session::has('status'))
+                <div class="alert alert-success" role="alert">
+                    {{Session::get('status')}}
+                </div>
+                @endif
+                @if(Session::has('statusfail'))
+                <div class="alert alert-danger" role="alert">
+                    {{Session::get('statusfail')}}
+                </div>
+                @endif
             <div class="card">
                 <div class="card-header">{{ __('PENAMBAHAN TEMPAT LETAK KERETA') }}</div>
                 
                 <div class="card-body">
-                    <form method="POST" action="{{route('create-parking')}}" enctype="multipart/form-data">
+                    <form id="form" method="POST" enctype="multipart/form-data" action="{{route('create-parking')}}" >
                         @csrf
 
                         <div class="form-group row">
@@ -19,7 +29,7 @@
                             </div>
                         </div>
 
-                        <<div class="form-group row">
+                        <div class="form-group row">
                             <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Block:') }}</label>
 
                             <div class="col-md-6">
@@ -53,6 +63,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Blok</th>
+                            <th>Staff ID</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,20 +71,20 @@
                             <tr>
                                  <td>{{ $parkings->id }}</td>
                                  <td>{{ $parkings->block }}</td>
-                                 <td>
                                     <td>
                                         <a href="{{route('delete-parking', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
               
-                                        <button class="btn btn-warning" onclick="function moveToField(){
-                                          document.getElementById('id').value = '{{ $parkings->id }}';
-                                          document.getElementById('block').value = '{{ $parkings->block }}';
-                                          document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
-                                          document.getElementById('form').action = '{{route('update-parking')}}';
-                                          var form;
-                                          form = document.getElementById('form');
-                                          form.setAttribute('onsubmit','return confirm(\'Are you sure you want to update this parking?\');');
-                                          } moveToField(); return false;">{{__('Perbaharui')}}
-                                         </button>
+                                        <button id="resetBtn" onclick="function moveToField(){
+                                            document.getElementById('id').value = '{{ $parkings->id }}';
+                                            document.getElementById('block').value ='{{ $parkings->block}}';
+                                            document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
+                                            document.getElementById('form').action = '{{route('update-parking')}}';
+                                            var form;
+                                            form = document.getElementById('form');
+                                            form.setAttribute('onsubmit','');
+                                            } moveToField(); return false;" class="btn btn-primary">
+                                            {{ __('Perbaharui') }}
+                                        </button>
                                       </td>
          
                             </tr>

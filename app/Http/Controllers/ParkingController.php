@@ -40,14 +40,16 @@ class ParkingController extends Controller
             'id'=>'required',
             'block'=>'required'
         ]);
-
+        $staffid = Auth::id()
         $id = $request->id;
         $parking = new parking;
         $parking->id = $id;
         $parking->block = $request->block;
+        $parking->staffid = $staffid;
         $parking->save(); 
         return redirect()->route('parking');
     }
+
     public function update(Request $request){
 
         $this->validate($request,[
@@ -55,12 +57,19 @@ class ParkingController extends Controller
             'block'=> 'required'
         ]);
         
-        $parking = parking::find($request->id);
-        $parking->id = $request->id;
-        $parking->block = $request->block;
-        $parking->update();
-
-        return redirect()->route('parking');
+        if (parking::where('id', '=', $request->id)->exists()) {
+            $parking =parking::find($request->id);
+            $parking->id= $request->id;
+            $parking->block = $request->block;
+            $parking->update();
+            Session::flash('status', 'Parking updated successfully.');
+            return redirect()->route('parking');
+         }
+         else{
+            Session::flash('statusfail', 'Parking update failed.');
+            return redirect()->route('parking');
+         }
+    
     }
     public function delete($id){
 

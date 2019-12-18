@@ -111,7 +111,7 @@
                        <th>Warna Kenderaan</th>
                        <th>Staff ID</th>
                        <th>Status</th>
-                       <th>Maklumat Borang</th>
+                       <th>Maklumat Permohonan</th>
 
                        <th></th>
                     </tr>
