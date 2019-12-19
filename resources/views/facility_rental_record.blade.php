@@ -9,35 +9,187 @@
             </div>
             <div class="card-body">
                 <div class="row justify-content-md-center">
-                    <button class="btn btn-outline-primary">RK01</button></a> 
+                    <button onclick="myFunction()">RK01</button>
+                    <div id="myDIV">
+                        <tr>
+                            <th>Nama: Dewan Besar Zaba</th>
+                            <br>
+                            <th>Harga: RM20 sejam</th>
+                            <br>
+                            <th>Kelebihan: Luas </th>
+                        </tr>
+                    </div>
+                    <script>
+                    function myFunction() {
+                        var x = document.getElementById("myDIV");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                                }
+                            }
+                    </script> 
                 </div>
                 <br>
                 <div class="row justify-content-md-center">
-                    <button class="btn btn-outline-primary">RK02</button></a>
+                    <button onclick="myFunction2()">RK02</button>
+                    <div id="myDIV2">
+                        <tr>
+                            <th>Nama: Bilik Seminar Tun Abdul Rahman Yakub</th>
+                            <br>
+                            <th>Harga: RM20 sejam</th>
+                            <br>
+                            <th>Kelebihan: Luas </th>
+                        </tr>
+                    </div>
+                    <script>
+                    function myFunction2() {
+                        var x = document.getElementById("myDIV2");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                                }
+                            }
+                    </script>
                 </div>
                 <br>
                 <div class="row justify-content-md-center">
-                    <button class="btn btn-outline-primary">RK03</button></a>
+                    <button onclick="myFunction3()">RK03</button>
+                    <div id="myDIV3">
+                        <tr>
+                            <th>Nama: Bilik Seminar Tun Abdul Razak</th>
+                            <br>
+                            <th>Harga: RM20 sejam</th>
+                            <br>
+                            <th>Kelebihan: Luas </th>
+                        </tr>
+                    </div>
+                    <script>
+                    function myFunction3() {
+                        var x = document.getElementById("myDIV3");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                                }
+                            }
+                    </script>
                 </div>
                 <br>
                 <div class="row justify-content-md-center">
-                    <button class="btn btn-outline-primary">RK04</button></a>
+                    <button onclick="myFunction4()">RK04</button>
+                    <div id="myDIV4">
+                        <tr>
+                            <th>Nama: Perpustakaan Ibn Rushd</th>
+                            <br>
+                            <th>Harga: RM20 sejam</th>
+                            <br>
+                            <th>Kelebihan: Luas </th>
+                        </tr>
+                    </div>
+                    <script>
+                    function myFunction4() {
+                        var x = document.getElementById("myDIV4");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                                }
+                            }
+                    </script>
                 </div>
                 <br>
                 <div class="row justify-content-md-center">
-                    <button class="btn btn-outline-primary">RK05</button></a>
+                    <button onclick="myFunction5()">RK05</button>
+                    <div id="myDIV5">
+                        <tr>
+                            <th>Nama: Gelanggang Futsal</th>
+                            <br>
+                            <th>Harga: RM20 sejam</th>
+                            <br>
+                            <th>Kelebihan: Luas </th>
+                        </tr>
+                    </div>
+                    <script>
+                    function myFunction5() {
+                        var x = document.getElementById("myDIV5");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                                }
+                            }
+                    </script>
                 </div>
                 <br>
                 <div class="row justify-content-md-center">
-                    <button class="btn btn-outline-primary">RK06</button></a>
+                    <button onclick="myFunction6()">RK06</button>
+                    <div id="myDIV6">
+                        <tr>
+                            <th>Nama: Kafetaria Zaba</th>
+                            <br>
+                            <th>Harga: RM20 sejam</th>
+                            <br>
+                            <th>Kelebihan: Luas </th>
+                        </tr>
+                    </div>
+                    <script>
+                    function myFunction6() {
+                        var x = document.getElementById("myDIV6");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                                }
+                            }
+                    </script>
                 </div>
                 <br>
                 <div class="row justify-content-md-center">
-                    <button class="btn btn-outline-primary">RK07</button></a>
+                    <button onclick="myFunction7()">RK07</button>
+                    <div id="myDIV7">
+                        <tr>
+                            <th>Nama: Bilik Mesyuarat</th>
+                            <br>
+                            <th>Harga: RM20 sejam</th>
+                            <br>
+                            <th>Kelebihan: Luas </th>
+                        </tr>
+                    </div>
+                    <script>
+                    function myFunction7() {
+                        var x = document.getElementById("myDIV7");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                                }
+                            }
+                    </script>
                 </div>
                 <br>
                 <div class="row justify-content-md-center">
-                    <button class="btn btn-outline-primary">RK08</button></a>
+                    <button onclick="myFunction8()">RK08</button>
+                    <div id="myDIV8">
+                        <tr>
+                            <th>Nama: Bilik Wacana Kerjaya</th>
+                            <br>
+                            <th>Harga: RM20 sejam</th>
+                            <br>
+                            <th>Kelebihan: Luas </th>
+                        </tr>
+                    </div>
+                    <script>
+                    function myFunction8() {
+                        var x = document.getElementById("myDIV8");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                                }
+                            }
+                    </script>
                 </div>
             </div>  
         </div>    
