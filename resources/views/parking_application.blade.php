@@ -43,7 +43,7 @@
                             <div class="col-md-6">
                                 <select name="parkingid" id="parkingid" class="form-control">
                                     <option value="">{{ __('Senarai Lot Parking') }}</option>
-                                    <option>$id+$block</option>
+                                    <option>{{ __('id') }}</option>
                                 </select>
                             </div>
                         </div>

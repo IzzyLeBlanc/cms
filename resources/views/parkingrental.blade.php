@@ -115,14 +115,12 @@
                                 <td>{{ $rentals->rejectReason}}</td>
                                 <td>{{ $rentals->end}}</td>
                                 <td>
-                                        <button id="submit" onclick="function moveToField(){
-                                            document.getElementById('id').value = '{{ $rentals->id }}';
-                                            document.getElementById('studentid').value ='{{ $rentals->studentid}}';
+                                        <button onclick="function moveToField(){
                                             document.getElementById('parkingid').value ='{{ $rentals->parkingid}}';
                                             document.getElementById('receiptNo').value ='{{ $rentals->receiptNo}}';
                                             document.getElementById('plateNo').value ='{{ $rentals->plateNo}}';
-                                            document.getElementById('staffid').value ='{{ $rentals->staffid}}';
-                                            document.getElementById('status').value ='{{ $rentals->status}}';
+                                            document.getElementById('carModel').value ='{{ $rentals->carModel}}';
+                                            document.getElementById('carColor').value ='{{ $rentals->carColor}}';
                                             document.getElementById('rejectReason').value ='{{ $rentals->rejectReason}}';
                                             document.getElementById('create').innerHTML = '{{__('Komen')}}';
                                             document.getElementById('form').action = '{{route('update-parking-rental', $rentals->id)}}';
