@@ -34,6 +34,20 @@ class ParkingController extends Controller
         }
     }
 
+    public function fetch($roomsRaw){
+        $total = count($roomsRaw);
+        $blocks = array();
+
+        for($i = 0; $i < $total; $i++){
+            array_push($blocks, $roomsRaw[$i]->block);
+        }
+        
+        $blocks = array_unique($blocks);
+        sort($blocks);
+        $blocks = array_values($blocks);
+        return $blocks;
+    }
+
     public function create(Request $request){
 
         $this->validate($request, [

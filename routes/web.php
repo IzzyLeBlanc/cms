@@ -65,7 +65,6 @@ Route::get('/facility-rental/reject/{id}', 'FacilityRentalController@postReject'
 Route::get('/parkingapp', 'ParkingappController@index')->name('parkingapp');
 Route::post('/parkingapp/create', 'ParkingappController@create')->name('create-parking-rental');
 Route::post('/parkingapp/update/{id}','ParkingappController@update')->name('update-parking-rental');
-//Route::get('/parkingapp/update/{id}','ParkingappController@update')->name('update-parking-rental');
 Route::get('/parkingapp/approve/{id}', 'ParkingappController@postApprove')->name('approved-parking-rental');
 Route::get('/parkingapp/reject/{id}', 'ParkingappController@postReject')->name('rejected-parking-rental');
 
@@ -75,3 +74,4 @@ Route::post('/parking/create', 'ParkingController@create')->name('create-parking
 Route::get('/parking/create', 'ParkingController@create')->name('create-parking');
 Route::post('/parking/update','ParkingController@update')->name('update-parking');
 Route::get('/parking/delete/{id}','ParkingController@delete')->name('delete-parking');
+Route::get('/parking/fetch', 'ParkingController@fetch')->name('fetch-parking');

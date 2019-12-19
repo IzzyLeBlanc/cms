@@ -30,19 +30,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Block:') }}</label>
+                            <label for="block" class="col-md-4 col-form-label text-md-right" {{ var_dump($parking) }}>{{ __('Block:') }}</label>
 
                             <div class="col-md-6">
-                                <select name="block" id="block" class="form-control">
+                                <select name="block" id="block" class="form-control" >
                                     <option value="">{{ __('Senarai Blok Parking') }}</option>
-                                    <option value="A">{{ __('A') }}</option>
-                                    <option value="B">{{ __('B') }}</option>
-                                    <option value="C">{{ __('C') }}</option>
-                                    <option value="D">{{ __('D') }}</option>
-                                    <option value="E">{{ __('E') }}</option>
-                                    <option value="F">{{ __('F') }}</option>
-                                    <option value="G">{{ __('G') }}</option>
-                                    <option value="H">{{ __('H') }}</option>
+                                    @foreach ($parking as $roomRaw)
+                                    <option value="{{$roomRaw}}">{{$roomRaw}}</option>
+                                    
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
