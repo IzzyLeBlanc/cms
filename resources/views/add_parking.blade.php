@@ -30,13 +30,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="block" class="col-md-4 col-form-label text-md-right" {{ var_dump($parking) }}>{{ __('Block:') }}</label>
+                            <label for="block" class="col-md-4 col-form-label text-md-right">{{ __('Block:') }}</label>
 
                             <div class="col-md-6">
                                 <select name="block" id="block" class="form-control" >
                                     <option value="">{{ __('Senarai Blok Parking') }}</option>
-                                    @foreach ($parking as $roomRaw)
-                                    <option value="{{$roomRaw}}">{{$roomRaw}}</option>
+                                    @foreach ($blocks as $block)
+                                    <option value="{{$block}}">{{$block}}</option>
                                     
                                     @endforeach
                                 </select>
@@ -63,16 +63,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                            @foreach($parking as $parkings)
+                            @foreach($parkings as $parking)
                             <tr>
-                                 <td>{{ $parkings->id }}</td>
-                                 <td>{{ $parkings->block }}</td>
+                                 <td>{{ $parking->id }}</td>
+                                 <td>{{ $parking->block }}</td>
                                     <td>
-                                        <a href="{{route('delete-parking', $parkings->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
+                                        <a href="{{route('delete-parking', $parking->id)}}" class="btn btn-danger">{{__('Padam')}}</a>
               
                                         <button id="resetBtn" onclick="function moveToField(){
-                                            document.getElementById('id').value = '{{ $parkings->id }}';
-                                            document.getElementById('block').value ='{{ $parkings->block}}';
+                                            document.getElementById('id').value = '{{ $parking->id }}';
+                                            document.getElementById('block').value ='{{ $parking->block}}';
                                             document.getElementById('create').innerHTML = '{{__('Perbaharui')}}';
                                             document.getElementById('form').action = '{{route('update-parking')}}';
                                             var form;
@@ -87,7 +87,6 @@
                             @endforeach
                          </tbody>
                       </table>
-                     {{$parking->links() }}
                  </div>
              </div>
          </div>

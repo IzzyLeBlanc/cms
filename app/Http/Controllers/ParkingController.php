@@ -21,8 +21,9 @@ class ParkingController extends Controller
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
                 //return view('/add_parking');
-                $parking = DB::table('parking')->paginate(15);
-                return view('/add_parking',['parking'=>$parking]);
+                $parkings = DB::table('parking')->get();
+                $blocks = $this->fetch(DB::table('room')->get());
+                return view('/add_parking',compact('parkings', 'blocks'));
             } else if(Auth::user()->role === 'student'){
                 return view('/parking_application');
             } elseif (Auth::user()->role === 'staff') {
