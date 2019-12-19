@@ -42,15 +42,8 @@
 
                             <div class="col-md-6">
                                 <select name="parkingid" id="parkingid" class="form-control">
-                                    <option value="">{{ __('Pilih Blok Parking') }}</option>
-                                    <option value="A">{{ __('A') }}</option>
-                                    <option value="B">{{ __('B') }}</option>
-                                    <option value="C">{{ __('C') }}</option>
-                                    <option value="D">{{ __('D') }}</option>
-                                    <option value="E">{{ __('E') }}</option>
-                                    <option value="F">{{ __('F') }}</option>
-                                    <option value="G">{{ __('G') }}</option>
-                                    <option value="H">{{ __('h') }}</option>
+                                    <option value="">{{ __('Senarai Lot Parking') }}</option>
+                                    <option>$id+$block</option>
                                 </select>
                             </div>
                         </div>
@@ -86,6 +79,14 @@
                                 <input class="form-control" type="text" name="carColor" id="carColor" required>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                                <label for="rejectReason" class="col-md-4 col-form-label text-md-right">{{ __('Maklumat Borang:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="rejectReason" id="rejectReason" required>
+                                </div>
+                            </div>
                         
                        
                         <div class="form-group row mb-0">
@@ -114,7 +115,7 @@
                        <th>Warna Kenderaan</th>
                        <th>Staff ID</th>
                        <th>Status</th>
-                       <th>Komen</th>
+                       <th>Maklumat Borang</th>
                        <th>Tarikh Akhir</th>
 
                        <th></th>

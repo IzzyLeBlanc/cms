@@ -17,7 +17,72 @@
             <div class="card">
                 <div class="card-header">{{ __('PENGESAHAN PERMOHONAN TEMPAT LETAK KERETA') }}</div>
                 <div class="card-body">
-                
+                        <form id="form" method="POST" action="{{route('create-parking-rental')}}" enctype="multipart/form-data">
+                            @csrf
+    
+    
+                            <div class="form-group row">
+                                    <label for="parkingid" class="col-md-4 col-form-label text-md-right">{{ __('Lot Parking:') }}</label>
+        
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="text" name="parkingid" id="parkingid" required>
+                                    </div>
+                                </div>
+    
+                            <div class="form-group row">
+                                <label for="receiptNo" class="col-md-4 col-form-label text-md-right">{{ __('No. Receipt:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="receiptNo" id="receiptNo" required>
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="plateNo" class="col-md-4 col-form-label text-md-right">{{ __('No. Plat Kenderaan:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="plateNo" id="plateNo" required>
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="carModel" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kenderaan:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="carModel" id="carModel" required>
+                                </div>
+                            </div>
+    
+                            <div class="form-group row">
+                                <label for="carColor" class="col-md-4 col-form-label text-md-right">{{ __('Warna Kenderaan:') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="carColor" id="carColor" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                    <label for="rejectReason" class="col-md-4 col-form-label text-md-right">{{ __('Komen:') }}</label>
+        
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="text" name="rejectReason" id="rejectReason" required>
+                                    </div>
+                                </div>
+                           
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <div class="col-md-8 offset-md-4">
+                                        <button type="submit" class="btn btn-primary" name="create" id="create">
+                                            {{ __('Hantar') }}
+                                        </button>
+                                        <button type="reset" class="btn btn-primary" name="reset" id="reset">
+                                            {{ __('Semula') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -26,6 +91,8 @@
                            <th>Lot Parking</th>
                            <th>No. Receipt</th>
                            <th>No. Plat Kenderaan</th>
+                           <th>Jenis Kenderaan</th>
+                           <th>Warna Kenderaan</th>
                            <th>Staff ID</th>
                            <th>Status</th>
                            <th>Komen</th>
@@ -41,28 +108,35 @@
                                 <td>{{ $rentals->parkingid }}</td>
                                 <td>{{ $rentals->receiptNo }}</td>
                                 <td>{{ $rentals->plateNo }}</td>
+                                <td>{{ $rentals->carModel}}</td>
+                                <td>{{ $rentals->carColor}}</td>
                                 <td>{{ $rentals->staffid }}</td>
                                 <td>{{ $rentals->status }}</td>
                                 <td>{{ $rentals->rejectReason}}</td>
                                 <td>{{ $rentals->end}}</td>
                                 <td>
-                                       
-                                        <button href="{{route('rejected-parking-rental', $rentals->id)}}" class="btn btn-danger" onclick="myFunction()" >{{ __('Ditolak') }}</button>
-                                        <p id="reject"></p>
-                                        <script>
-                                        function myFunction() {
-                                          var komen = prompt("Please give the reason");
-                                          if (komen != null) {
-                                            document.getElementById("reject").value=komen;
-                                            return true;
-
-                                          }
-                                        }
-                                    </script>
+                                        <button id="submit" onclick="function moveToField(){
+                                            document.getElementById('id').value = '{{ $rentals->id }}';
+                                            document.getElementById('studentid').value ='{{ $rentals->studentid}}';
+                                            document.getElementById('parkingid').value ='{{ $rentals->parkingid}}';
+                                            document.getElementById('receiptNo').value ='{{ $rentals->receiptNo}}';
+                                            document.getElementById('plateNo').value ='{{ $rentals->plateNo}}';
+                                            document.getElementById('staffid').value ='{{ $rentals->staffid}}';
+                                            document.getElementById('status').value ='{{ $rentals->status}}';
+                                            document.getElementById('rejectReason').value ='{{ $rentals->rejectReason}}';
+                                            document.getElementById('create').innerHTML = '{{__('Komen')}}';
+                                            document.getElementById('form').action = '{{route('update-parking-rental', $rentals->id)}}';
+                                            var form;
+                                            form = document.getElementById('form');
+                                            form.setAttribute('onsubmit','');
+                                            } moveToField(); return false;" class="btn btn-primary">
+                                            {{ __('Lihat') }}
+                                        </button>
 
                                 </td>
                                 <td><a href="{{route('approved-parking-rental', $rentals->id)}}" class="btn btn-danger">{{__('Diterima')}}</a></td>
-
+                                <td><a href="{{route('rejected-parking-rental', $rentals->id)}}" class="btn btn-danger">{{__('Ditolak')}}</a></td>
+                                
          
                            </tr>
                            @endforeach
