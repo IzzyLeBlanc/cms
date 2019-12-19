@@ -102,7 +102,7 @@
                             </div>
                             <script>
                                 var data = {
-                                    labels: ['Occupied', 'Empty'],
+                                    labels: ['Occupied {{$occupiedParkingLot}}', 'Empty {{$totalParkingLot - $occupiedParkingLot}}'],
                                     series: [{{$occupiedParkingLot}}, {{$totalParkingLot - $occupiedParkingLot}}]
                                 };
 

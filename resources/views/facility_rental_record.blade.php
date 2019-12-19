@@ -232,7 +232,7 @@
                             <label for="start_date" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh Mula:') }}</label>
     
                             <div class="col-md-6">
-                                <input class="form-control" type="datetime" name="start_date" id="start_date" placeholder="day/month/year" required>
+                                <input class="form-control" type="date" name="start_date" id="start_date" placeholder="day/month/year" required>
                             </div>
                     </div>
     
@@ -240,7 +240,7 @@
                             <label for="end_date" class="col-md-4 col-form-label text-md-right">{{ __('Tarikh Akhir:') }}</label>
     
                             <div class="col-md-6">
-                                <input class="form-control" type="datetime" name="end_date" id="end_date" placeholder="day/month/year" required>
+                                <input class="form-control" type="date" name="end_date" id="end_date" placeholder="day/month/year" required>
                             </div>
                     </div>
     
